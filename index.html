@@ -1,0 +1,251 @@
+<!-- ============ index.html ============ -->
+<!-- ============ HOMEPAGE ============ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Daily Store · Homepage</title>
+  <!-- Font Awesome 6 -->
+   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+   <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Toast Notification -->
+  <div id="cartToast" class="cart-toast">
+    <i class="fas fa-check-circle"></i> Added to cart!
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="main-header">
+    <div class="logo-area" onclick="window.location.href='index.html'">
+      <div class="logo-icon">
+        <i class="fas fa-bolt"></i>
+      </div>
+      <div class="logo-text">
+        DAILY<span>STORE</span>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#bestsellers">Bestsellers</a>
+      <a href="index.html#new">New</a>
+      
+    </div>
+
+    <!-- Desktop Search -->
+    <div class="header-search">
+      <input type="text" placeholder="Search gadgets..." id="searchInput">
+      <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    </div>
+
+    <!-- Header Icons with Cart Count -->
+    <div class="header-icons">
+      <i class="far fa-heart" id="wishlistIcon"></i>
+      <i class="far fa-user" id="accountIcon"></i>
+      <div class="cart-icon-wrapper" onclick="window.location.href='cart.html'">
+        <i class="fi fi-rr-shopping-bag" id="cartIcon"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+
+    <!-- Hamburger Menu (Mobile) -->
+    <div class="hamburger-menu" id="hamburgerBtn">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+
+  <!-- ============ MOBILE SIDEBAR ============ -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">DAILY<span style="color:#1e7b4c;">STORE</span></span>
+      <i class="fas fa-times close-sidebar" id="closeSidebar"></i>
+    </div>
+    
+    <!-- Mobile Search -->
+    <div class="mobile-search">
+      <input type="text" placeholder="Search gadgets..." id="mobileSearchInput">
+      <button id="mobileSearchBtn"><i class="fas fa-search"></i></button>
+    </div>
+
+    <ul class="mobile-nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="order-tracking.html"><i class="fi fi-ss-map-location-track"></i> Track Order</a></li>
+      <li><a href="index.html#bestsellers"><i class="fas fa-fire"></i> Bestsellers</a></li>
+      <li><a href="index.html#new"><i class="fas fa-clock"></i> New arrivals</a></li>
+      <li><a href="index.html#gadgets"><i class="fas fa-mobile-alt"></i> Gadgets</a></li>
+      <li><a href="#" id="mobileWishlistLink"><i class="far fa-heart"></i> Wishlist</a></li>
+      <li><a href="#" id="mobileAccountLink"><i class="far fa-user"></i> Account</a></li>
+      <li><a href="cart.html" id="mobileCartLink">
+        <i class="far fa-shopping-cart"></i> Cart 
+        <span class="mobile-cart-badge" style="display:none;">0</span>
+      </a></li>
+    </ul>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ============ TOP USP BAR ============ -->
+  <div class="top-usp">
+    <span><i class="fas fa-rocket"></i> Express Shipping (3 - 5 Day)</span>
+    <span><i class="fas fa-tag"></i> Exclusive pricing</span>
+    <span><i class="fas fa-rotate-left"></i> Easy Returns</span>
+  </div>
+
+  <!-- ============ BANNERS - CLOTHING THEME ============ -->
+<section class="fullscreen-banner-section">
+  <div class="banner-scroll-wrapper" id="bannerWrapper">
+    <div class="fullscreen-banner-row">
+      <!-- Banner 1 - Summer Sale -->
+      <div class="full-banner-card" style="background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);">
+        <span class="banner-pre">🔥 SUMMER SALE</span>
+        <div class="banner-headline" style="color: #b13b17;">UP TO 50% OFF</div>
+        <div style="display: flex; align-items: baseline; gap: 15px; flex-wrap: wrap; justify-content: center;">
+          <span class="banner-discount">T-SHIRTS</span>
+          <span style="font-size: 1.8rem; font-weight: 800; color: #2e5e47;">STARTING ₹399</span>
+        </div>
+        <button class="banner-btn" style="background: #b13b17;" onclick="window.location.href='product.html?id=1'">
+          <i class="fas fa-shopping-bag"></i> SHOP NOW!
+        </button>
+      </div>
+      
+      <!-- Banner 2 - Women's Collection -->
+      <div class="full-banner-card" style="background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);">
+        <span class="banner-pre" style="color: #a5511e;">NEW ARRIVALS</span>
+        <div class="banner-headline" style="color: #4a2b5c;">WOMEN'S WEAR</div>
+        <span style="font-size: 1.8rem; font-weight: 700; color: #7b4a1e;">FLORAL DRESSES</span>
+        <span class="banner-discount" style="background: rgba(230,120,50,0.15); color: #b13b17; font-size: 2.5rem;">40% OFF</span>
+        <button class="banner-btn" style="background: #4a2b5c;" onclick="window.location.href='product.html?id=4'">
+          <i class="fas fa-heart"></i> EXPLORE
+        </button>
+      </div>
+      
+      <!-- Banner 3 - Footwear Sale -->
+      <div class="full-banner-card" style="background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);">
+        <div style="font-size: clamp(1.8rem,8vw,3.2rem); font-weight: 900; color: #1a4d3e;">FOOTWEAR</div>
+        <div style="font-size: clamp(2rem,9vw,3.8rem); font-weight: 900; color: #0f4035;">SALE</div>
+        <span style="font-size: 1.4rem; font-weight: 700; color: #256454; margin: 10px 0;">SNEAKERS · SHOES · SANDALS</span>
+        <p style="font-size: 1.2rem; font-weight: 600; color: #2c5e4b;">UP TO 50% OFF + FREE SHIPPING</p>
+        <button class="banner-btn" style="background: #0e4d39;" onclick="window.location.href='product.html?id=7'">
+          <i class="fas fa-shoe-prints"></i> SHOP NOW
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <i class="fas fa-chevron-left"></i> <span>swipe for more</span> <i class="fas fa-chevron-right"></i>
+  </div>
+</section>
+  <!-- ============ MAIN CONTENT ============ -->
+  <div class="container">
+    <!-- Bestsellers Section -->
+    <h2 class="section-title" id="bestsellers">Bestsellers</h2>
+    <div class="product-grid" id="bestsellersGrid"></div>
+
+    <!-- Testimonials Section -->
+    <h2 class="section-title">What Our Happy Customers Are Saying</h2>
+    <div class="testimonial-grid" id="testimonialGrid"></div>
+
+    <!-- New Arrivals Section -->
+    <h2 class="section-title" id="new">New arrivals</h2>
+    <div class="product-grid" id="newarrivalsGrid"></div>
+
+    <!-- Shipping Partners -->
+    <div class="shipping-partners">
+      <div class="partner-item"><i class="fas fa-truck-shield"></i> Save & Secure Shipping</div>
+      <div class="partner-item"><i class="fas fa-money-bill-wave"></i> Cash On Delivery Available</div>
+      <div class="partner-item"><i class="fas fa-lock"></i> Secure Checkout</div>
+      <div class="partner-item"><i class="fas fa-boxes-packing"></i> 60000+ Deliveries</div>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+<!-- ============ FOOTER ============ -->
+<footer class="main-footer">
+  <div class="footer-content">
+    <!-- Column 1: About -->
+    <div class="footer-col">
+      <h4><i class="fas fa-store-alt"></i> DAILY FASHION</h4>
+      <p class="footer-about">Your daily source for stylish clothing, accessories, and trendy fashion. Quality products at affordable prices.</p>
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+    
+    <!-- Column 2: Quick Links -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+        <li><a href="cart.html"><i class="fas fa-chevron-right"></i> Cart</a></li>
+        <li><a href="checkout.html"><i class="fas fa-chevron-right"></i> Checkout</a></li>
+        <li><a href="order-tracking.html"><i class="fas fa-chevron-right"></i> Track Order</a></li>
+      </ul>
+    </div>
+    
+    <!-- Column 3: Categories -->
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Men's Clothing</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Women's Clothing</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Footwear</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> New Arrivals</a></li>
+      </ul>
+    </div>
+    
+    <!-- Column 4: Contact -->
+    <div class="footer-col">
+      <h4>Customer Care</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> help@dailyfashion.com</li>
+        <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
+        <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+        <li><i class="fas fa-clock"></i> Mon-Sat: 10am - 7pm</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Footer Bottom with Payment Icons -->
+  <div class="footer-bottom">
+    <div class="payment-icons">
+      <i class="fab fa-cc-visa" title="Visa"></i>
+      <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+      <i class="fab fa-cc-rupay" title="RuPay"></i>
+      <i class="fab fa-cc-paypal" title="PayPal"></i>
+      <i class="fab fa-cc-amazon-pay" title="Amazon Pay"></i>
+      <i class="fas fa-credit-card" title="Credit Card"></i>
+    </div>
+    <span>© 2026 Daily Fashion. All rights reserved. | Made with <i class="fas fa-heart" style="color: #c0421e;"></i> in India</span>
+  </div>
+</footer>
+
+<!-- Micro Footer -->
+<div class="micro-footer">
+  <span><i class="fas fa-rotate-right"></i> Choosing a selection results in a full page refresh.</span>
+  <span><i class="fas fa-external-link-alt"></i> Opens in a new window.</span>
+  <span><i class="fas fa-shield-alt"></i> Secure checkout · 100% safe</span>
+</div>
+
+  <!-- Micro Footer -->
+  <div class="micro-footer">
+    <span><i class="fas fa-rotate-right"></i> Choosing a selection results in a full page refresh.</span>
+    <span><i class="fas fa-external-link-alt"></i> Opens in a new window.</span>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

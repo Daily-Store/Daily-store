@@ -1,0 +1,1383 @@
+<!-- ============ product.html ============ -->
+<!-- ============ SHOWS ALL IMAGES IN SCROLLABLE GALLERY ============ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Product · Daily Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============ GLOBAL RESET ============ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { 
+      font-size: 16px; 
+      scroll-behavior: smooth; 
+      width: 100%; 
+      overflow-x: hidden;
+    }
+    
+    @media (max-width: 480px) { 
+      html { font-size: 14px; } 
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #ffffff; 
+      color: #111; 
+      width: 100%; 
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+    
+    /* Header Styles (same as before) */
+    .main-header {
+      background: white; 
+      padding: 0.8rem 1rem; 
+      display: flex; 
+      align-items: center;
+      justify-content: space-between; 
+      border-bottom: 1px solid #eef3f1;
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+      width: 100%;
+    }
+    
+    .logo-area { 
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      cursor: pointer; 
+    }
+    
+    .logo-icon {
+      width: 40px; 
+      height: 40px; 
+      background: #e1f0e9; 
+      border-radius: 10px;
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: #1e7b4c; 
+      font-size: 1.5rem;
+    }
+    
+    .logo-text { 
+      font-size: 1.3rem; 
+      font-weight: 800; 
+      color: #0a3529; 
+    }
+    
+    .logo-text span { 
+      color: #1e7b4c; 
+    }
+    
+    .desktop-nav { 
+      display: flex; 
+      gap: 1.5rem; 
+    }
+    
+    .desktop-nav a { 
+      text-decoration: none; 
+      color: #1f3d34; 
+      font-weight: 600; 
+      font-size: 0.95rem;
+    }
+    
+    @media (max-width: 900px) { 
+      .desktop-nav { 
+        display: none; 
+      } 
+    }
+    
+    .header-search {
+      display: flex;
+      align-items: center;
+      background: #f5f8f7;
+      border-radius: 40px;
+      padding: 0.2rem 0.2rem 0.2rem 1rem;
+      border: 1px solid #e3ece8;
+      max-width: 300px;
+    }
+    
+    .header-search input {
+      border: none;
+      background: transparent;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      width: 100%;
+      outline: none;
+    }
+    
+    .header-search button {
+      background: #1e7b4c;
+      border: none;
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    
+    @media (max-width: 900px) { 
+      .header-search { 
+        display: none; 
+      } 
+    }
+    
+    .header-icons { 
+      display: flex; 
+      gap: 1rem; 
+      align-items: center; 
+    }
+    
+    .header-icons i, .header-icons .fi { 
+      font-size: 1.3rem; 
+      color: #2a4c3b; 
+      cursor: pointer; 
+    }
+    
+    .cart-icon-wrapper { 
+      position: relative; 
+      cursor: pointer; 
+    }
+    
+    .cart-count {
+      position: absolute; 
+      top: -8px; 
+      right: -10px; 
+      background: #c0421e; 
+      color: white;
+      font-size: 0.65rem; 
+      width: 18px; 
+      height: 18px; 
+      border-radius: 50%; 
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+      border: 2px solid white;
+    }
+    
+    .hamburger-menu {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #1e4d3a;
+    }
+    
+    @media (max-width: 900px) { 
+      .hamburger-menu { 
+        display: block; 
+      } 
+    }
+    
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 2rem 1.5rem;
+      transition: right 0.3s ease;
+    }
+    
+    .mobile-sidebar.active { right: 0; }
+    
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e6efea;
+      padding-bottom: 1rem;
+    }
+    
+    .close-sidebar { 
+      font-size: 1.6rem; 
+      cursor: pointer; 
+      color: #2e5e4b; 
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      list-style: none;
+    }
+    
+    .mobile-nav-links li a {
+      text-decoration: none;
+      color: #1f3d34;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    
+    .overlay.active { opacity: 1; visibility: visible; }
+    
+    /* Top USP */
+    .top-usp {
+      background: #f5f7f6;
+      padding: 0.6rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    .top-usp i { color: #146b3a; margin-right: 0.3rem; }
+    
+    /* ============ PRODUCT PAGE ============ */
+    .product-page-section {
+      padding: 1.5rem 1rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    
+    .back-to-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #1e7b4c;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+    
+    .product-page-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    @media (max-width: 800px) {
+      .product-page-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+    
+    /* ============ SCROLLABLE IMAGE GALLERY ============ */
+    .product-gallery-container {
+      width: 100%;
+      background: #f9fbfa;
+      border-radius: 1.5rem;
+      border: 1px solid #e3ece8;
+      overflow: hidden;
+    }
+    
+    .main-image-container {
+      width: 100%;
+      aspect-ratio: 1/1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: white;
+    }
+    
+    .main-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    
+    .thumbnail-scroll {
+      display: flex;
+      overflow-x: auto;
+      gap: 0.8rem;
+      padding: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      background: #f9fbfa;
+    }
+    
+    .thumbnail-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+    
+    .thumbnail-scroll::-webkit-scrollbar-track {
+      background: #e3ece8;
+      border-radius: 10px;
+    }
+    
+    .thumbnail-scroll::-webkit-scrollbar-thumb {
+      background: #1e7b4c;
+      border-radius: 10px;
+    }
+    
+    .thumbnail-item {
+      flex: 0 0 auto;
+      width: 70px;
+      height: 70px;
+      border-radius: 0.8rem;
+      border: 2px solid transparent;
+      overflow: hidden;
+      cursor: pointer;
+      scroll-snap-align: start;
+      background: white;
+      transition: all 0.2s;
+    }
+    
+    @media (max-width: 480px) {
+      .thumbnail-item {
+        width: 60px;
+        height: 60px;
+      }
+    }
+    
+    .thumbnail-item:hover {
+      border-color: #1e7b4c;
+      transform: scale(1.05);
+    }
+    
+    .thumbnail-item.active {
+      border-color: #1e7b4c;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px #1e7b4c;
+    }
+    
+    .thumbnail-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .image-counter {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #5d6b65;
+      padding: 0.5rem;
+      background: #f9fbfa;
+      border-top: 1px solid #e3ece8;
+    }
+    
+    /* Product Details */
+    .product-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .product-category {
+      color: #1e7b4c;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+    }
+    
+    .product-name {
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      font-weight: 800;
+      color: #0a3529;
+    }
+    
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffb83b;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+    
+    .product-price-box {
+      background: #f3f9f6;
+      padding: 1.2rem;
+      border-radius: 1.2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    
+    .product-current-price {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #1e4d3d;
+    }
+    
+    .product-old-price {
+      font-size: 1.1rem;
+      color: #7b8780;
+      text-decoration: line-through;
+    }
+    
+    .product-discount-badge {
+      background: #c0421e;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    
+    .size-selector, .color-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 0.5rem 0;
+    }
+    
+    .size-btn, .color-btn {
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .size-btn {
+      min-width: 40px;
+      height: 40px;
+      border: 2px solid #e3ece8;
+      background: white;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #1f3d34;
+      font-size: 0.9rem;
+      padding: 0 0.5rem;
+    }
+    
+    .size-btn:hover, .size-btn.selected {
+      background: #1e7b4c;
+      border-color: #1e7b4c;
+      color: white;
+    }
+    
+    .color-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      position: relative;
+    }
+    
+    .color-btn.selected {
+      border-color: #1e7b4c;
+      box-shadow: 0 0 0 2px white, 0 0 0 4px #1e7b4c;
+    }
+    
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      border: 1px solid #e3ece8;
+      padding: 0.3rem;
+      border-radius: 50px;
+      width: fit-content;
+      margin: 0.8rem 0;
+    }
+    
+    .quantity-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid #e3ece8;
+      background: white;
+      color: #1e7b4c;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    
+    .quantity-btn:hover {
+      background: #1e7b4c;
+      color: white;
+    }
+    
+    .quantity-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      min-width: 40px;
+      text-align: center;
+    }
+    
+    .product-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .add-to-cart-btn, .buy-now-btn {
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      flex: 1;
+      min-width: 160px;
+      justify-content: center;
+    }
+    
+    .add-to-cart-btn {
+      background: white;
+      color: #1e7b4c;
+      border: 2px solid #1e7b4c;
+    }
+    
+    .buy-now-btn {
+      background: #1e7b4c;
+      color: white;
+      border: none;
+    }
+    
+    @media (max-width: 480px) {
+      .product-actions {
+        flex-direction: column;
+      }
+      
+      .add-to-cart-btn, .buy-now-btn {
+        width: 100%;
+      }
+    }
+    
+    .stock-info {
+      margin-top: 1rem;
+      color: #5d6b65;
+      font-size: 0.9rem;
+    }
+    
+    .stock-info i { 
+      color: #1e7b4c; 
+      margin-right: 0.3rem;
+    }
+    
+    /* Footer */
+    .main-footer {
+      background: #0f2c24;
+      color: #e2f0e9;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+    
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    
+    @media (max-width: 700px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+    
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 1.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(200, 230, 215, 0.2);
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    
+    /* Toast */
+    .cart-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e4d3d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    @media (max-width: 480px) {
+      .cart-toast {
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+        text-align: center;
+      }
+    }
+    
+    .cart-toast.show { opacity: 1; }
+    
+    .loading-spinner {
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .loading-spinner i {
+      font-size: 2rem;
+      color: #1e7b4c;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="cartToast" class="cart-toast"></div>
+
+  <!-- Mobile Sidebar -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">DAILY<span style="color:#1e7b4c;">STORE</span></span>
+      <i class="fas fa-times close-sidebar" id="closeSidebar"></i>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="cart.html"><i class="fi fi-rr-shopping-bag"></i> Cart</a></li>
+      <li><a href="order-tracking.html"><i class="fas fa-truck"></i> Track Order</a></li>
+    </ul>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-area" onclick="window.location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-tshirt"></i></div>
+      <div class="logo-text">DAILY<span>FASHION</span></div>
+    </div>
+    
+    <div class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="order-tracking.html">Track Order</a>
+    </div>
+    
+    <div class="header-search">
+      <input type="text" placeholder="Search..." id="searchInput">
+      <button id="searchBtn"><i class="fas fa-search"></i></button>
+    </div>
+    
+    <div class="header-icons">
+      <i class="far fa-heart"></i>
+      <i class="far fa-user"></i>
+      <div class="cart-icon-wrapper" onclick="window.location.href='cart.html'">
+        <i class="fi fi-rr-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <div class="hamburger-menu" id="hamburgerBtn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top USP -->
+  <div class="top-usp">
+    <span><i class="fas fa-rocket"></i> Express Shipping</span>
+    <span><i class="fas fa-tag"></i> Exclusive pricing</span>
+    <span><i class="fas fa-rotate-left"></i> Easy Returns</span>
+  </div>
+
+  <!-- Product Section -->
+  <section class="product-page-section">
+    <a href="javascript:history.back()" class="back-to-home">
+      <i class="fas fa-arrow-left"></i> Back
+    </a>
+    <div class="product-page-container" id="productContainer">
+      <div class="loading-spinner">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Loading product...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+ <!-- ============ FOOTER ============ -->
+<footer class="main-footer">
+  <div class="footer-content">
+    <!-- Column 1: About -->
+    <div class="footer-col">
+      <h4><i class="fas fa-store-alt"></i> DAILY FASHION</h4>
+      <p class="footer-about">Your daily source for stylish clothing, accessories, and trendy fashion. Quality products at affordable prices.</p>
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+    
+    <!-- Column 2: Quick Links -->
+  
+    
+    <!-- Column 3: Categories -->
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Men's Clothing</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Women's Clothing</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Footwear</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> New Arrivals</a></li>
+      </ul>
+    </div>
+    
+    <!-- Column 4: Contact -->
+    <div class="footer-col">
+      <h4>Customer Care</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> help@dailyfashion.com</li>
+        <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
+        <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+        <li><i class="fas fa-clock"></i> Mon-Sat: 10am - 7pm</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Footer Bottom with Payment Icons -->
+  <div class="footer-bottom">
+    <div class="payment-icons">
+      <i class="fab fa-cc-visa" title="Visa"></i>
+      <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+      <i class="fab fa-cc-rupay" title="RuPay"></i>
+      <i class="fab fa-cc-paypal" title="PayPal"></i>
+      <i class="fab fa-cc-amazon-pay" title="Amazon Pay"></i>
+      <i class="fas fa-credit-card" title="Credit Card"></i>
+    </div>
+    <span>© 2026 Daily Fashion. All rights reserved. | Made with <i class="fas fa-heart" style="color: #c0421e;"></i> in India</span>
+  </div>
+</footer>
+
+<!-- Micro Footer -->
+<div class="micro-footer">
+  <span><i class="fas fa-rotate-right"></i> Choosing a selection results in a full page refresh.</span>
+  <span><i class="fas fa-external-link-alt"></i> Opens in a new window.</span>
+  <span><i class="fas fa-shield-alt"></i> Secure checkout · 100% safe</span>
+</div>
+
+  <script>
+    // ============ MOBILE SIDEBAR TOGGLE ============
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('overlay');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    function openSidebar() {
+      mobileSidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebarFunc() {
+      mobileSidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+    if (closeSidebar) closeSidebar.addEventListener('click', closeSidebarFunc);
+    if (overlay) overlay.addEventListener('click', closeSidebarFunc);
+
+    // ============ PRODUCT DATA (SAME AS data.js) ============
+    const products = [
+      { 
+        id: 1, 
+        name: "SupeMen's Dark Blue Loose Baggy Fit Heavy Washed Jeans Non-Stretchabler Combed Cotton Rib Solid Boxer Brief with Ultrasoft and Durable Waistband - Black/Navy/Charcoal Melange (Pack of 3)", 
+        price: 499, 
+        compare: 999, 
+        discount: "-50% OFF", 
+        icon: "fa-tshirt",
+        images: [
+          "images/jeanlstwlyelice-dblue-1.jpg",
+      "images/jeanlstwlyelice-dblue-2.jpg",
+      "images/jeanlstwlyelice-dblue-3_5d6f5058-8688-4730-92ef-2187faa1afd7.jpg",
+      "images/jeanlstwlyelice-dblue-4.jpg",
+      "images/jeanlstwlyelice-dblue-5.jpg",
+      "images/jeanlstwlyelice-dblue-6_2f3a11ce-6ba2-4236-8993-c9d6f964c577.jpg",
+        ],
+        description: "Comfortable loose fit ideal for everyday wear.Premium Denim Fabric: Made with non-stretchable 100% cotton denim fabric which is durable and ensures comfort and long-lasting wear.",
+        category: "Men's Clothing",
+        rating: 4.9,
+        reviews: 124,
+        stock: 50,
+        sizes: ["28", "30", "32", "34","36"],
+        
+      },
+      { 
+        id: 2, 
+        name: "ESCAPE DEER 3 Shirt Combo ED3112 R1 S1", 
+        price: 699, 
+        compare: 1299, 
+        discount: "-48% OFF", 
+        icon: "fa-tshirt",
+        images: [
+          "images/ChatGPT Image Feb 15, 2026, 10_34_00 PM.png",
+          "images/A155D876-61F8-4F24-933D-17D75981E460.jpg",
+          "images/BFB13D6A-DBC1-4F8C-953D-F84D0677281B.jpg",
+          "images/9EFD6312-5AD6-46A9-9E8A-33BFDF87C80D.jpg",
+        ],
+        description: "FABRIC: Soft Cotton Blend. FIT: Slim Fi. SIZE: Model is wearing a L size",
+        category: "Men's Clothing",
+        rating: 4.7,
+        reviews: 89,
+        stock: 35,
+        sizes: ["S", "M", "L", "XL"],
+        
+      },
+      { 
+        id: 3, 
+        name: "2-Pack Classic Straight Fit Joggers", 
+        price: 599, 
+        compare: 1299, 
+        discount: "-50% OFF", 
+        icon: "fa-tshirt",
+        images: [
+          "images/PebbleBlack_131d91bd-5ef8-4a08-a635-ea370d7a903a.jpg",
+          "images/Pebble.jpg",
+          "images/Black_5c478d63-060d-43fb-9b26-f00264794692.jpg"
+        ],
+        description: "Straight Fit Elasticated waist with drawcord Two regular side pocketsBack patch pocket.",
+        category: "Men's Clothing",
+        rating: 4.6,
+        reviews: 156,
+        stock: 25,
+        sizes: ["28", "30", "32", "34","36"],
+        
+      },
+      { 
+    id: 4, 
+    name: "Classic Caramel Brown Double Cloth Straight-Fit Trousers", 
+    price: 299, 
+    compare: 699, 
+    discount: "-60% OFF", 
+    icon: "fa-female",
+    images: [
+      "images/1_e2010a3d-6b6e-40c2-bb10-c83828d16afb.jpg",
+      "images/2_11ccc4c2-7464-43d5-8fbe-d1115e0bbfce.jpg",
+      "images/3_af7b8e0a-324a-46a3-9fd0-e0fe0b568992.jpg",
+      "images/4_c59cdec3-8580-4e7e-b0c6-ba9f8936fc9f.jpg",
+      "images/8_ef1cab86-e889-450c-8139-951f306ce603.jpg",
+    ],
+    description: "This classic caramel brown double cloth straight-fit trousers are tailored for a refined yet effortless look. Crafted from premium double-layered fabric, it offers enhanced structure, durability, and all-day comfort. Color: Brown Material: 100% Cotton Number of Pockets: 4",
+    category: "Men's Clothing",
+    rating: 4.8,
+    reviews: 203,
+    stock: 20,
+    sizes: ["28", "30", "32", "34","36"],
+    
+  },
+      { 
+        id: 5, 
+        name: "Solid Pure Cotton Polo Shirt", 
+        price: 249, 
+        compare: 599, 
+        discount: "-50% OFF", 
+        icon: "fa-female",
+        images: [
+          "images/1_3ed28cc8-0a43-497e-a70f-4d3d50146f17.jpg",
+          "images/2_740d9035-8314-4d59-b757-50b12790a4e5.jpg",
+          "images/4_e3d4356e-1ba0-49c9-be4c-bd66f77733d6.jpg",
+          "images/8_1c91a8d4-cdad-49cb-a045-9894423945c5.jpg",
+        ],
+        description: "Story: Slay in style with this slim-fit polo shirt knitted with fine-quality cotton to keep you cool in hot summers.",
+        category: "Men's Clothing",
+        rating: 4.6,
+        reviews: 147,
+        stock: 45,
+        sizes: ["S", "M", "L", "XL"],
+        
+      },
+      { 
+     id: 6, 
+    name: "Men's Black Loose Fit Washed Jeans Non-Stretchable", 
+    price: 599, 
+    compare: 1199, 
+    discount: "-50% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/jeanloose-black-1-AI.png",
+      "images/jeanloose-black-2.jpg",
+      "images/jeanloose-black-3.jpg",
+      "images/jeanloose-black-4_790fe9fa-5ed9-41a1-bcea-bcd21069401e.jpg",
+      "images/jeanloose-black-5_70f3c0d3-fdfb-4d97-81a0-baacebdbbcd3.jpg",
+      "images/jeanloose-black-6_55609c24-7c9b-4ef8-8b3a-65451f3a4b12.jpg"
+    ],
+    description: "These men's black loose baggy fit washed jeans are perfect for those who want to turn heads at every occasion. Whether you’re gearing up for a formal gathering or keeping it casual, these pants go effortlessly with both formal shirts and graphic tees.",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["28", "30", "32", "34","36"],
+    
+  },
+  {
+    id: 7, 
+    name: "Super Combed Cotton Rib Solid Boxer Brief with Ultrasoft and Durable Waistband - Black/Navy/Charcoal Melange (Pack of 3)", 
+    price: 249, 
+    compare: 549, 
+    discount: "-55% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/8009_BNVCM_0305_S223_JKY_0.jpeg",
+      "images/8009_BNVCM_0305_S223_JKY_1.jpeg",
+      "images/8009_BNVCM_0305_S223_JKY_14.jpeg",
+      "images/8009_BNVCM_0305_S223_JKY_7.jpeg",
+    ],
+    description: "Super Combed Cotton Ribbed Fabric ,Fabric Composition : CottonFront Open Fly Ultrasoft and Durable Concealed Waistband Engineered to Prevent Ride Up Label Free for All Day ComfortNet Quantity: 3 Piece",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+      {
+    id: 8, 
+    name: "Super Combed Cotton Solid Brief with Ultrasoft Waistband - Black (Pack of 2)", 
+    price: 199, 
+    compare: 400, 
+    discount: "-50% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/8037_BLACK_0205_S223_JKY_0.jpeg",
+      "images/8037_BLACK_0205_S223_JKY_2.jpeg",
+    ],
+    description: "Super Combed Cotton Fabric Fabric Composition : Cotton Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 2 Piece",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+      {
+    id: 9, 
+    name: "Pack of 3 Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Navy, Charcoal Melange & Black", 
+    price: 249, 
+    compare: 599, 
+    discount: "-55% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/US21_BLACK-CHAML-NAVY_S123_0.jpeg",
+      "images/US21_BLACK_0105_S123_JKY_1.jpeg",
+      "images/US21_CHAML_0105_S123_JKY_6.jpeg",
+      "images/US21_NAVY_0105_S123_JKY_6.jpeg",
+    ],
+    description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride-Up Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 3 Piece",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+          {
+    id: 10, 
+    name: "Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Mid Night Navy & Monument (Pack of 2)", 
+    price: 199, 
+    compare: 399, 
+    discount: "-50% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/NY16_MN-MT_0205_S125_JKY_0.jpeg",
+      "images/NY16_MN-MT_0205_S125_JKY_1.jpeg",
+      "images/NY16_MN-MT_0205_S125_JKY_2.jpeg",
+      
+    ],
+    description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride Up Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 2 Piece",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+            {
+    id: 11, 
+    name: "Super Combed Cotton Rib Trunk with Ultrasoft Waistband - New Black", 
+    price: 149, 
+    compare: 299, 
+    discount: "-50% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/UI22_BLACK_0105_S125_JKY_1_webp.jpeg",
+      "images/UI22_BLACK_0105_S125_JKY_2_webp.jpeg",
+      "images/UI22_BLACK_0105_S125_JKY_4_webp.jpeg",
+       "images/UI22_BLACK_0105_S125_JKY_7_webp.jpeg",
+      
+    ],
+    description: "100% Super Combed Cotton Rib Fabric Fabric Composition : Cotton Engineered to Prevent Ride Up Front Open Fly Ultrasoft and Durable Waistband Label Free for All Day Comfort",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+              {
+    id: 12, 
+    name: "Super Combed Cotton Elastane Stretch Printed Trunk with Ultrasoft Waistband - Black Empire Yell", 
+    price: 99, 
+    compare: 199, 
+    discount: "-50% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/FP23_BEY02_0105_S225_JKY_1_webp.jpeg",
+      "images/FP23_BEY02_0105_S225_JKY_2_webp.jpeg",
+      "images/FP23_BEY02_0105_S225_JKY_7_webp.jpeg",
+      
+    ],
+    description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride Up Ultrasoft and Durable Waistband All Over Print Design Label Free for All Day Comfort",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+                    {
+    id: 13, 
+    name: "Combo Pack of Mauve (pink tone) and Peach Shirt", 
+    price: 499, 
+    compare: 999, 
+    discount: "-50% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/ChatGPT Image Feb 16, 2026, 12_20_36 AM.png",
+      "images/1_25df21cd-9543-466c-9b86-f23c2ae0fea2.jpg",
+      "images/1_c310fcbf-78c4-4518-bdae-646f908898e1.jpg",
+      "images/4_fb649147-112b-4c0f-ba45-5db4c8f1d77c.jpg",
+      "images/4_0df801db-9692-45a2-9602-e15c80b3428e.jpg",
+      
+    ],
+    description: "Elevate your everyday style with this Creamy Peach and mauve pink Subtle Textured Shirts, featuring a delicate textured finish for a refined look. Soft and breathable, it ensures all-day comfort. Perfect for casual or smart-casual occasions 2 pack.",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+   {
+    id: 14, 
+    name: "Baby Pink Solid Shirt ", 
+    price: 349, 
+    compare: 699, 
+    discount: "-50% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/1_564875dd-4c51-40a2-88f9-3daf1fe753d9.jpg",
+      "images/4_4f9fd9d2-9472-4992-9fee-01f1afb33df6.jpg",
+      "images/8_88dae44c-ffd3-4e2f-ac78-1d826515fede.jpg",
+      "images/5_e92e87ed-9d9b-4075-a1bd-d50cb5725d14.jpg",
+      "images/6_696d1cbf-2fd6-4bf9-a6cf-b1a903f08dd4.jpg",
+      
+    ],
+    description: "Add a touch of subtle elegance with this Baby Pink Solid Shirt, designed for a clean and polished look. Made from soft, breathable fabric, it offers comfort without compromising style. Ideal for both casual outings and semi-formal occasions.",
+    category: "Men's Clothing",
+    rating: 4.7,
+    reviews: 112,
+    stock: 28,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+       {
+    id: 15, 
+    name: "Cool Ash Grey Doublecloth Textured", 
+    price: 299, 
+    compare: 599, 
+    discount: "-50% OFF", 
+    icon: "fa-shoe-prints",
+    images: [
+      "images/1_4f832d6d-cfd5-4d67-aea7-9c7f288ba8f5.jpg",
+      "images/2_0cecfb91-f2ba-47de-84c8-64d643370f41.jpg",
+      "images/4_f5515bfe-b274-4cae-bfd7-48b5fa0419b6.jpg",
+      "images/6_cff8052b-cf90-4cea-8cd1-51066ee9173b.jpg",
+      
+    ],
+    description: "Add a touch of classic style with this Cool Ash Grey Doublecloth Textured Shirt. Crafted from breathable, soft fabric with a distinctive box checks weave pattern, it combines comfort and subtle texture for everyday wear. The cool ash grey shade offers a versatile, modern look that’s easy to style for work or casual outings.",
+    category: "Men's Clothing",
+    rating: 4.9,
+    reviews: 115,
+    stock: 2,
+    sizes: ["S", "M", "L", "XL"],
+    
+  },
+  
+    ];
+
+    // ============ GET PRODUCT ID FROM URL ============
+    function getProductId() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return parseInt(urlParams.get('id')) || 1;
+    }
+
+    // ============ GET COLOR CODE ============
+    function getColorCode(color) {
+      const colors = {
+        'black': '#000000', 'white': '#ffffff', 'navy': '#000080',
+        'gray': '#808080', 'blue': '#0000ff', 'pink': '#ffc0cb',
+        'maroon': '#800000', 'red': '#ff0000', 'brown': '#8b4513',
+        'green': '#008000', 'yellow': '#ffff00', 'lavender': '#e6e6fa'
+      };
+      return colors[color.toLowerCase()] || '#cccccc';
+    }
+
+    // ============ GENERATE STAR RATING ============
+    function generateStarRating(rating) {
+      const fullStars = Math.floor(rating);
+      const hasHalf = rating % 1 !== 0;
+      let stars = '';
+      
+      for (let i = 0; i < fullStars; i++) stars += '<i class="fas fa-star"></i>';
+      if (hasHalf) stars += '<i class="fas fa-star-half-alt"></i>';
+      
+      const emptyStars = 5 - Math.ceil(rating);
+      for (let i = 0; i < emptyStars; i++) stars += '<i class="far fa-star"></i>';
+      
+      return stars;
+    }
+
+    // ============ RENDER PRODUCT PAGE WITH ALL IMAGES ============
+    function renderProductPage() {
+      const productId = getProductId();
+      const product = products.find(p => p.id === productId) || products[0];
+      
+      document.title = `${product.name} · Daily Fashion`;
+      
+      const container = document.getElementById('productContainer');
+      
+      // Generate thumbnails for ALL images
+      const thumbnails = product.images.map((img, index) => `
+        <div class="thumbnail-item ${index === 0 ? 'active' : ''}" onclick="changeImage(this, '${img}', ${index})">
+          <img src="${img}" class="thumbnail-image" alt="View ${index + 1}" 
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'thumbnail-image\\' style=\\'display:flex; align-items:center; justify-content:center;\\'><i class=\\'fas ${product.icon}\\'></i></div>';">
+        </div>
+      `).join('');
+
+      // Generate size buttons
+      const sizeButtons = product.sizes ? product.sizes.map(size => 
+        `<button class="size-btn" onclick="selectSize(this)">${size}</button>`
+      ).join('') : '';
+
+      // Generate color buttons
+      const colorButtons = product.colors ? product.colors.map(color => `
+        <button class="color-btn" onclick="selectColor(this)" style="background: ${getColorCode(color)};" title="${color}"></button>
+      `).join('') : '';
+
+      container.innerHTML = `
+        <div class="product-gallery-container">
+          <div class="main-image-container">
+            <img id="mainImage" src="${product.images[0]}" class="main-image" alt="${product.name}"
+                 onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas ${product.icon}\\' style=\\'font-size: min(12rem, 30vw); color: #2d6b4b;\\'></i>';">
+          </div>
+          
+          <div class="thumbnail-scroll">
+            ${thumbnails}
+          </div>
+          
+          <div class="image-counter">
+            <span id="currentImage">1</span> / <span id="totalImages">${product.images.length}</span> images
+          </div>
+        </div>
+        
+        <div class="product-details">
+          <span class="product-category">✨ ${product.category}</span>
+          <h1 class="product-name">${product.name}</h1>
+          <div class="product-rating">
+            ${generateStarRating(product.rating)}
+            <span>(${product.reviews} reviews)</span>
+          </div>
+          
+          <div class="product-price-box">
+            <span class="product-current-price">₹${product.price}</span>
+            <span class="product-old-price">₹${product.compare}</span>
+            <span class="product-discount-badge">${product.discount}</span>
+          </div>
+          
+          <p class="product-description">${product.description}</p>
+          
+          ${sizeButtons ? `
+            <div>
+              <label style="font-weight:600;">Select Size:</label>
+              <div class="size-selector">${sizeButtons}</div>
+            </div>
+          ` : ''}
+          
+          ${colorButtons ? `
+            <div>
+              <label style="font-weight:600;">Select Color:</label>
+              <div class="color-selector">${colorButtons}</div>
+            </div>
+          ` : ''}
+          
+          <div class="quantity-selector">
+            <button class="quantity-btn" id="decrementQty">-</button>
+            <span class="quantity-value" id="quantityValue">1</span>
+            <button class="quantity-btn" id="incrementQty">+</button>
+          </div>
+          
+          <div class="product-actions">
+            <button class="add-to-cart-btn" id="addToCartBtn">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+            <button class="buy-now-btn" id="buyNowBtn">
+              <i class="fas fa-bolt"></i> Buy Now
+            </button>
+          </div>
+          
+          <div class="stock-info">
+            <i class="fas fa-check-circle"></i> In stock: ${product.stock} units<br>
+            <i class="fas fa-truck"></i> Free delivery · 3-5 business days
+          </div>
+        </div>
+      `;
+
+      // Store images for later use
+      window.productImages = product.images;
+      window.productIcon = product.icon;
+
+      // Quantity controls
+      let quantity = 1;
+      const quantityEl = document.getElementById('quantityValue');
+      
+      document.getElementById('decrementQty')?.addEventListener('click', () => {
+        if (quantity > 1) {
+          quantity--;
+          quantityEl.textContent = quantity;
+        }
+      });
+      
+      document.getElementById('incrementQty')?.addEventListener('click', () => {
+        if (quantity < product.stock) {
+          quantity++;
+          quantityEl.textContent = quantity;
+        } else {
+          showToast(`⚠️ Only ${product.stock} available`);
+        }
+      });
+
+      // Add to cart
+      document.getElementById('addToCartBtn')?.addEventListener('click', () => {
+        const selectedSize = document.querySelector('.size-btn.selected')?.textContent || 'M';
+        const selectedColor = document.querySelector('.color-btn.selected')?.title || 'Black';
+        
+        const cartItem = {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          icon: product.icon,
+          image: product.images[0],
+          selectedSize,
+          selectedColor,
+          quantity
+        };
+        
+        let cart = JSON.parse(localStorage.getItem('dailyGadgetCart')) || [];
+        cart.push(cartItem);
+        localStorage.setItem('dailyGadgetCart', JSON.stringify(cart));
+        
+        updateCartCount();
+        showToast(`✅ Added to cart`);
+      });
+
+      // Buy now
+      document.getElementById('buyNowBtn')?.addEventListener('click', () => {
+        const selectedSize = document.querySelector('.size-btn.selected')?.textContent || 'M';
+        const selectedColor = document.querySelector('.color-btn.selected')?.title || 'Black';
+        
+        const cartItem = {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          icon: product.icon,
+          image: product.images[0],
+          selectedSize,
+          selectedColor,
+          quantity
+        };
+        
+        let cart = JSON.parse(localStorage.getItem('dailyGadgetCart')) || [];
+        cart.push(cartItem);
+        localStorage.setItem('dailyGadgetCart', JSON.stringify(cart));
+        
+        updateCartCount();
+        showToast('⚡ Redirecting...');
+        setTimeout(() => window.location.href = 'checkout.html', 500);
+      });
+
+      // Select first size/color by default
+      setTimeout(() => {
+        document.querySelector('.size-btn')?.classList.add('selected');
+        document.querySelector('.color-btn')?.classList.add('selected');
+      }, 100);
+    }
+
+    // ============ CHANGE MAIN IMAGE ============
+    window.changeImage = function(thumbnail, imageSrc, index) {
+      document.getElementById('mainImage').src = imageSrc;
+      document.querySelectorAll('.thumbnail-item').forEach(item => item.classList.remove('active'));
+      thumbnail.classList.add('active');
+      document.getElementById('currentImage').textContent = index + 1;
+    };
+
+    // ============ SELECT SIZE ============
+    window.selectSize = function(btn) {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    };
+
+    // ============ SELECT COLOR ============
+    window.selectColor = function(btn) {
+      document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    };
+
+    // ============ UPDATE CART COUNT ============
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('dailyGadgetCart')) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('cartCount').textContent = count;
+    }
+
+    // ============ SHOW TOAST ============
+    function showToast(msg) {
+      const toast = document.getElementById('cartToast');
+      toast.innerHTML = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // ============ INITIALIZE ============
+    document.addEventListener('DOMContentLoaded', function() {
+      renderProductPage();
+      updateCartCount();
+    });
+  </script>
+</body>
+</html>

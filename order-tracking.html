@@ -1,0 +1,411 @@
+<!-- ============ order-tracking.html ============ -->
+<!-- ============ COMPLETE WORKING TRACKING PAGE ============ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Tracking · Daily Fashion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .tracking-section { padding: 2rem 5%; max-width: 1000px; margin: 0 auto; }
+    .tracking-header { background: linear-gradient(135deg, #1e7b4c 0%, #0f4d2e 100%); color: white; padding: 2rem; border-radius: 1.5rem; margin-bottom: 2rem; }
+    .order-id { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .order-date { opacity: 0.9; font-size: 0.9rem; }
+    .tracking-container { background: white; border-radius: 1.5rem; padding: 2rem; border: 1px solid #e3ece8; margin-bottom: 2rem; }
+    
+    /* Progress Bar */
+    .progress-container { margin: 2rem 0 3rem; }
+    .progress-bar-bg { height: 8px; background: #e3ece8; border-radius: 10px; margin: 0 10px; }
+    .progress-bar-fill { height: 8px; background: linear-gradient(90deg, #1e7b4c, #34a56f); border-radius: 10px; width: 0%; transition: width 1s ease; }
+    .progress-steps { display: flex; justify-content: space-between; margin-top: -20px; flex-wrap: wrap; gap: 1rem; }
+    .step { text-align: center; flex: 1; min-width: 80px; }
+    .step-icon { width: 50px; height: 50px; background: white; border: 3px solid #e3ece8; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 1.3rem; }
+    .step.active .step-icon { border-color: #1e7b4c; background: #1e7b4c; color: white; }
+    .step.completed .step-icon { border-color: #1e7b4c; background: #1e7b4c; color: white; }
+    
+    /* Status Card */
+    .status-card { background: #f8fbfa; border-radius: 1rem; padding: 1.5rem; border-left: 4px solid #1e7b4c; margin: 1.5rem 0; }
+    .status-title { font-size: 1.3rem; font-weight: 700; color: #0a3529; }
+    .status-time { color: #1e7b4c; font-weight: 600; }
+    
+    /* Order Details */
+    .order-details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; background: #f8fbfa; padding: 1.5rem; border-radius: 1rem; margin: 2rem 0; }
+    .detail-label { font-size: 0.8rem; color: #8a9d95; text-transform: uppercase; }
+    .detail-value { font-weight: 700; color: #0a3529; }
+    
+    /* Products */
+    .tracking-products { background: white; border: 1px solid #e3ece8; border-radius: 1rem; padding: 1.5rem; margin: 2rem 0; }
+    .tracking-product-item { display: grid; grid-template-columns: 60px 1fr auto; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #e3ece8; }
+    .tracking-product-item:last-child { border-bottom: none; }
+    .product-thumb { width: 60px; height: 60px; background: #f3f9f6; border-radius: 0.8rem; display: flex; align-items: center; justify-content: center; color: #1e7b4c; }
+    
+    /* Timeline */
+    .timeline-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #e3ece8; }
+    .timeline-icon { width: 40px; height: 40px; background: #f3f9f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1e7b4c; }
+    
+    .address-box { background: #f8fbfa; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e3ece8; }
+    .auto-update-notice { display:inline-flex; align-items:center; gap:0.5rem; background:#e8f3ee; padding:0.5rem 1rem; border-radius:50px; font-size:0.8rem; color:#1e7b4c; margin-bottom:1rem; }
+    
+    @media (max-width: 600px) {
+      .step-icon { width: 40px; height: 40px; font-size: 1rem; }
+      .tracking-product-item { grid-template-columns: 50px 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cartToast" class="cart-toast"></div>
+
+  <header class="main-header">
+    <div class="logo-area" onclick="window.location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-tshirt"></i></div>
+      <div class="logo-text">DAILY<span>FASHION</span></div>
+    </div>
+    <div class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="order-tracking.html">Track Order</a>
+    </div>
+    <div class="header-icons">
+      <div class="cart-icon-wrapper" onclick="window.location.href='cart.html'">
+        <i class="far fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+    <div class="hamburger-menu" id="hamburgerBtn"><i class="fas fa-bars"></i></div>
+  </header>
+
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">DAILY<span style="color:#1e7b4c;">FASHION</span></span>
+      <i class="fas fa-times close-sidebar" id="closeSidebar"></i>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="cart.html"><i class="far fa-shopping-cart"></i> Cart</a></li>
+      <li><a href="order-tracking.html"><i class="fas fa-truck"></i> Track Order</a></li>
+    </ul>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <div class="top-usp">
+    <span><i class="fas fa-rocket"></i> Express Shipping</span>
+    <span><i class="fas fa-tag"></i> Exclusive pricing</span>
+    <span><i class="fas fa-rotate-left"></i> Easy Returns</span>
+  </div>
+
+  <section class="tracking-section">
+    <div class="auto-update-notice">
+      <i class="fas fa-sync-alt fa-spin"></i> Status updates automatically
+    </div>
+    
+    <div class="tracking-header">
+      <div class="order-id">Order #<span id="orderIdSpan">Loading...</span></div>
+      <div class="order-date" id="orderDate">Loading...</div>
+    </div>
+    
+    <div class="tracking-container" id="trackingContainer">
+      <div style="text-align:center; padding:3rem;">
+        <i class="fas fa-spinner fa-spin" style="font-size:3rem; color:#1e7b4c;"></i>
+        <p style="margin-top:1rem;">Loading tracking information...</p>
+      </div>
+    </div>
+    
+    <div class="address-box" id="addressBox"></div>
+  </section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="main-footer">
+  <div class="footer-content">
+    <!-- Column 1: About -->
+    <div class="footer-col">
+      <h4><i class="fas fa-store-alt"></i> DAILY FASHION</h4>
+      <p class="footer-about">Your daily source for stylish clothing, accessories, and trendy fashion. Quality products at affordable prices.</p>
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+    
+    <!-- Column 2: Quick Links -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+        <li><a href="cart.html"><i class="fas fa-chevron-right"></i> Cart</a></li>
+        <li><a href="checkout.html"><i class="fas fa-chevron-right"></i> Checkout</a></li>
+        <li><a href="order-tracking.html"><i class="fas fa-chevron-right"></i> Track Order</a></li>
+      </ul>
+    </div>
+    
+    <!-- Column 3: Categories -->
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Men's Clothing</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Women's Clothing</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Footwear</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> New Arrivals</a></li>
+      </ul>
+    </div>
+    
+    <!-- Column 4: Contact -->
+    <div class="footer-col">
+      <h4>Customer Care</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> help@dailyfashion.com</li>
+        <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
+        <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+        <li><i class="fas fa-clock"></i> Mon-Sat: 10am - 7pm</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Footer Bottom with Payment Icons -->
+  <div class="footer-bottom">
+    <div class="payment-icons">
+      <i class="fab fa-cc-visa" title="Visa"></i>
+      <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+      <i class="fab fa-cc-rupay" title="RuPay"></i>
+      <i class="fab fa-cc-paypal" title="PayPal"></i>
+      <i class="fab fa-cc-amazon-pay" title="Amazon Pay"></i>
+      <i class="fas fa-credit-card" title="Credit Card"></i>
+    </div>
+    <span>© 2026 Daily Fashion. All rights reserved. | Made with <i class="fas fa-heart" style="color: #c0421e;"></i> in India</span>
+  </div>
+</footer>
+
+<!-- Micro Footer -->
+<div class="micro-footer">
+  <span><i class="fas fa-rotate-right"></i> Choosing a selection results in a full page refresh.</span>
+  <span><i class="fas fa-external-link-alt"></i> Opens in a new window.</span>
+  <span><i class="fas fa-shield-alt"></i> Secure checkout · 100% safe</span>
+</div>  
+
+  <script>
+    // ============ TRACKING PAGE SCRIPT ============
+    document.addEventListener('DOMContentLoaded', function() {
+      'use strict';
+      
+      // Get order ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      let orderId = urlParams.get('orderId');
+      
+      document.getElementById('orderIdSpan').textContent = orderId || 'Not Found';
+      
+      // ============ LOAD ORDER DATA ============
+      let orderData = null;
+      
+      // Method 1: Try to get from 'lastOrder'
+      const lastOrder = localStorage.getItem('lastOrder');
+      if (lastOrder) {
+        try {
+          const parsed = JSON.parse(lastOrder);
+          if (!orderId || parsed.orderId === orderId) {
+            orderData = parsed;
+            console.log('Loaded from lastOrder:', orderData);
+          }
+        } catch (e) {}
+      }
+      
+      // Method 2: Try from 'allOrders'
+      if (!orderData && orderId) {
+        const allOrders = localStorage.getItem('allOrders');
+        if (allOrders) {
+          try {
+            const orders = JSON.parse(allOrders);
+            orderData = orders.find(o => o.orderId === orderId);
+            console.log('Loaded from allOrders:', orderData);
+          } catch (e) {}
+        }
+      }
+      
+      // Method 3: Create sample if nothing found
+      if (!orderData) {
+        console.log('No order found, creating sample');
+        orderData = createSampleOrder(orderId);
+      }
+      
+      // Display order date
+      const orderDate = new Date(orderData.orderTime);
+      document.getElementById('orderDate').textContent = `Ordered on: ${formatDate(orderDate)} at ${formatTime(orderDate)}`;
+      
+      // Display address
+      displayAddress(orderData.address);
+      
+      // Initialize tracking
+      initTracking(orderData, orderDate);
+    });
+
+    function createSampleOrder(orderId) {
+      return {
+        orderId: orderId || 'DG' + Date.now().toString().slice(-8),
+        orderTime: new Date().toISOString(),
+        items: [
+          { name: "Classic Cotton T-Shirt", quantity: 2, price: 499, icon: "fa-tshirt", size: "L", color: "Black" },
+          { name: "Slim Fit Jeans", quantity: 1, price: 1299, icon: "fa-tshirt", size: "32", color: "Blue" }
+        ],
+        subtotal: 2297,
+        shipping: 0,
+        total: 2297,
+        address: {
+          fullName: "Rahul Sharma",
+          address: "123, Fashion Street, Andheri East",
+          city: "Mumbai",
+          pincode: "400093",
+          phone: "9876543210",
+          email: "rahul@email.com"
+        },
+        paymentMethod: "Razorpay"
+      };
+    }
+
+    function displayAddress(address) {
+      const box = document.getElementById('addressBox');
+      if (!address) {
+        box.innerHTML = '<p>Address not available</p>';
+        return;
+      }
+      box.innerHTML = `
+        <h4 style="margin-bottom:0.8rem;">📦 Delivery Address</h4>
+        <p><strong>${address.fullName || ''}</strong></p>
+        <p>${address.address || ''}, ${address.city || ''}</p>
+        <p>${address.pincode || ''} | Phone: ${address.phone || ''}</p>
+        <p>Email: ${address.email || ''}</p>
+      `;
+    }
+
+    function initTracking(orderData, orderDate) {
+      const orderTime = orderDate.getTime();
+      const container = document.getElementById('trackingContainer');
+      
+      const timeline = {
+        confirmed: orderTime,
+        shipped: orderTime + (2 * 24 * 60 * 60 * 1000),
+        outForDelivery: orderTime + (5 * 24 * 60 * 60 * 1000),
+        delivered: orderTime + (6 * 24 * 60 * 60 * 1000)
+      };
+      
+      function getStatus(now) {
+        if (now >= timeline.delivered) return 'delivered';
+        if (now >= timeline.outForDelivery) return 'outForDelivery';
+        if (now >= timeline.shipped) return 'shipped';
+        return 'confirmed';
+      }
+      
+      function update() {
+        const now = new Date().getTime();
+        const status = getStatus(now);
+        const progress = status === 'confirmed' ? 25 : status === 'shipped' ? 50 : status === 'outForDelivery' ? 80 : 100;
+        
+        container.innerHTML = renderHTML(orderData, status, timeline, progress);
+        updateNextStatus(status, timeline);
+      }
+      
+      update();
+      setInterval(update, 60000);
+    }
+
+    function renderHTML(orderData, status, timeline, progress) {
+      const statusMsg = {
+        confirmed: { title: "Order Confirmed", icon: "fa-check-circle", msg: "Your order has been confirmed." },
+        shipped: { title: "Order Shipped", icon: "fa-shipping-fast", msg: "Your order has been shipped." },
+        outForDelivery: { title: "Out for Delivery", icon: "fa-truck", msg: "Your order is out for delivery." },
+        delivered: { title: "Delivered", icon: "fa-check-double", msg: "Your order has been delivered." }
+      };
+      
+      const current = statusMsg[status];
+      
+      return `
+        <div class="progress-container">
+          <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:${progress}%"></div></div>
+          <div class="progress-steps">
+            ${['confirmed','shipped','outForDelivery','delivered'].map(s => `
+              <div class="step ${status === s ? 'active' : (['confirmed','shipped','outForDelivery','delivered'].indexOf(s) < ['confirmed','shipped','outForDelivery','delivered'].indexOf(status) ? 'completed' : '')}">
+                <div class="step-icon"><i class="fas ${s==='confirmed'?'fa-check':s==='shipped'?'fa-box':s==='outForDelivery'?'fa-truck':'fa-home'}"></i></div>
+                <div>${s.charAt(0).toUpperCase()+s.slice(1)}</div>
+                <div style="font-size:0.7rem;">${formatDate(new Date(timeline[s]))}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        
+        <div class="status-card">
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <i class="fas ${current.icon}" style="font-size:2rem; color:#1e7b4c;"></i>
+            <div>
+              <div class="status-title">${current.title}</div>
+              <div class="status-time" id="statusTime"></div>
+            </div>
+          </div>
+          <p>${current.msg}</p>
+        </div>
+        
+        <div class="order-details-grid">
+          <div><span class="detail-label">Total</span><span class="detail-value">₹${orderData.total}</span></div>
+          <div><span class="detail-label">Payment</span><span class="detail-value">${orderData.paymentMethod}</span></div>
+          <div><span class="detail-label">Items</span><span class="detail-value">${orderData.items.length}</span></div>
+          <div><span class="detail-label">Est. Delivery</span><span class="detail-value">${formatDate(new Date(timeline.delivered))}</span></div>
+        </div>
+        
+        <div class="tracking-products">
+          <h4>Items</h4>
+          ${orderData.items.map(item => `
+            <div class="tracking-product-item">
+              <div class="product-thumb"><i class="fas ${item.icon}"></i></div>
+              <div><h4>${item.name}</h4><p>Qty:${item.quantity} | Size:${item.size} | Color:${item.color}</p></div>
+              <div style="font-weight:700;">₹${item.price*item.quantity}</div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <div class="timeline">
+          <h4>Timeline</h4>
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-check"></i></div>
+            <div><div class="timeline-title">Confirmed</div><div class="timeline-time">${formatDate(new Date(timeline.confirmed))} ${formatTime(new Date(timeline.confirmed))}</div></div>
+          </div>
+          ${status !== 'confirmed' ? `
+          <div class="timeline-item">
+            <div class="timeline-icon"><i class="fas fa-box"></i></div>
+            <div><div class="timeline-title">Shipped</div><div class="timeline-time">${formatDate(new Date(timeline.shipped))} ${formatTime(new Date(timeline.shipped))}</div></div>
+          </div>
+          ` : ''}
+        </div>
+      `;
+    }
+
+    function updateNextStatus(status, timeline) {
+      const el = document.getElementById('statusTime');
+      if (!el) return;
+      
+      const now = new Date().getTime();
+      const next = {
+        confirmed: { name: 'Shipped', time: timeline.shipped },
+        shipped: { name: 'Out for Delivery', time: timeline.outForDelivery },
+        outForDelivery: { name: 'Delivered', time: timeline.delivered }
+      }[status];
+      
+      if (next && next.time > now) {
+        const days = Math.ceil((next.time - now) / (24*60*60*1000));
+        el.innerHTML = `⏳ Next: ${next.name} in ${days} day${days>1?'s':''}`;
+      } else if (status === 'delivered') {
+        el.innerHTML = '✅ Delivered';
+      }
+    }
+
+    function formatDate(d) {
+      return d.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+    }
+    
+    function formatTime(d) {
+      return d.toLocaleTimeString('en-IN', { hour:'2-digit', minute:'2-digit' });
+    }
+  </script>
+</body>
+</html>

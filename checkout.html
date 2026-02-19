@@ -1,0 +1,804 @@
+<!-- ============ checkout.html ============ -->
+<!-- ============ MOBILE RESPONSIVE + TOGGLE MENU ============ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Checkout · Daily Store</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Razorpay Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #f8fbfa; 
+      color: #111; 
+      overflow-x: hidden;
+      width: 100%;
+    }
+    
+    /* ============ MOBILE RESPONSIVE ============ */
+    html { font-size: 16px; }
+    @media (max-width: 480px) { html { font-size: 14px; } }
+    
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1rem; }
+    @media (max-width: 768px) { .container { padding: 0 0.8rem; } }
+    
+    /* ============ HEADER ============ */
+    .main-header {
+      background: white; padding: 0.8rem 1rem; display: flex; align-items: center;
+      justify-content: space-between; border-bottom: 1px solid #e3ece8;
+      position: sticky; top: 0; z-index: 100; width: 100%;
+    }
+    .logo-area { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+    .logo-icon {
+      width: 40px; height: 40px; background: #e1f0e9; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; color: #1e7b4c; font-size: 1.5rem;
+    }
+    .logo-text { font-size: 1.3rem; font-weight: 800; color: #0a3529; }
+    .logo-text span { color: #1e7b4c; }
+    
+    /* Desktop Navigation - Hidden on Mobile */
+    .desktop-nav { display: flex; gap: 1.8rem; }
+    .desktop-nav a { text-decoration: none; color: #1f3d34; font-weight: 600; }
+    @media (max-width: 768px) { .desktop-nav { display: none; } }
+    
+    /* Header Icons */
+    .header-icons { display: flex; gap: 1rem; align-items: center; }
+    .cart-icon-wrapper { position: relative; cursor: pointer; }
+    .cart-count {
+      position: absolute; top: -8px; right: -10px; background: #c0421e; color: white;
+      font-size: 0.7rem; width: 20px; height: 20px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; border: 2px solid white;
+    }
+    
+    /* ============ HAMBURGER MENU (MOBILE TOGGLE) ============ */
+    .hamburger-menu {
+      display: none; font-size: 1.8rem; cursor: pointer; color: #1e4d3a;
+    }
+    @media (max-width: 768px) { .hamburger-menu { display: block; } }
+    
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+      position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+      background: white; box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      z-index: 1000; padding: 2rem 1.5rem; transition: right 0.3s ease;
+      display: flex; flex-direction: column;
+    }
+    .mobile-sidebar.active { right: 0; }
+    .sidebar-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 2rem; border-bottom: 1px solid #e6efea; padding-bottom: 1rem;
+    }
+    .sidebar-logo { font-size: 1.4rem; font-weight: 800; color: #0a3529; }
+    .close-sidebar { font-size: 1.6rem; cursor: pointer; color: #2e5e4b; }
+    .mobile-nav-links { display: flex; flex-direction: column; gap: 1.5rem; list-style: none; }
+    .mobile-nav-links li a {
+      text-decoration: none; color: #1f3d34; font-weight: 600; font-size: 1.1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .mobile-nav-links li a i { width: 24px; color: #1e7b4c; }
+    
+    /* Overlay */
+    .overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5); z-index: 999; opacity: 0; visibility: hidden;
+      transition: 0.3s;
+    }
+    .overlay.active { opacity: 1; visibility: visible; }
+    
+    /* ============ TOP USP ============ */
+    .top-usp {
+      background: #f5f7f6; text-align: center; padding: 0.6rem;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1rem;
+      font-size: 0.75rem; font-weight: 600; color: #1f2a2f;
+    }
+    .top-usp i { color: #146b3a; margin-right: 0.2rem; }
+    
+    /* ============ CHECKOUT SECTION ============ */
+    .checkout-section { 
+      padding: 1.5rem 1rem; 
+      max-width: 1280px; 
+      margin: 0 auto; 
+      width: 100%;
+    }
+    .checkout-title { 
+      font-size: 1.8rem; 
+      margin-bottom: 1.5rem; 
+      color: #0a3529; 
+    }
+    @media (max-width: 480px) { 
+      .checkout-title { font-size: 1.5rem; margin-bottom: 1rem; } 
+    }
+    
+    /* Checkout Grid */
+    .checkout-grid {
+      display: grid; grid-template-columns: 1fr 350px; gap: 2rem;
+    }
+    @media (max-width: 900px) {
+      .checkout-grid { grid-template-columns: 1fr 300px; gap: 1.5rem; }
+    }
+    @media (max-width: 768px) {
+      .checkout-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+    
+    /* Form Styles */
+    .checkout-form {
+      background: white; padding: 1.5rem; border-radius: 1.2rem; border: 1px solid #e3ece8;
+    }
+    @media (max-width: 480px) {
+      .checkout-form { padding: 1.2rem; border-radius: 1rem; }
+    }
+    
+    .form-group { margin-bottom: 1rem; }
+    .form-row { 
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; 
+    }
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; gap: 0.8rem; }
+    }
+    
+    label {
+      display: block; font-weight: 600; margin-bottom: 0.3rem; color: #0a3529;
+      font-size: 0.9rem;
+    }
+    input {
+      width: 100%; padding: 0.7rem 1rem; border: 1px solid #e3ece8;
+      border-radius: 50px; font-size: 0.95rem; outline: none;
+    }
+    input:focus { border-color: #1e7b4c; }
+    
+    /* Payment Options */
+    .payment-option {
+      display: flex; align-items: flex-start; gap: 0.8rem; padding: 1rem;
+      border: 2px solid #e3ece8; border-radius: 1rem; margin-bottom: 1rem;
+      cursor: pointer; transition: all 0.2s;
+    }
+    @media (max-width: 480px) {
+      .payment-option { padding: 0.8rem; gap: 0.5rem; }
+    }
+    
+    .payment-option:hover { border-color: #1e7b4c; background: #f3f9f6; }
+    .payment-option.selected { border-color: #1e7b4c; background: #e8f3ee; }
+    .payment-option input[type="radio"] { 
+      width: 18px; height: 18px; margin-top: 3px; accent-color: #1e7b4c;
+    }
+    .payment-title {
+      font-weight: 700; font-size: 1rem; color: #0a3529; margin-bottom: 0.2rem;
+    }
+    .payment-desc {
+      font-size: 0.85rem; color: #5d6b65; margin-bottom: 0.2rem;
+    }
+    .payment-badge {
+      display: inline-block; background: #c0421e; color: white;
+      padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem; font-weight: 600;
+      margin-left: 0.3rem;
+    }
+    .razorpay-badge {
+      display: inline-block; background: #1e7b4c; color: white;
+      padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem; font-weight: 600;
+      margin-left: 0.3rem;
+    }
+    
+    /* Payment Icons Row */
+    .payment-icons-row {
+      display: flex; gap: 0.8rem; font-size: 1.2rem; color: #5d6b65; margin-top: 0.3rem;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 480px) {
+      .payment-icons-row { gap: 0.5rem; font-size: 1rem; }
+    }
+    
+    /* Order Summary */
+    .order-summary {
+      background: #f3f9f6; padding: 1.2rem; border-radius: 1.2rem; height: fit-content;
+    }
+    @media (max-width: 480px) {
+      .order-summary { padding: 1rem; border-radius: 1rem; }
+    }
+    
+    .order-item {
+      display: flex; justify-content: space-between; padding: 0.6rem 0;
+      border-bottom: 1px solid #cde0d7; gap: 0.5rem;
+    }
+    .order-item:last-child { border-bottom: none; }
+    .order-item div:first-child { 
+      flex: 1; 
+      word-break: break-word;
+      padding-right: 0.5rem;
+    }
+    
+    /* Buttons */
+    .place-order-btn {
+      width: 100%; padding: 0.9rem; background: #1e7b4c; color: white;
+      border: none; border-radius: 50px; font-weight: 700; font-size: 1rem;
+      cursor: pointer; margin-top: 1.5rem; transition: 0.2s;
+    }
+    .place-order-btn:hover { background: #14633c; }
+    .place-order-btn:disabled {
+      background: #a0c0b2; cursor: not-allowed;
+    }
+    @media (max-width: 480px) {
+      .place-order-btn { padding: 0.8rem; font-size: 0.95rem; margin-top: 1.2rem; }
+    }
+    
+    /* Footer */
+    .main-footer { 
+      background: #0f2c24; color: #e2f0e9; padding: 1.5rem; margin-top: 2rem; 
+      width: 100%;
+    }
+    .footer-bottom { text-align: center; font-size: 0.85rem; }
+    
+    /* Toast */
+    .cart-toast {
+      position: fixed; bottom: 20px; right: 20px; background: #1e4d3d;
+      color: white; padding: 10px 20px; border-radius: 50px; font-weight: 600;
+      z-index: 9999; opacity: 0; transition: opacity 0.3s; font-size: 0.9rem;
+      max-width: 90%; white-space: nowrap;
+    }
+    @media (max-width: 480px) {
+      .cart-toast { 
+        bottom: 15px; 
+        right: 15px; 
+        left: 15px; 
+        max-width: none; 
+        text-align: center;
+        white-space: normal;
+      }
+    }
+    .cart-toast.show { opacity: 1; }
+    
+    /* Loading Spinner */
+    .loading-spinner {
+      text-align: center; padding: 1rem;
+    }
+    .loading-spinner i {
+      font-size: 2rem; color: #1e7b4c; animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="cartToast" class="cart-toast"></div>
+
+  <!-- ============ MOBILE SIDEBAR ============ -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">DAILY<span style="color:#1e7b4c;">STORE</span></span>
+      <i class="fas fa-times close-sidebar" id="closeSidebar"></i>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="cart.html"><i class="fi fi-rr-shopping-bag"></i> Cart</a></li>
+      <li><a href="order-tracking.html"><i class="fas fa-truck"></i> Track Order</a></li>
+      <li><a href="#"><i class="fas fa-fire"></i> Bestsellers</a></li>
+      <li><a href="#"><i class="fas fa-clock"></i> New Arrivals</a></li>
+      <li><a href="#"><i class="far fa-heart"></i> Wishlist</a></li>
+      <li><a href="#"><i class="far fa-user"></i> Account</a></li>
+    </ul>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="main-header">
+    <div class="logo-area" onclick="window.location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-tshirt"></i></div>
+      <div class="logo-text">DAILY<span>FASHION</span></div>
+    </div>
+    
+    <div class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="order-tracking.html">Track Order</a>
+      <a href="#">Bestsellers</a>
+    </div>
+    
+    <div class="header-icons">
+      <div class="cart-icon-wrapper" onclick="window.location.href='cart.html'">
+        <i class="fi fi-rr-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <div class="hamburger-menu" id="hamburgerBtn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ TOP USP ============ -->
+  <div class="top-usp">
+    <span><i class="fas fa-rocket"></i> Express Shipping</span>
+    <span><i class="fas fa-tag"></i> Exclusive pricing</span>
+    <span><i class="fas fa-rotate-left"></i> Easy Returns</span>
+  </div>
+
+  <!-- ============ CHECKOUT SECTION ============ -->
+  <section class="checkout-section">
+    <h1 class="checkout-title">Checkout</h1>
+    
+    <div class="checkout-grid">
+      <!-- LEFT COLUMN: CHECKOUT FORM -->
+      <div class="checkout-form">
+        <h3 style="margin-bottom: 1.2rem; font-size: 1.2rem;">📦 Shipping Information</h3>
+        
+        <!-- FULL NAME -->
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="fullName">
+        </div>
+        
+        <!-- EMAIL AND PHONE -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" id="email" >
+          </div>
+          <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" id="phone" >
+          </div>
+        </div>
+        
+        <!-- ADDRESS -->
+        <div class="form-group">
+          <label>Address *</label>
+          <input type="text" id="address" >
+        </div>
+        
+        <!-- CITY AND PINCODE -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>City *</label>
+            <input type="text" id="city" >
+          </div>
+          <div class="form-group">
+            <label>Pincode *</label>
+            <input type="text" id="pincode" >
+          </div>
+        </div>
+        
+        <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem;">💳 Select Payment Method</h3>
+        
+        <!-- OPTION 1: COD WITH ₹99 ADVANCE -->
+        <div class="payment-option" id="codOption" onclick="selectCOD()">
+          <input type="radio" name="payment" id="codRadio" value="cod" checked>
+          <div style="flex:1;">
+            <div class="payment-title">
+              <i class="fas fa-truck" style="color:#1e7b4c;"></i> Cash on Delivery (COD)
+              <span class="payment-badge">Pay ₹99 Advance</span>
+            </div>
+            <div class="payment-desc">
+              Pay ₹99 now via Razorpay. Remaining <span id="remainingAmount">₹0</span> at delivery.
+            </div>
+            <div style="font-size:0.75rem; color:#8a9d95;">
+              ✓ Advance is refundable if order cancelled
+            </div>
+          </div>
+        </div>
+        
+        <!-- OPTION 2: RAZORPAY FULL PAYMENT -->
+        <div class="payment-option" id="razorpayOption" onclick="selectRazorpay()">
+          <input type="radio" name="payment" id="razorpayRadio" value="razorpay">
+          <div style="flex:1;">
+            <div class="payment-title">
+              <i class="fas fa-bolt" style="color:#1e7b4c;"></i> Razorpay
+              <span class="razorpay-badge">Full Payment</span>
+            </div>
+            <div class="payment-desc">
+              Pay total amount <span id="totalAmountDisplay">₹0</span> now via:
+            </div>
+            <div class="payment-icons-row">
+              <i class="fab fa-google-pay" title="Google Pay"></i>
+              <i class="fab fa-amazon-pay" title="Amazon Pay"></i>
+              <i class="fas fa-mobile-alt" title="PhonePe"></i>
+              <i class="fab fa-cc-visa" title="Visa"></i>
+              <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+            </div>
+          </div>
+        </div>
+        
+        <!-- PLACE ORDER BUTTON -->
+        <button class="place-order-btn" id="placeOrderBtn" onclick="processPayment()">
+          Proceed to Pay
+        </button>
+      </div>
+      
+      <!-- RIGHT COLUMN: ORDER SUMMARY -->
+      <div class="order-summary">
+        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Your Order</h3>
+        <div id="orderItems">
+          <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p style="margin-top:0.5rem;">Loading cart items...</p>
+          </div>
+        </div>
+        <div style="border-top:2px solid #cde0d7; margin-top:1rem; padding-top:1rem;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+            <span>Subtotal</span>
+            <span id="subtotal">₹0</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+            <span>Shipping</span>
+            <span id="shipping">₹0</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-weight:700; font-size:1.1rem; margin-top:0.5rem;">
+            <span>Total</span>
+            <span id="total">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+<footer class="main-footer">
+  <div class="footer-content">
+    <!-- Column 1: About -->
+    <div class="footer-col">
+      <h4><i class="fas fa-store-alt"></i> DAILY FASHION</h4>
+      <p class="footer-about">Your daily source for stylish clothing, accessories, and trendy fashion. Quality products at affordable prices.</p>
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-youtube"></i>
+      </div>
+    </div>
+    
+    <!-- Column 2: Quick Links -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+        <li><a href="cart.html"><i class="fas fa-chevron-right"></i> Cart</a></li>
+        <li><a href="checkout.html"><i class="fas fa-chevron-right"></i> Checkout</a></li>
+        <li><a href="order-tracking.html"><i class="fas fa-chevron-right"></i> Track Order</a></li>
+      </ul>
+    </div>
+    
+    <!-- Column 3: Categories -->
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Men's Clothing</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Women's Clothing</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Footwear</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
+        <li><a href="#"><i class="fas fa-chevron-right"></i> New Arrivals</a></li>
+      </ul>
+    </div>
+    
+    <!-- Column 4: Contact -->
+    <div class="footer-col">
+      <h4>Customer Care</h4>
+      <ul>
+        <li><i class="fas fa-envelope"></i> help@dailyfashion.com</li>
+        <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
+        <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+        <li><i class="fas fa-clock"></i> Mon-Sat: 10am - 7pm</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- Footer Bottom with Payment Icons -->
+  <div class="footer-bottom">
+    <div class="payment-icons">
+      <i class="fab fa-cc-visa" title="Visa"></i>
+      <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+      <i class="fab fa-cc-rupay" title="RuPay"></i>
+      <i class="fab fa-cc-paypal" title="PayPal"></i>
+      <i class="fab fa-cc-amazon-pay" title="Amazon Pay"></i>
+      <i class="fas fa-credit-card" title="Credit Card"></i>
+    </div>
+    <span>© 2026 Daily Fashion. All rights reserved. | Made with <i class="fas fa-heart" style="color: #c0421e;"></i> in India</span>
+  </div>
+</footer>
+
+<!-- Micro Footer -->
+<div class="micro-footer">
+  <span><i class="fas fa-rotate-right"></i> Choosing a selection results in a full page refresh.</span>
+  <span><i class="fas fa-external-link-alt"></i> Opens in a new window.</span>
+  <span><i class="fas fa-shield-alt"></i> Secure checkout · 100% safe</span>
+</div>
+
+  <script>
+    // ============ MOBILE SIDEBAR TOGGLE ============
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('overlay');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    function openSidebar() {
+      mobileSidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebarFunc() {
+      mobileSidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+    if (closeSidebar) closeSidebar.addEventListener('click', closeSidebarFunc);
+    if (overlay) overlay.addEventListener('click', closeSidebarFunc);
+
+    // ============ CONFIGURATION ============
+    const ADVANCE_AMOUNT = 99; // ₹99 advance for COD
+    let cart = [];
+    let currentOrderData = null;
+
+    // ============ LOAD CART DATA ============
+    function loadCart() {
+      try {
+        const saved = localStorage.getItem('dailyGadgetCart');
+        cart = saved ? JSON.parse(saved) : [];
+        
+        // If cart is empty, add sample items for testing
+        if (cart.length === 0) {
+          cart = [
+            {
+              id: 1,
+              name: "Classic Cotton T-Shirt",
+              price: 499,
+              quantity: 2,
+              selectedSize: "L",
+              selectedColor: "Black",
+              icon: "fa-tshirt"
+            },
+            {
+              id: 2,
+              name: "Slim Fit Jeans",
+              price: 1299,
+              quantity: 1,
+              selectedSize: "32",
+              selectedColor: "Blue",
+              icon: "fa-tshirt"
+            }
+          ];
+          localStorage.setItem('dailyGadgetCart', JSON.stringify(cart));
+        }
+      } catch (e) {
+        console.log('Error loading cart:', e);
+        cart = [];
+      }
+      return cart;
+    }
+
+    // ============ CALCULATE TOTALS ============
+    function calculateTotals() {
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const shipping = subtotal > 2000 ? 0 : 99;
+      const total = subtotal + shipping;
+      return { subtotal, shipping, total };
+    }
+
+    // ============ RENDER ORDER ITEMS ============
+    function renderOrderItems() {
+      const container = document.getElementById('orderItems');
+      const { subtotal, shipping, total } = calculateTotals();
+      
+      if (cart.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:1rem; color:#5d6b65;">Your cart is empty</div>';
+        document.getElementById('subtotal').textContent = '₹0';
+        document.getElementById('shipping').textContent = '₹0';
+        document.getElementById('total').textContent = '₹0';
+        document.getElementById('totalAmountDisplay').textContent = '₹0';
+        document.getElementById('remainingAmount').textContent = '₹0';
+        return;
+      }
+
+      // Render items
+      container.innerHTML = cart.map(item => `
+        <div class="order-item">
+          <div>
+            <div style="font-weight:600; font-size:0.95rem;">${item.name}</div>
+            <div style="font-size:0.75rem; color:#5d6b65;">
+              Qty: ${item.quantity} 
+              ${item.selectedSize ? `| Size: ${item.selectedSize}` : ''} 
+              ${item.selectedColor ? `| Color: ${item.selectedColor}` : ''}
+            </div>
+          </div>
+          <div style="font-weight:700; font-size:0.95rem;">₹${item.price * item.quantity}</div>
+        </div>
+      `).join('');
+
+      // Update totals
+      document.getElementById('subtotal').textContent = `₹${subtotal}`;
+      document.getElementById('shipping').textContent = shipping === 0 ? 'Free' : `₹${shipping}`;
+      document.getElementById('total').textContent = `₹${total}`;
+      document.getElementById('totalAmountDisplay').textContent = `₹${total}`;
+      document.getElementById('remainingAmount').textContent = `₹${total}`;
+      
+      // Update cart count
+      const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
+      document.getElementById('cartCount').textContent = cartCount;
+    }
+
+    // ============ PAYMENT OPTION SELECTION ============
+    window.selectCOD = function() {
+      document.getElementById('codRadio').checked = true;
+      document.getElementById('codOption').classList.add('selected');
+      document.getElementById('razorpayOption').classList.remove('selected');
+    };
+
+    window.selectRazorpay = function() {
+      document.getElementById('razorpayRadio').checked = true;
+      document.getElementById('razorpayOption').classList.add('selected');
+      document.getElementById('codOption').classList.remove('selected');
+    };
+
+    // ============ VALIDATE FORM ============
+    function validateForm() {
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const pincode = document.getElementById('pincode').value.trim();
+      
+      if (!fullName || !email || !phone || !address || !city || !pincode) {
+        showToast('⚠️ Please fill all fields');
+        return false;
+      }
+      
+      // Email validation
+      if (!email.includes('@') || !email.includes('.')) {
+        showToast('⚠️ Please enter a valid email');
+        return false;
+      }
+      
+      // Phone validation
+      if (phone.length < 10) {
+        showToast('⚠️ Please enter valid phone number');
+        return false;
+      }
+      
+      return true;
+    }
+
+    // ============ CREATE ORDER DATA ============
+    function createOrderData() {
+      const fullName = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const pincode = document.getElementById('pincode').value.trim();
+      
+      const { subtotal, shipping, total } = calculateTotals();
+      const isCOD = document.getElementById('codRadio').checked;
+      
+      return {
+        orderId: 'DG' + Date.now().toString().slice(-8),
+        orderTime: new Date().toISOString(),
+        items: cart.map(item => ({
+          id: item.id,
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+          icon: item.icon || 'fa-tshirt',
+          size: item.selectedSize || 'M',
+          color: item.selectedColor || 'Black'
+        })),
+        subtotal: subtotal,
+        shipping: shipping,
+        total: total,
+        address: {
+          fullName: fullName,
+          address: address,
+          city: city,
+          pincode: pincode,
+          phone: phone,
+          email: email
+        },
+        paymentMethod: isCOD ? 'COD (Advance ₹99)' : 'Razorpay',
+        paymentStatus: 'pending'
+      };
+    }
+
+    // ============ PROCESS PAYMENT ============
+    window.processPayment = function() {
+      if (!validateForm()) return;
+      
+      const isCOD = document.getElementById('codRadio').checked;
+      const { total } = calculateTotals();
+      
+      // Create order data
+      currentOrderData = createOrderData();
+      
+      if (isCOD) {
+        // COD: Pay ₹99 advance via Razorpay
+        processRazorpayPayment(ADVANCE_AMOUNT, 'cod_advance');
+      } else {
+        // Razorpay: Pay full amount
+        processRazorpayPayment(total, 'full');
+      }
+    };
+
+    // ============ PROCESS RAZORPAY PAYMENT ============
+    function processRazorpayPayment(amount, type) {
+      const options = {
+        key: 'rzp_live_SDycj4aMVg262d', // 
+        amount: amount * 100,
+        currency: 'INR',
+        name: 'Daily Store',
+        description: type === 'cod_advance' ? 'COD Advance Payment' : 'Order Payment',
+        image: 'https://dailyfashion.in/logo.png',
+        handler: function(response) {
+          // Payment successful
+          const paymentId = response.razorpay_payment_id;
+          
+          // Update order status
+          currentOrderData.paymentStatus = 'paid';
+          currentOrderData.paymentId = paymentId;
+          currentOrderData.paymentType = type;
+          currentOrderData.advancePaid = type === 'cod_advance' ? amount : 0;
+          
+          // Save to localStorage
+          localStorage.setItem('lastOrder', JSON.stringify(currentOrderData));
+          localStorage.setItem('lastOrderId', currentOrderData.orderId);
+          
+          let allOrders = JSON.parse(localStorage.getItem('allOrders')) || [];
+          allOrders.push(currentOrderData);
+          localStorage.setItem('allOrders', JSON.stringify(allOrders));
+          
+          // Clear cart
+          localStorage.setItem('dailyGadgetCart', JSON.stringify([]));
+          
+          // Show success message
+          if (type === 'cod_advance') {
+            showToast(`✅ Advance paid! Order confirmed`);
+          } else {
+            showToast(`✅ Payment successful! Order confirmed`);
+          }
+          
+          // Redirect to tracking
+          setTimeout(() => {
+            window.location.href = `order-tracking.html?orderId=${currentOrderData.orderId}`;
+          }, 1500);
+        },
+        prefill: {
+          name: document.getElementById('fullName').value,
+          email: document.getElementById('email').value,
+          contact: document.getElementById('phone').value
+        },
+        theme: {
+          color: '#1e7b4c'
+        },
+        modal: {
+          ondismiss: function() {
+            showToast('❌ Payment cancelled');
+          }
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+    }
+
+    // ============ TOAST NOTIFICATION ============
+    function showToast(msg) {
+      const toast = document.getElementById('cartToast');
+      toast.innerHTML = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // ============ INITIALIZE PAGE ============
+    document.addEventListener('DOMContentLoaded', function() {
+      loadCart();
+      renderOrderItems();
+      
+      // Set COD as default selected
+      document.getElementById('codOption').classList.add('selected');
+    });
+  </script>
+</body>
+</html>
