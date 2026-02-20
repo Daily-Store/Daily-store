@@ -1,0 +1,885 @@
+<!-- ============ terms.html ============ -->
+<!-- ============ FAKE TERMS FOR DEMO/PORTFOLIO ============ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Terms and Conditions · Daily Store</title>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============ GLOBAL RESET ============ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { 
+      font-size: 16px; 
+      scroll-behavior: smooth; 
+      width: 100%; 
+      overflow-x: hidden;
+    }
+    
+    @media (max-width: 480px) { 
+      html { font-size: 14px; } 
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #f8fbfa; 
+      color: #111; 
+      width: 100%; 
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    
+    /* ============ DISCLAIMER BANNER ============ */
+    .demo-disclaimer {
+      background: #ffd700;
+      color: #000;
+      text-align: center;
+      padding: 0.8rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-bottom: 3px solid #c0421e;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .demo-disclaimer i {
+      color: #c0421e;
+      margin-right: 0.5rem;
+    }
+    
+    @media (max-width: 600px) {
+      .demo-disclaimer {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+      }
+    }
+    
+    /* ============ HEADER ============ */
+    .main-header {
+      background: white; 
+      padding: 0.8rem 1rem; 
+      display: flex; 
+      align-items: center;
+      justify-content: space-between; 
+      border-bottom: 1px solid #eef3f1;
+      position: sticky; 
+      top: 42px; 
+      z-index: 99; 
+      width: 100%;
+    }
+    
+    @media (max-width: 600px) {
+      .main-header {
+        top: 35px;
+      }
+    }
+    
+    .logo-area { 
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      cursor: pointer; 
+    }
+    
+    .logo-icon {
+      width: 40px; 
+      height: 40px; 
+      background: #e1f0e9; 
+      border-radius: 10px;
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: #1e7b4c; 
+      font-size: 1.5rem;
+    }
+    
+    .logo-text { 
+      font-size: 1.3rem; 
+      font-weight: 800; 
+      color: #0a3529; 
+    }
+    
+    .logo-text span { 
+      color: #1e7b4c; 
+    }
+    
+    /* Desktop Navigation */
+    .desktop-nav { 
+      display: flex; 
+      gap: 1.5rem; 
+    }
+    
+    .desktop-nav a { 
+      text-decoration: none; 
+      color: #1f3d34; 
+      font-weight: 600; 
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    
+    .desktop-nav a:hover {
+      color: #1e7b4c;
+    }
+    
+    @media (max-width: 900px) { 
+      .desktop-nav { 
+        display: none; 
+      } 
+    }
+    
+    /* Header Icons */
+    .header-icons { 
+      display: flex; 
+      gap: 1rem; 
+      align-items: center; 
+    }
+    
+    .header-icons i, .header-icons .fi { 
+      font-size: 1.3rem; 
+      color: #2a4c3b; 
+      cursor: pointer; 
+      transition: color 0.2s;
+    }
+    
+    .header-icons i:hover {
+      color: #1e7b4c;
+    }
+    
+    .cart-icon-wrapper { 
+      position: relative; 
+      cursor: pointer; 
+    }
+    
+    .cart-count {
+      position: absolute; 
+      top: -8px; 
+      right: -10px; 
+      background: #c0421e; 
+      color: white;
+      font-size: 0.65rem; 
+      width: 18px; 
+      height: 18px; 
+      border-radius: 50%; 
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+      border: 2px solid white;
+      font-weight: 700;
+    }
+    
+    /* Hamburger Menu */
+    .hamburger-menu {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #1e4d3a;
+    }
+    
+    @media (max-width: 900px) { 
+      .hamburger-menu { 
+        display: block; 
+      } 
+    }
+    
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 2rem 1.5rem;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mobile-sidebar.active { right: 0; }
+    
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e6efea;
+      padding-bottom: 1rem;
+    }
+    
+    .sidebar-logo { 
+      font-size: 1.4rem; 
+      font-weight: 800; 
+      color: #0a3529; 
+    }
+    
+    .close-sidebar { 
+      font-size: 1.6rem; 
+      cursor: pointer; 
+      color: #2e5e4b; 
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      list-style: none;
+    }
+    
+    .mobile-nav-links li a {
+      text-decoration: none;
+      color: #1f3d34;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: color 0.2s;
+    }
+    
+    .mobile-nav-links li a:hover {
+      color: #1e7b4c;
+    }
+    
+    .mobile-nav-links li a i { 
+      width: 24px; 
+      color: #1e7b4c; 
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    
+    .overlay.active { opacity: 1; visibility: visible; }
+    
+    /* ============ TOP USP ============ */
+    .top-usp {
+      background: #f5f7f6;
+      padding: 0.6rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #1f2a2f;
+    }
+    
+    .top-usp i { 
+      color: #146b3a; 
+      margin-right: 0.2rem; 
+    }
+    
+    /* ============ TERMS SECTION ============ */
+    .terms-section {
+      padding: 2rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .terms-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .demo-badge {
+      display: inline-block;
+      background: #c0421e;
+      color: white;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .terms-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0a3529;
+      margin-bottom: 0.5rem;
+    }
+    
+    .terms-subtitle {
+      font-size: 1rem;
+      color: #5d6b65;
+    }
+    
+    .fake-notice {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      padding: 1rem;
+      border-radius: 1rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+    }
+    
+    .fake-notice i {
+      font-size: 2rem;
+      color: #c0421e;
+    }
+    
+    @media (max-width: 600px) {
+      .terms-title {
+        font-size: 1.8rem;
+      }
+      .fake-notice {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    
+    .last-updated {
+      display: inline-block;
+      background: #e8f3ee;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #1e7b4c;
+      margin-top: 0.5rem;
+    }
+    
+    /* Terms Card */
+    .terms-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2rem;
+      border: 1px solid #e3ece8;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+    }
+    
+    @media (max-width: 600px) {
+      .terms-card {
+        padding: 1.5rem;
+        border-radius: 1.2rem;
+      }
+    }
+    
+    /* Fake Terms Content */
+    .fake-terms-content {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      opacity: 0.9;
+    }
+    
+    .terms-block {
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #e3ece8;
+    }
+    
+    .terms-block:last-child {
+      border-bottom: none;
+    }
+    
+    .terms-block h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0a3529;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .terms-block h2 i {
+      color: #1e7b4c;
+      font-size: 1.3rem;
+    }
+    
+    .terms-block h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e7b4c;
+      margin: 1.2rem 0 0.8rem;
+    }
+    
+    .terms-block p {
+      color: #3a4d45;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    
+    .terms-block ul, .terms-block ol {
+      margin: 1rem 0 1rem 1.5rem;
+      color: #3a4d45;
+    }
+    
+    .terms-block li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Fun Elements */
+    .fun-fact {
+      background: #e8f3ee;
+      border-radius: 1rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .fun-fact i {
+      font-size: 2rem;
+      color: #1e7b4c;
+    }
+    
+    .fun-fact p {
+      margin: 0;
+      font-style: italic;
+    }
+    
+    .emoji-list li {
+      list-style-type: none;
+      position: relative;
+      padding-left: 1.8rem;
+    }
+    
+    .emoji-list li:before {
+      content: "😊";
+      position: absolute;
+      left: 0;
+    }
+    
+    /* Joke Box */
+    .joke-box {
+      background: #ffd70020;
+      border: 2px dashed #ffd700;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    
+    .joke-box i {
+      font-size: 2rem;
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Acceptance Box */
+    .acceptance-box {
+      background: linear-gradient(135deg, #f3f9f6, #e8f3ee);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: center;
+      border: 1px solid #cde0d7;
+    }
+    
+    .acceptance-btn {
+      background: #1e7b4c;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    
+    .acceptance-btn:hover {
+      background: #14633c;
+      transform: scale(1.02);
+    }
+    
+    /* Footer (same as before) */
+    .main-footer {
+      background: #0f2c24;
+      color: #e2f0e9;
+      padding: 2rem 1rem 1.5rem;
+      margin-top: 2.5rem;
+    }
+    
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    
+    @media (max-width: 900px) {
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+    
+    .footer-col h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #c6e9d7;
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-col a {
+      color: #dbefe7;
+      text-decoration: none;
+    }
+    
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 1.5rem auto 0;
+      padding-top: 1rem;
+      border-top: 1px solid #235347;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    
+    /* Toast */
+    .cart-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e4d3d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .cart-toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div id="cartToast" class="cart-toast"></div>
+
+  <!-- DEMO DISCLAIMER BANNER -->
+  <div class="demo-disclaimer">
+    <i class="fas fa-exclamation-triangle"></i> 
+    ⚠️ THIS IS A FAKE/PLACEHOLDER TERMS PAGE FOR PORTFOLIO/DEMO PURPOSES ONLY ⚠️
+    <i class="fas fa-exclamation-triangle"></i>
+  </div>
+
+  <!-- Mobile Sidebar -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">DAILY<span style="color:#1e7b4c;">STORE</span></span>
+      <i class="fas fa-times close-sidebar" id="closeSidebar"></i>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="cart.html"><i class="fi fi-rr-shopping-bag"></i> Cart</a></li>
+      <li><a href="order-tracking.html"><i class="fas fa-truck"></i> Track</a></li>
+      <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms</a></li>
+    </ul>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-area" onclick="window.location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-tshirt"></i></div>
+      <div class="logo-text">DAILY<span>FASHION</span></div>
+    </div>
+    <div class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="cart.html">Cart</a>
+      <a href="order-tracking.html">Track</a>
+      <a href="terms.html" style="color:#1e7b4c;">Terms</a>
+    </div>
+    <div class="header-icons">
+      <div class="cart-icon-wrapper" onclick="window.location.href='cart.html'">
+        <i class="fi fi-rr-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <div class="hamburger-menu" id="hamburgerBtn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top USP -->
+  <div class="top-usp">
+    <span><i class="fas fa-rocket"></i> Fake Shipping</span>
+    <span><i class="fas fa-tag"></i> Demo pricing</span>
+    <span><i class="fas fa-rotate-left"></i> Fake Returns</span>
+  </div>
+
+  <!-- Terms Section -->
+  <section class="terms-section">
+    <div class="terms-header">
+      <div class="demo-badge">⚠️ FAKE / DEMO / PLACEHOLDER ⚠️</div>
+      <h1 class="terms-title">Terms and Conditions</h1>
+      <p class="terms-subtitle">(For Portfolio/Demo Use Only)</p>
+      <div class="fake-notice">
+        <i class="fas fa-smile-wink"></i>
+        <div>
+          <strong>📢 IMPORTANT NOTICE:</strong> This is a <strong>FAKE terms page</strong> created for <strong>portfolio/demo/educational purposes</strong> only. This is NOT a legally binding document. For a real website, please consult a legal professional.
+        </div>
+      </div>
+      <div class="last-updated">
+        <i class="fas fa-calendar-alt"></i> Last Updated: April 1, 2026 (April Fool's Day 😉)
+      </div>
+    </div>
+
+    <div class="terms-card">
+      <div class="fake-terms-content">
+        
+        <!-- Section 1 - JOKE -->
+        <div class="terms-block">
+          <h2><i class="fas fa-hand-peace"></i> 1. The "We're Just Kidding" Clause</h2>
+          <p>Welcome to the most unserious terms page on the internet! By reading this, you agree that:</p>
+          <ul class="emoji-list">
+            <li>You have a great sense of humor</li>
+            <li>You won't actually sue us because this is a fake website</li>
+            <li>You understand this is a portfolio project made by a student/developer</li>
+            <li>You will smile at least once while reading this</li>
+          </ul>
+          <div class="fun-fact">
+            <i class="fas fa-laugh"></i>
+            <p><strong>Fun Fact:</strong> This terms page was written in 10 minutes with lots of 😊 emojis!</p>
+          </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-crown"></i> 2. The "You're Awesome" Clause</h2>
+          <p>By using this fake website, you automatically become awesome. Benefits include:</p>
+          <ul>
+            <li>✨ 10% more confidence in your coding skills</li>
+            <li>✨ Free virtual high-fives</li>
+            <li>✨ Unlimited access to imaginary products</li>
+            <li>✨ A sense of pride and accomplishment</li>
+          </ul>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-pizza-slice"></i> 3. Pizza Policy</h2>
+          <p>We take pizza very seriously. If you're reading this on a Friday, you owe yourself a pizza. 🍕</p>
+          <p>If you're reading this on any other day, pizza is still acceptable. This is a pizza-positive zone.</p>
+        </div>
+
+        <!-- Section 4 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-rocket"></i> 4. Fake Shipping Policy</h2>
+          <p>Our fake shipping is faster than light! Your imaginary products will arrive in:</p>
+          <ul>
+            <li>🚀 0.5 seconds (in your imagination)</li>
+            <li>🚀 3-5 business days (in the real world, but this is fake so 🤷)</li>
+            <li>🚀 Immediately if you believe hard enough</li>
+          </ul>
+        </div>
+
+        <!-- Section 5 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-credit-card"></i> 5. Fake Payments</h2>
+          <p>We accept all major imaginary payment methods:</p>
+          <ul>
+            <li>💳 Monopoly Money</li>
+            <li>💳 Exposure Bucks</li>
+            <li>💳 Good Vibes</li>
+            <li>💳 5-Star Reviews</li>
+          </ul>
+        </div>
+
+        <!-- Section 6 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-undo-alt"></i> 6. Return Policy (The Best Part)</h2>
+          <p>You can return anything, even your bad mood! Just send us a 😊 emoji and we'll process your return instantly.</p>
+          <ul>
+            <li>Returns accepted within 100 years</li>
+            <li>No questions asked (except "How are you so awesome?")</li>
+            <li>Refunds in the form of compliments</li>
+          </ul>
+        </div>
+
+        <!-- Section 7 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-heart"></i> 7. Love Clause</h2>
+          <p>We love:</p>
+          <ul>
+            <li>❤️ Our users (that's you!)</li>
+            <li>❤️ Coffee</li>
+            <li>❤️ Late-night coding sessions</li>
+            <li>❤️ When projects actually work</li>
+          </ul>
+        </div>
+
+        <!-- Section 8 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-code"></i> 8. Developer's Note</h2>
+          <p>This website was built with:</p>
+          <ul>
+            <li>💻 HTML, CSS, JavaScript</li>
+            <li>💻 Lots of ☕ coffee</li>
+            <li>💻 Stack Overflow (obviously)</li>
+            <li>💻 Pure determination</li>
+          </ul>
+          <p>If you're a recruiter seeing this: <strong>Hire me! I'm fun AND I can code!</strong> 🚀</p>
+        </div>
+
+        <!-- Joke Box -->
+        <div class="joke-box">
+          <i class="fas fa-quote-right"></i>
+          <p><strong>Why do programmers prefer dark mode?</strong></p>
+          <p>Because light attracts bugs! 🐛</p>
+        </div>
+
+        <!-- Section 9 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-gavel"></i> 9. Legal Stuff (Fake Edition)</h2>
+          <p>In the imaginary court of Awesomeness, you agree that:</p>
+          <ul>
+            <li>⚖️ This is a fake website for a portfolio/demo project</li>
+            <li>⚖️ No actual transactions occur (it's all demo data)</li>
+            <li>⚖️ You're awesome for reading this far</li>
+            <li>⚖️ The developer is available for hire</li>
+          </ul>
+        </div>
+
+        <!-- Section 10 -->
+        <div class="terms-block">
+          <h2><i class="fas fa-envelope"></i> 10. Contact (Actually Real)</h2>
+          <p>If you want to hire a developer who makes fun terms pages:</p>
+          <ul>
+            <li><i class="fas fa-envelope"></i> Email: your.email@example.com (replace with real email)</li>
+            <li><i class="fab fa-github"></i> GitHub: @yourusername</li>
+            <li><i class="fab fa-linkedin"></i> LinkedIn: /in/yourprofile</li>
+          </ul>
+          <p><strong>Serious recruiters only! (Jokes aside, I'm actually available for work)</strong></p>
+        </div>
+
+        <!-- Acceptance Box -->
+        <div class="acceptance-box">
+          <p><i class="fas fa-smile-beam" style="color:#1e7b4c; font-size:2rem;"></i></p>
+          <p><strong>By clicking "I Accept", you agree that:</strong></p>
+          <p>✅ You understood this is a FAKE terms page<br>
+          ✅ You have a great sense of humor<br>
+          ✅ You'll leave this page with a smile</p>
+          <button class="acceptance-btn" onclick="showToast('😊 Thanks for being awesome! You accepted fake terms!')">
+            <i class="fas fa-check"></i> I Accept (Fake Agreement)
+          </button>
+        </div>
+
+        <!-- Final Fun Note -->
+        <p style="text-align:center; margin-top:2rem; font-size:0.8rem; color:#8a9d95;">
+          <i class="fas fa-heart" style="color:#c0421e;"></i> 
+          Made with humor for portfolio/demo purposes. No legal value whatsoever.
+          <i class="fas fa-heart" style="color:#c0421e;"></i>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>DAILY STORE</h4>
+        <p class="footer-about">A fake demo site for portfolio purposes.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cart.html">Cart</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Fake Policies</h4>
+        <ul>
+          <li><a href="terms.html">Fake Terms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> dailystore@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Fake Demo Site · No Rights Reserved · Just for Fun 😊</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile sidebar (same as before)
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('overlay');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    function openSidebar() {
+      mobileSidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebarFunc() {
+      mobileSidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+    if (closeSidebar) closeSidebar.addEventListener('click', closeSidebarFunc);
+    if (overlay) overlay.addEventListener('click', closeSidebarFunc);
+
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('dailyGadgetCart')) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('cartCount').textContent = count;
+    }
+    updateCartCount();
+
+    // Toast function
+    function showToast(msg) {
+      const toast = document.getElementById('cartToast');
+      toast.innerHTML = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+  </script>
+</body>
+</html>
