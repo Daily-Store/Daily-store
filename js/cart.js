@@ -233,5 +233,6 @@ class ShoppingCart {
   }
 }
 
+
 // Initialize cart globally
 const cart = new ShoppingCart();

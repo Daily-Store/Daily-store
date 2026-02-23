@@ -789,6 +789,7 @@
 </div>
 
   <script>
+    
     // ============ MOBILE SIDEBAR TOGGLE ============
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mobileSidebar = document.getElementById('mobileSidebar');
@@ -812,36 +813,37 @@
     if (overlay) overlay.addEventListener('click', closeSidebarFunc);
 
     // ============ PRODUCT DATA (SAME AS data.js) ============
-    const products = [
-      { 
-        id: 1, 
-        name: "SuperMen's Dark Blue Loose Baggy Fit Heavy Washed Jeans Non-Stretchabler Combed Cotton Rib Solid Boxer Brief with Ultrasoft and Durable Waistband", 
-        price: 499, 
-        compare: 999, 
-        discount: "-50% OFF", 
-        icon: "fa-tshirt",
-        images: [
-          "images/jeanlstwlyelice-dblue-1.jpg",
+const products = [
+  { 
+    id: 1, 
+    name: "Men's Dark Blue Loose Baggy Fit Heavy Washed Jeans Non-Stretchable", 
+    price: 299, 
+    compare: 999, 
+    discount: "-70% OFF", 
+    icon: "fa-tshirt",
+    images: [
+      "images/jeanlstwlyelice-dblue-1.jpg",
       "images/jeanlstwlyelice-dblue-2.jpg",
       "images/jeanlstwlyelice-dblue-3_5d6f5058-8688-4730-92ef-2187faa1afd7.jpg",
       "images/jeanlstwlyelice-dblue-4.jpg",
       "images/jeanlstwlyelice-dblue-5.jpg",
       "images/jeanlstwlyelice-dblue-6_2f3a11ce-6ba2-4236-8993-c9d6f964c577.jpg",
-        ],
-        description: "Comfortable loose fit ideal for everyday wear.Premium Denim Fabric: Made with non-stretchable 100% cotton denim fabric which is durable and ensures comfort and long-lasting wear.",
-        category: "Men's Clothing",
-        rating: 4.9,
-        reviews: 124,
-        stock: 50,
-        sizes: ["28", "30", "32", "34","36"],
-        
-      },
-      { 
-        id: 2, 
+    ],
+    description: "Comfortable loose fit ideal for everyday wear.Premium Denim Fabric: Made with non-stretchable 100% cotton denim fabric which is durable and ensures comfort and long-lasting wear.",
+    category: "Men's Clothing",
+    rating: 4.5,
+    reviews: 124,
+    stock: 50,
+    sizes: ["28", "30", "32", "34","36"],
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
+  },
+  { 
+      id: 2, 
         name: "ESCAPE DEER 3 Shirt Combo ED3112 R1 S1", 
-        price: 699, 
+        price: 499, 
         compare: 1299, 
-        discount: "-48% OFF", 
+        discount: "-65% OFF", 
         icon: "fa-tshirt",
         images: [
           "images/ChatGPT Image Feb 15, 2026, 10_34_00 PM.png",
@@ -855,14 +857,15 @@
         reviews: 89,
         stock: 35,
         sizes: ["S", "M", "L", "XL"],
-        
+        hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
       },
-      { 
+  { 
         id: 3, 
         name: "2-Pack Classic Straight Fit Joggers", 
-        price: 599, 
-        compare: 1299, 
-        discount: "-50% OFF", 
+        price: 299, 
+        compare: 999, 
+        discount: "-70% OFF", 
         icon: "fa-tshirt",
         images: [
           "images/PebbleBlack_131d91bd-5ef8-4a08-a635-ea370d7a903a.jpg",
@@ -875,13 +878,14 @@
         reviews: 156,
         stock: 25,
         sizes: ["28", "30", "32", "34","36"],
-        
+        hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
       },
-      { 
+  { 
     id: 4, 
     name: "Classic Caramel Brown Double Cloth Straight-Fit Trousers", 
-    price: 299, 
-    compare: 699, 
+    price: 249, 
+    compare: 599, 
     discount: "-60% OFF", 
     icon: "fa-female",
     images: [
@@ -897,14 +901,15 @@
     reviews: 203,
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-      { 
-        id: 5, 
+  { 
+     id: 5, 
         name: "Solid Pure Cotton Polo Shirt", 
-        price: 249, 
+        price: 199, 
         compare: 599, 
-        discount: "-50% OFF", 
+        discount: "-60% OFF", 
         icon: "fa-female",
         images: [
           "images/1_3ed28cc8-0a43-497e-a70f-4d3d50146f17.jpg",
@@ -918,14 +923,15 @@
         reviews: 147,
         stock: 45,
         sizes: ["S", "M", "L", "XL"],
-        
+        hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
       },
-      { 
-     id: 6, 
+  { 
+    id: 6, 
     name: "Men's Black Loose Fit Washed Jeans Non-Stretchable", 
-    price: 599, 
-    compare: 1199, 
-    discount: "-50% OFF", 
+    price: 269, 
+    compare: 999, 
+    discount: "-75% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/jeanloose-black-1-AI.png",
@@ -938,17 +944,18 @@
     description: "These men's black loose baggy fit washed jeans are perfect for those who want to turn heads at every occasion. Whether you’re gearing up for a formal gathering or keeping it casual, these pants go effortlessly with both formal shirts and graphic tees.",
     category: "Men's Clothing",
     rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    reviews: 119,
+    stock: 20,
     sizes: ["28", "30", "32", "34","36"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
   {
     id: 7, 
     name: "Super Combed Cotton Rib Solid Boxer Brief with Ultrasoft and Durable Waistband - Black/Navy/Charcoal Melange (Pack of 3)", 
-    price: 249, 
+    price: 199, 
     compare: 549, 
-    discount: "-55% OFF", 
+    discount: "-65% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/8009_BNVCM_0305_S223_JKY_0.jpeg",
@@ -959,17 +966,18 @@
     description: "Super Combed Cotton Ribbed Fabric ,Fabric Composition : CottonFront Open Fly Ultrasoft and Durable Concealed Waistband Engineered to Prevent Ride Up Label Free for All Day ComfortNet Quantity: 3 Piece",
     category: "Men's Clothing",
     rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    reviews: 111,
+    stock: 25,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-      {
+    {
     id: 8, 
     name: "Super Combed Cotton Solid Brief with Ultrasoft Waistband - Black (Pack of 2)", 
-    price: 199, 
-    compare: 400, 
-    discount: "-50% OFF", 
+    price: 129, 
+    compare: 399, 
+    discount: "-80% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/8037_BLACK_0205_S223_JKY_0.jpeg",
@@ -978,17 +986,18 @@
     description: "Super Combed Cotton Fabric Fabric Composition : Cotton Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 2 Piece",
     category: "Men's Clothing",
     rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    reviews: 99,
+    stock: 29,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-      {
+        {
     id: 9, 
     name: "Pack of 3 Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Navy, Charcoal Melange & Black", 
-    price: 249, 
-    compare: 599, 
-    discount: "-55% OFF", 
+    price: 199, 
+    compare: 499, 
+    discount: "-60% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/US21_BLACK-CHAML-NAVY_S123_0.jpeg",
@@ -998,18 +1007,19 @@
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride-Up Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 3 Piece",
     category: "Men's Clothing",
-    rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    rating: 4.9,
+    reviews: 140,
+    stock: 21,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-          {
+        {
     id: 10, 
     name: "Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Mid Night Navy & Monument (Pack of 2)", 
-    price: 199, 
+    price: 149, 
     compare: 399, 
-    discount: "-50% OFF", 
+    discount: "-65% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/NY16_MN-MT_0205_S125_JKY_0.jpeg",
@@ -1019,13 +1029,14 @@
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride Up Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 2 Piece",
     category: "Men's Clothing",
-    rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    rating: 4.6,
+    reviews: 102,
+    stock: 23,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-            {
+              {
     id: 11, 
     name: "Super Combed Cotton Rib Trunk with Ultrasoft Waistband - New Black", 
     price: 149, 
@@ -1041,13 +1052,14 @@
     ],
     description: "100% Super Combed Cotton Rib Fabric Fabric Composition : Cotton Engineered to Prevent Ride Up Front Open Fly Ultrasoft and Durable Waistband Label Free for All Day Comfort",
     category: "Men's Clothing",
-    rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    rating: 4.9,
+    reviews: 192,
+    stock: 9,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-              {
+                {
     id: 12, 
     name: "Super Combed Cotton Elastane Stretch Printed Trunk with Ultrasoft Waistband - Black Empire Yell", 
     price: 99, 
@@ -1062,18 +1074,19 @@
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride Up Ultrasoft and Durable Waistband All Over Print Design Label Free for All Day Comfort",
     category: "Men's Clothing",
-    rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    rating: 4.8,
+    reviews: 150,
+    stock: 7,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-                    {
+                  {
     id: 13, 
     name: "Combo Pack of Mauve (pink tone) and Peach Shirt", 
-    price: 499, 
+    price: 399, 
     compare: 999, 
-    discount: "-50% OFF", 
+    discount: "-60% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/ChatGPT Image Feb 16, 2026, 12_20_36 AM.png",
@@ -1086,17 +1099,18 @@
     description: "Elevate your everyday style with this Creamy Peach and mauve pink Subtle Textured Shirts, featuring a delicate textured finish for a refined look. Soft and breathable, it ensures all-day comfort. Perfect for casual or smart-casual occasions 2 pack.",
     category: "Men's Clothing",
     rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    reviews: 132,
+    stock: 5,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-   {
+     {
     id: 14, 
     name: "Baby Pink Solid Shirt ", 
-    price: 349, 
+    price: 249, 
     compare: 699, 
-    discount: "-50% OFF", 
+    discount: "-60% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/1_564875dd-4c51-40a2-88f9-3daf1fe753d9.jpg",
@@ -1109,17 +1123,18 @@
     description: "Add a touch of subtle elegance with this Baby Pink Solid Shirt, designed for a clean and polished look. Made from soft, breathable fabric, it offers comfort without compromising style. Ideal for both casual outings and semi-formal occasions.",
     category: "Men's Clothing",
     rating: 4.7,
-    reviews: 112,
-    stock: 28,
+    reviews: 125,
+    stock: 3,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-       {
+     {
     id: 15, 
     name: "Cool Ash Grey Doublecloth Textured", 
-    price: 299, 
+    price: 199, 
     compare: 599, 
-    discount: "-50% OFF", 
+    discount: "-70% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/1_4f832d6d-cfd5-4d67-aea7-9c7f288ba8f5.jpg",
@@ -1134,10 +1149,10 @@
     reviews: 115,
     stock: 2,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
-  
-    ];
+];
 
     // ============ GET PRODUCT ID FROM URL ============
     function getProductId() {
@@ -1380,6 +1395,7 @@
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2000);
     }
+    
 
     // ============ INITIALIZE ============
     document.addEventListener('DOMContentLoaded', function() {

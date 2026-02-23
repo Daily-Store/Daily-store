@@ -5,9 +5,9 @@ const products = [
   { 
     id: 1, 
     name: "Men's Dark Blue Loose Baggy Fit Heavy Washed Jeans Non-Stretchable", 
-    price: 499, 
+    price: 299, 
     compare: 999, 
-    discount: "-50% OFF", 
+    discount: "-70% OFF", 
     icon: "fa-tshirt",
     images: [
       "images/jeanlstwlyelice-dblue-1.jpg",
@@ -23,14 +23,15 @@ const products = [
     reviews: 124,
     stock: 50,
     sizes: ["28", "30", "32", "34","36"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
   { 
       id: 2, 
         name: "ESCAPE DEER 3 Shirt Combo ED3112 R1 S1", 
-        price: 699, 
+        price: 499, 
         compare: 1299, 
-        discount: "-48% OFF", 
+        discount: "-65% OFF", 
         icon: "fa-tshirt",
         images: [
           "images/ChatGPT Image Feb 15, 2026, 10_34_00 PM.png",
@@ -44,14 +45,15 @@ const products = [
         reviews: 89,
         stock: 35,
         sizes: ["S", "M", "L", "XL"],
-        
+        hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
       },
   { 
         id: 3, 
         name: "2-Pack Classic Straight Fit Joggers", 
-        price: 599, 
-        compare: 1299, 
-        discount: "-50% OFF", 
+        price: 299, 
+        compare: 999, 
+        discount: "-70% OFF", 
         icon: "fa-tshirt",
         images: [
           "images/PebbleBlack_131d91bd-5ef8-4a08-a635-ea370d7a903a.jpg",
@@ -64,13 +66,14 @@ const products = [
         reviews: 156,
         stock: 25,
         sizes: ["28", "30", "32", "34","36"],
-        
+        hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
       },
   { 
     id: 4, 
     name: "Classic Caramel Brown Double Cloth Straight-Fit Trousers", 
-    price: 299, 
-    compare: 699, 
+    price: 249, 
+    compare: 599, 
     discount: "-60% OFF", 
     icon: "fa-female",
     images: [
@@ -86,14 +89,15 @@ const products = [
     reviews: 203,
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
   { 
      id: 5, 
         name: "Solid Pure Cotton Polo Shirt", 
-        price: 249, 
+        price: 199, 
         compare: 599, 
-        discount: "-50% OFF", 
+        discount: "-60% OFF", 
         icon: "fa-female",
         images: [
           "images/1_3ed28cc8-0a43-497e-a70f-4d3d50146f17.jpg",
@@ -107,14 +111,15 @@ const products = [
         reviews: 147,
         stock: 45,
         sizes: ["S", "M", "L", "XL"],
-        
+        hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
       },
   { 
     id: 6, 
     name: "Men's Black Loose Fit Washed Jeans Non-Stretchable", 
-    price: 599, 
-    compare: 1199, 
-    discount: "-50% OFF", 
+    price: 269, 
+    compare: 999, 
+    discount: "-75% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/jeanloose-black-1-AI.png",
@@ -130,14 +135,15 @@ const products = [
     reviews: 119,
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
   {
     id: 7, 
     name: "Super Combed Cotton Rib Solid Boxer Brief with Ultrasoft and Durable Waistband - Black/Navy/Charcoal Melange (Pack of 3)", 
-    price: 249, 
+    price: 199, 
     compare: 549, 
-    discount: "-55% OFF", 
+    discount: "-65% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/8009_BNVCM_0305_S223_JKY_0.jpeg",
@@ -151,14 +157,15 @@ const products = [
     reviews: 111,
     stock: 25,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
     {
     id: 8, 
     name: "Super Combed Cotton Solid Brief with Ultrasoft Waistband - Black (Pack of 2)", 
-    price: 199, 
-    compare: 400, 
-    discount: "-50% OFF", 
+    price: 129, 
+    compare: 399, 
+    discount: "-80% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/8037_BLACK_0205_S223_JKY_0.jpeg",
@@ -170,14 +177,15 @@ const products = [
     reviews: 99,
     stock: 29,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
         {
     id: 9, 
     name: "Pack of 3 Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Navy, Charcoal Melange & Black", 
-    price: 249, 
-    compare: 599, 
-    discount: "-55% OFF", 
+    price: 199, 
+    compare: 499, 
+    discount: "-60% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/US21_BLACK-CHAML-NAVY_S123_0.jpeg",
@@ -191,14 +199,15 @@ const products = [
     reviews: 140,
     stock: 21,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
         {
     id: 10, 
     name: "Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Mid Night Navy & Monument (Pack of 2)", 
-    price: 199, 
+    price: 149, 
     compare: 399, 
-    discount: "-50% OFF", 
+    discount: "-65% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/NY16_MN-MT_0205_S125_JKY_0.jpeg",
@@ -212,7 +221,8 @@ const products = [
     reviews: 102,
     stock: 23,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
               {
     id: 11, 
@@ -234,7 +244,8 @@ const products = [
     reviews: 192,
     stock: 9,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
                 {
     id: 12, 
@@ -255,14 +266,15 @@ const products = [
     reviews: 150,
     stock: 7,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
                   {
     id: 13, 
     name: "Combo Pack of Mauve (pink tone) and Peach Shirt", 
-    price: 499, 
+    price: 399, 
     compare: 999, 
-    discount: "-50% OFF", 
+    discount: "-60% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/ChatGPT Image Feb 16, 2026, 12_20_36 AM.png",
@@ -278,14 +290,15 @@ const products = [
     reviews: 132,
     stock: 5,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
      {
     id: 14, 
     name: "Baby Pink Solid Shirt ", 
-    price: 349, 
+    price: 249, 
     compare: 699, 
-    discount: "-50% OFF", 
+    discount: "-60% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/1_564875dd-4c51-40a2-88f9-3daf1fe753d9.jpg",
@@ -301,14 +314,15 @@ const products = [
     reviews: 125,
     stock: 3,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
      {
     id: 15, 
     name: "Cool Ash Grey Doublecloth Textured", 
-    price: 299, 
+    price: 199, 
     compare: 599, 
-    discount: "-50% OFF", 
+    discount: "-70% OFF", 
     icon: "fa-shoe-prints",
     images: [
       "images/1_4f832d6d-cfd5-4d67-aea7-9c7f288ba8f5.jpg",
@@ -323,7 +337,8 @@ const products = [
     reviews: 115,
     stock: 2,
     sizes: ["S", "M", "L", "XL"],
-    
+    hasTimer: true,           // ← Enable timer for this product
+    timerDuration: 30         // ← 30 minutes timer
   },
 ];
 

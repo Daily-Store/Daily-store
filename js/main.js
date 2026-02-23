@@ -189,6 +189,7 @@ function initIndexPage() {
   }
 }
 
+
 // ============ INSIDE index.html - UPDATE THE createProductCard FUNCTION ============
 
 function createProductCard(product) {
