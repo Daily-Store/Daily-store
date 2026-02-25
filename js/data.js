@@ -23,8 +23,7 @@ const products = [
     reviews: 124,
     stock: 50,
     sizes: ["28", "30", "32", "34","36"],
-    hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+    hasTimer: true,           // ← Enable timer for this product        // ← 30 minutes timer
   },
   { 
       id: 2, 
@@ -45,8 +44,7 @@ const products = [
         reviews: 89,
         stock: 35,
         sizes: ["S", "M", "L", "XL"],
-        hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+        hasTimer: true,           // ← Enable timer for this product        // ← 30 minutes timer
       },
   { 
         id: 3, 
@@ -67,7 +65,7 @@ const products = [
         stock: 25,
         sizes: ["28", "30", "32", "34","36"],
         hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
       },
   { 
     id: 4, 
@@ -90,7 +88,7 @@ const products = [
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
   { 
      id: 5, 
@@ -112,7 +110,7 @@ const products = [
         stock: 45,
         sizes: ["S", "M", "L", "XL"],
         hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
       },
   { 
     id: 6, 
@@ -136,7 +134,7 @@ const products = [
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+          // ← 30 minutes timer
   },
   {
     id: 7, 
@@ -158,7 +156,7 @@ const products = [
     stock: 25,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+            // ← 30 minutes timer
   },
     {
     id: 8, 
@@ -178,7 +176,7 @@ const products = [
     stock: 29,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+           // ← 30 minutes timer
   },
         {
     id: 9, 
@@ -200,7 +198,7 @@ const products = [
     stock: 21,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
         {
     id: 10, 
@@ -222,7 +220,7 @@ const products = [
     stock: 23,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
               {
     id: 11, 
@@ -245,7 +243,7 @@ const products = [
     stock: 9,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
                 {
     id: 12, 
@@ -267,7 +265,7 @@ const products = [
     stock: 7,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
                   {
     id: 13, 
@@ -291,7 +289,7 @@ const products = [
     stock: 5,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+           // ← 30 minutes timer
   },
      {
     id: 14, 
@@ -315,7 +313,7 @@ const products = [
     stock: 3,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+            // ← 30 minutes timer
   },
      {
     id: 15, 
@@ -338,7 +336,7 @@ const products = [
     stock: 2,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
 ];
 

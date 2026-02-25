@@ -1,5 +1,182 @@
 // ============ js/main.js ============
 // ============ UPDATED: COD ADVANCE ₹100 + RAZORPAY ============
+// ============ LIMITED DEAL TIMER ============
+
+// Timer variables
+let megaDealEndTime = null;
+let productTimerIntervals = {};
+
+/**
+ * Initialize all timers
+ */
+function initDealTimers() {
+  const now = Date.now();
+  
+  // Mega deal timer - 30 minutes
+  if (!localStorage.getItem('megaDealEnd')) {
+    megaDealEndTime = now + (30 * 60 * 1000); // 30 minutes
+    localStorage.setItem('megaDealEnd', megaDealEndTime);
+  } else {
+    megaDealEndTime = parseInt(localStorage.getItem('megaDealEnd'));
+    // Reset if expired
+    if (megaDealEndTime <= now) {
+      megaDealEndTime = now + (30 * 60 * 1000);
+      localStorage.setItem('megaDealEnd', megaDealEndTime);
+    }
+  }
+  
+  // Initialize product timers for products with hasTimer=true
+  if (typeof products !== 'undefined') {
+    products.forEach(product => {
+      if (product.hasTimer) {
+        let endTime = localStorage.getItem(`productDeal_${product.id}`);
+        if (!endTime || parseInt(endTime) <= now) {
+          localStorage.setItem(`productDeal_${product.id}`, now + (30 * 60 * 1000));
+        }
+      }
+    });
+  }
+}
+
+/**
+ * Update mega deal timer
+ */
+function updateMegaDealTimer() {
+  const now = Date.now();
+  const megaTimerEl = document.getElementById('megaDealTimer');
+  
+  if (!megaTimerEl) return;
+  
+  // Reset if expired
+  if (megaDealEndTime <= now) {
+    megaDealEndTime = now + (30 * 60 * 1000);
+    localStorage.setItem('megaDealEnd', megaDealEndTime);
+  }
+  
+  // Calculate time
+  const diff = megaDealEndTime - now;
+  const minutes = Math.floor(diff / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+  
+  // Format with leading zeros
+  const minutesStr = minutes.toString().padStart(2, '0');
+  const secondsStr = seconds.toString().padStart(2, '0');
+  
+  // Update display
+  megaTimerEl.textContent = `${minutesStr}:${secondsStr}`;
+}
+
+/**
+ * Update product timer
+ */
+function updateProductTimer(productId, elementId) {
+  const now = Date.now();
+  const timerElement = document.getElementById(elementId);
+  
+  if (!timerElement) return;
+  
+  let endTime = parseInt(localStorage.getItem(`productDeal_${productId}`));
+  
+  // Reset if expired
+  if (endTime <= now) {
+    endTime = now + (30 * 60 * 1000);
+    localStorage.setItem(`productDeal_${productId}`, endTime);
+  }
+  
+  // Calculate time
+  const diff = endTime - now;
+  const minutes = Math.floor(diff / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+  
+  const minutesStr = minutes.toString().padStart(2, '0');
+  const secondsStr = seconds.toString().padStart(2, '0');
+  
+  // Check if urgent (<5 minutes)
+  const isUrgent = minutes < 5;
+  
+  // Update display
+  timerElement.innerHTML = `
+    <div class="product-deal-timer ${isUrgent ? 'urgent' : ''}">
+      <i class="fas fa-clock"></i>
+      <span class="timer-count">
+        <span>${minutesStr}</span>:<span>${secondsStr}</span>
+      </span>
+      <span class="timer-label">left</span>
+    </div>
+  `;
+}
+
+/**
+ * Start product timer
+ */
+function startProductTimer(productId, elementId) {
+  // Clear existing interval
+  if (productTimerIntervals[productId]) {
+    clearInterval(productTimerIntervals[productId]);
+  }
+  
+  // Update immediately
+  updateProductTimer(productId, elementId);
+  
+  // Update every second
+  productTimerIntervals[productId] = setInterval(() => {
+    updateProductTimer(productId, elementId);
+  }, 1000);
+}
+
+/**
+ * Add timers to product cards (call after products are rendered)
+ */
+function addTimersToProducts() {
+  if (typeof products === 'undefined') return;
+  
+  // Find all product cards that should have timers
+  document.querySelectorAll('.product-card').forEach((card, index) => {
+    // Get product ID from card (you need to store it in data attribute)
+    // For this to work, your createProductCard function should set data-product-id
+    const productId = card.dataset.productId;
+    
+    if (productId) {
+      const product = products.find(p => p.id == productId);
+      if (product && product.hasTimer) {
+        // Create timer container if not exists
+        if (!card.querySelector('.product-timer-container')) {
+          const timerId = `product_timer_${productId}_${Date.now()}`;
+          const timerDiv = document.createElement('div');
+          timerDiv.id = timerId;
+          timerDiv.className = 'product-timer-container';
+          card.querySelector('.price-block')?.after(timerDiv);
+          
+          // Start timer
+          setTimeout(() => {
+            startProductTimer(productId, timerId);
+          }, 10);
+        }
+      }
+    }
+  });
+}
+
+// ============ INITIALIZE TIMERS ON PAGE LOAD ============
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize timers
+  initDealTimers();
+  
+  // Start mega timer
+  updateMegaDealTimer();
+  setInterval(updateMegaDealTimer, 1000);
+  
+  // Add timers to products after they're rendered
+  // Use setTimeout to ensure products are rendered
+  setTimeout(addTimersToProducts, 500);
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', function() {
+  for (let id in productTimerIntervals) {
+    clearInterval(productTimerIntervals[id]);
+  }
+});
 
 document.addEventListener('DOMContentLoaded', function() {
   'use strict';
@@ -195,6 +372,7 @@ function initIndexPage() {
 function createProductCard(product) {
   const card = document.createElement('div');
   card.className = 'product-card';
+  card.dataset.productId = product.id;
   card.onclick = () => {
     window.location.href = `product.html?id=${product.id}`;
   };

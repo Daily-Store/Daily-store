@@ -1633,3 +1633,245 @@ body {
   color: #1e7b4c;
   margin-right: 0.3rem;
 }
+/* ============ LIMITED DEAL TIMER ============ */
+
+/* Mega Deal Banner */
+.mega-deal-banner {
+  background: linear-gradient(135deg, #ff5722, #ff8a5c);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin: 20px 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+  box-shadow: 0 5px 20px rgba(255, 87, 34, 0.3);
+  animation: dealPulse 2s infinite;
+}
+
+@keyframes dealPulse {
+  0% { box-shadow: 0 5px 20px rgba(255, 87, 34, 0.3); }
+  50% { box-shadow: 0 10px 30px rgba(255, 87, 34, 0.5); }
+  100% { box-shadow: 0 5px 20px rgba(255, 87, 34, 0.3); }
+}
+
+.deal-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.deal-left i {
+  font-size: 2rem;
+  color: #ffd700;
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.deal-left h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.deal-left p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.deal-timer-box {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px 25px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 2px solid white;
+}
+
+.deal-timer-box span {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.deal-timer-box i {
+  font-size: 1.5rem;
+  color: #ffd700;
+}
+
+/* Product Timer */
+.product-deal-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff8e7;
+  padding: 6px 12px;
+  border-radius: 30px;
+  margin-top: 8px;
+  border-left: 3px solid #ff5722;
+  font-size: 0.85rem;
+  width: auto;
+}
+
+.product-deal-timer.urgent {
+  background: #ffe7e7;
+  border-left-color: #d32f2f;
+  animation: urgentBlink 1s infinite;
+}
+
+@keyframes urgentBlink {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+.product-deal-timer i {
+  color: #ff5722;
+  font-size: 0.9rem;
+}
+
+.timer-count {
+  font-weight: 700;
+  color: #333;
+}
+
+.timer-count span {
+  color: #ff5722;
+  margin: 0 2px;
+  font-size: 1rem;
+}
+
+.urgent .timer-count span {
+  color: #d32f2f;
+}
+
+.timer-label {
+  color: #666;
+  font-size: 0.75rem;
+  margin-left: 5px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .mega-deal-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .deal-left {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .deal-timer-box {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .deal-timer-box span {
+    font-size: 1.5rem;
+  }
+}
+    /* ============ LIMITED DEAL TIMER ============ */
+    .product-page-timer {
+      background: linear-gradient(135deg, #fff8e7, #ffe9d9);
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin: 15px 0 20px;
+      border-left: 5px solid #ff5722;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      box-shadow: 0 3px 10px rgba(255, 87, 34, 0.1);
+    }
+    
+    .product-page-timer.urgent {
+      background: linear-gradient(135deg, #ffe7e7, #ffd5d5);
+      border-left-color: #d32f2f;
+      animation: urgentPulse 1s infinite;
+    }
+    
+    @keyframes urgentPulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.9; }
+      100% { opacity: 1; }
+    }
+    
+    .timer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .timer-left i {
+      font-size: 2rem;
+      color: #ff5722;
+    }
+    
+    .timer-left h4 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #333;
+    }
+    
+    .timer-left p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    .timer-right {
+      background: white;
+      padding: 10px 25px;
+      border-radius: 50px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .timer-right i {
+      color: #ff5722;
+      font-size: 1.2rem;
+    }
+    
+    .timer-right span {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ff5722;
+      letter-spacing: 2px;
+    }
+    
+    .urgent .timer-right span {
+      color: #d32f2f;
+    }
+    
+    @media (max-width: 600px) {
+      .product-page-timer {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .timer-left {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .timer-right {
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .timer-right span {
+        font-size: 1.5rem;
+      }
+    }

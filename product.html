@@ -836,7 +836,7 @@ const products = [
     stock: 50,
     sizes: ["28", "30", "32", "34","36"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+            // ← 30 minutes timer
   },
   { 
       id: 2, 
@@ -858,7 +858,7 @@ const products = [
         stock: 35,
         sizes: ["S", "M", "L", "XL"],
         hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
       },
   { 
         id: 3, 
@@ -879,7 +879,7 @@ const products = [
         stock: 25,
         sizes: ["28", "30", "32", "34","36"],
         hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
       },
   { 
     id: 4, 
@@ -902,7 +902,7 @@ const products = [
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
   { 
      id: 5, 
@@ -924,7 +924,7 @@ const products = [
         stock: 45,
         sizes: ["S", "M", "L", "XL"],
         hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+            // ← 30 minutes timer
       },
   { 
     id: 6, 
@@ -948,7 +948,7 @@ const products = [
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
   {
     id: 7, 
@@ -970,7 +970,7 @@ const products = [
     stock: 25,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
     {
     id: 8, 
@@ -990,7 +990,7 @@ const products = [
     stock: 29,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
         {
     id: 9, 
@@ -1012,7 +1012,7 @@ const products = [
     stock: 21,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
         {
     id: 10, 
@@ -1034,7 +1034,7 @@ const products = [
     stock: 23,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
               {
     id: 11, 
@@ -1057,7 +1057,7 @@ const products = [
     stock: 9,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
                 {
     id: 12, 
@@ -1079,7 +1079,7 @@ const products = [
     stock: 7,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
                   {
     id: 13, 
@@ -1103,7 +1103,7 @@ const products = [
     stock: 5,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
      {
     id: 14, 
@@ -1127,7 +1127,7 @@ const products = [
     stock: 3,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
      {
     id: 15, 
@@ -1150,7 +1150,7 @@ const products = [
     stock: 2,
     sizes: ["S", "M", "L", "XL"],
     hasTimer: true,           // ← Enable timer for this product
-    timerDuration: 30         // ← 30 minutes timer
+             // ← 30 minutes timer
   },
 ];
 
@@ -1229,9 +1229,27 @@ const products = [
           </div>
         </div>
         
-        <div class="product-details">
+                <div class="product-details">
           <span class="product-category">✨ ${product.category}</span>
           <h1 class="product-name">${product.name}</h1>
+          
+          <!-- ============ LIMITED DEAL TIMER ============ -->
+          ${product.hasTimer ? `
+          <div id="productPageTimer" class="product-page-timer" style="display: none;">
+            <div class="timer-left">
+              <i class="fas fa-clock"></i>
+              <div>
+                <h4>⚡ LIMITED TIME DEAL ⚡</h4>
+                <p>This special price ends in:</p>
+              </div>
+            </div>
+            <div class="timer-right">
+              <i class="fas fa-hourglass-half"></i>
+              <span id="productTimerDisplay">30:00</span>
+            </div>
+          </div>
+          ` : ''}
+          
           <div class="product-rating">
             ${generateStarRating(product.rating)}
             <span>(${product.reviews} reviews)</span>
@@ -1398,9 +1416,93 @@ const products = [
     
 
     // ============ INITIALIZE ============
-    document.addEventListener('DOMContentLoaded', function() {
+       document.addEventListener('DOMContentLoaded', function() {
       renderProductPage();
       updateCartCount();
+      
+      // Initialize timer after product is rendered
+      setTimeout(() => {
+        const productId = getProductId();
+        const product = products.find(p => p.id === productId);
+        if (product && product.hasTimer) {
+          initProductPageTimer(product.id);
+        }
+      }, 200);
+    });
+        // ============ LIMITED DEAL TIMER FUNCTIONS ============
+    let productPageTimerInterval = null;
+
+    function initProductPageTimer(productId, durationMinutes = 30) {
+      const timerContainer = document.getElementById('productPageTimer');
+      const timerDisplay = document.getElementById('productTimerDisplay');
+      
+      if (!timerContainer || !timerDisplay || !productId) return;
+      
+      const now = Date.now();
+      
+      // Get or create end time
+      let endTime = localStorage.getItem(`productDeal_${productId}`);
+      
+      if (!endTime || parseInt(endTime) <= now) {
+        endTime = now + (durationMinutes * 60 * 1000);
+        localStorage.setItem(`productDeal_${productId}`, endTime);
+      } else {
+        endTime = parseInt(endTime);
+      }
+      
+      // Show timer container
+      timerContainer.style.display = 'flex';
+      
+      // Clear existing interval
+      if (productPageTimerInterval) {
+        clearInterval(productPageTimerInterval);
+      }
+      
+      // Update timer function
+      function updateTimer() {
+        const now = Date.now();
+        
+        // Reset if expired
+        if (endTime <= now) {
+          endTime = now + (durationMinutes * 60 * 1000);
+          localStorage.setItem(`productDeal_${productId}`, endTime);
+        }
+        
+        // Calculate time
+        const diff = endTime - now;
+        const minutes = Math.floor(diff / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        
+        // Format
+        const minutesStr = minutes.toString().padStart(2, '0');
+        const secondsStr = seconds.toString().padStart(2, '0');
+        
+        // Check if urgent (<5 minutes)
+        const isUrgent = minutes < 5;
+        
+        // Update display
+        timerDisplay.textContent = `${minutesStr}:${secondsStr}`;
+        
+        // Update urgent class
+        if (isUrgent) {
+          timerContainer.classList.add('urgent');
+        } else {
+          timerContainer.classList.remove('urgent');
+        }
+      }
+      
+      // Initial update
+      updateTimer();
+      
+      // Update every second
+      productPageTimerInterval = setInterval(updateTimer, 1000);
+    }
+
+    // ============ CLEANUP TIMER ON PAGE UNLOAD ============
+    window.addEventListener('beforeunload', function() {
+      if (productPageTimerInterval) {
+        clearInterval(productPageTimerInterval);
+      }
     });
   </script>
   <script src="js/gtag.js"></script>
