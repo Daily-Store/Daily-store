@@ -1,5 +1,5 @@
 <!-- ============ checkout.html ============ -->
-<!-- ============ MOBILE RESPONSIVE + TOGGLE MENU ============ -->
+<!-- ============ FIXED: COD Advance ₹99 Adjustment ============ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,6 +194,61 @@
       margin-left: 0.3rem;
     }
     
+    /* ============ NEW: PRICE BREAKDOWN SECTION ============ */
+    .price-breakdown {
+      background: #f8fbfa;
+      padding: 1.2rem;
+      border-radius: 1rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid #1e7b4c;
+      display: none;
+    }
+    
+    .price-breakdown.show {
+      display: block;
+    }
+    
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+      padding: 0.3rem 0;
+    }
+    
+    .price-row.total {
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-top: 2px dashed #cde0d7;
+      margin-top: 0.8rem;
+      padding-top: 1rem;
+    }
+    
+    .price-row.saving {
+      color: #27ae60;
+      font-weight: 600;
+    }
+    
+    .price-row.advance {
+      color: #c0421e;
+      font-weight: 600;
+    }
+    
+    .info-box {
+      background: #e8f3ee;
+      padding: 0.8rem;
+      border-radius: 0.8rem;
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .info-box i {
+      color: #1e7b4c;
+      font-size: 1rem;
+    }
+    
     /* Payment Icons Row */
     .payment-icons-row {
       display: flex; gap: 0.8rem; font-size: 1.2rem; color: #5d6b65; margin-top: 0.3rem;
@@ -297,7 +352,7 @@
   <header class="main-header">
     <div class="logo-area" onclick="window.location.href='index.html'">
       <div class="logo-icon"><i class="fas fa-tshirt"></i></div>
-      <div class="logo-text">DAILY<span>FASHION</span></div>
+      <div class="logo-text">DAILY<span>STORE</span></div>
     </div>
     
     <div class="desktop-nav">
@@ -337,43 +392,43 @@
         <!-- FULL NAME -->
         <div class="form-group">
           <label>Full Name *</label>
-          <input type="text" id="fullName">
+          <input type="text" id="fullName" placeholder="Enter your full name">
         </div>
         
         <!-- EMAIL AND PHONE -->
         <div class="form-row">
           <div class="form-group">
             <label>Email *</label>
-            <input type="email" id="email" >
+            <input type="email" id="email" placeholder="Enter email">
           </div>
           <div class="form-group">
             <label>Phone *</label>
-            <input type="tel" id="phone" >
+            <input type="tel" id="phone" placeholder="Enter phone number">
           </div>
         </div>
         
         <!-- ADDRESS -->
         <div class="form-group">
           <label>Address *</label>
-          <input type="text" id="address" >
+          <input type="text" id="address" placeholder="Enter address">
         </div>
         
         <!-- CITY AND PINCODE -->
         <div class="form-row">
           <div class="form-group">
             <label>City *</label>
-            <input type="text" id="city" >
+            <input type="text" id="city" placeholder="Enter city">
           </div>
           <div class="form-group">
             <label>Pincode *</label>
-            <input type="text" id="pincode" >
+            <input type="text" id="pincode" placeholder="Enter pincode">
           </div>
         </div>
         
         <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem;">💳 Select Payment Method</h3>
         
         <!-- OPTION 1: COD WITH ₹99 ADVANCE -->
-        <div class="payment-option" id="codOption" onclick="selectCOD()">
+        <div class="payment-option" id="codOption">
           <input type="radio" name="payment" id="codRadio" value="cod" checked>
           <div style="flex:1;">
             <div class="payment-title">
@@ -381,16 +436,33 @@
               <span class="payment-badge">Pay ₹99 Advance</span>
             </div>
             <div class="payment-desc">
-              Pay ₹99 now via Razorpay. Remaining <span id="remainingAmount">₹0</span> at delivery.
-            </div>
-            <div style="font-size:0.75rem; color:#8a9d95;">
-              ✓ Advance is refundable if order cancelled
+              Pay ₹99 now, remaining at delivery
             </div>
           </div>
         </div>
         
+        <!-- PRICE BREAKDOWN FOR COD -->
+        <div class="price-breakdown" id="codBreakdown">
+          <div class="price-row">
+            <span>Order Total</span>
+            <span id="codTotalDisplay">₹0</span>
+          </div>
+          <div class="price-row advance">
+            <span><i class="fas fa-arrow-right"></i> Advance Payment (Today)</span>
+            <span id="advanceAmount">₹99</span>
+          </div>
+          <div class="price-row saving">
+            <span>Pay on Delivery</span>
+            <span id="remainingAmount">₹0</span>
+          </div>
+          <div class="info-box">
+            <i class="fas fa-info-circle"></i>
+            <span>Pay ₹99 now to confirm order. Remaining at delivery.</span>
+          </div>
+        </div>
+        
         <!-- OPTION 2: RAZORPAY FULL PAYMENT -->
-        <div class="payment-option" id="razorpayOption" onclick="selectRazorpay()">
+        <div class="payment-option" id="razorpayOption">
           <input type="radio" name="payment" id="razorpayRadio" value="razorpay">
           <div style="flex:1;">
             <div class="payment-title">
@@ -398,7 +470,7 @@
               <span class="razorpay-badge">Full Payment</span>
             </div>
             <div class="payment-desc">
-              Pay total amount <span id="totalAmountDisplay">₹0</span> now via:
+              Pay total amount now via:
             </div>
             <div class="payment-icons-row">
               <i class="fab fa-google-pay" title="Google Pay"></i>
@@ -410,8 +482,20 @@
           </div>
         </div>
         
+        <!-- PRICE BREAKDOWN FOR RAZORPAY -->
+        <div class="price-breakdown" id="razorpayBreakdown">
+          <div class="price-row total">
+            <span>Total Payable Now</span>
+            <span id="razorpayTotal">₹0</span>
+          </div>
+          <div class="info-box">
+            <i class="fas fa-lock"></i>
+            <span>Secure payment via Razorpay</span>
+          </div>
+        </div>
+        
         <!-- PLACE ORDER BUTTON -->
-        <button class="place-order-btn" id="placeOrderBtn" onclick="processPayment()">
+        <button class="place-order-btn" id="placeOrderBtn">
           Proceed to Pay
         </button>
       </div>
@@ -448,7 +532,7 @@
   <div class="footer-content">
     <!-- Column 1: About -->
     <div class="footer-col">
-      <h4><i class="fas fa-store-alt"></i> DAILY FASHION</h4>
+      <h4><i class="fas fa-store-alt"></i> DAILY STORE</h4>
       <p class="footer-about">Your daily source for stylish clothing, accessories, and trendy fashion. Quality products at affordable prices.</p>
       <div class="social-icons">
         <i class="fab fa-facebook-f"></i>
@@ -485,7 +569,7 @@
     <div class="footer-col">
       <h4>Customer Care</h4>
       <ul>
-        <li><i class="fas fa-envelope"></i> help@dailyfashion.com</li>
+        <li><i class="fas fa-envelope"></i> help@dailystore.com</li>
         <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
         <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
         <li><i class="fas fa-clock"></i> Mon-Sat: 10am - 7pm</li>
@@ -503,7 +587,7 @@
       <i class="fab fa-cc-amazon-pay" title="Amazon Pay"></i>
       <i class="fas fa-credit-card" title="Credit Card"></i>
     </div>
-    <span>© 2026 Daily Fashion. All rights reserved. | Made with <i class="fas fa-heart" style="color: #c0421e;"></i> in India</span>
+    <span>© 2026 Daily Store. All rights reserved. | Made with <i class="fas fa-heart" style="color: #c0421e;"></i> in India</span>
   </div>
 </footer>
 
@@ -582,7 +666,7 @@
     // ============ CALCULATE TOTALS ============
     function calculateTotals() {
       const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-      const shipping = subtotal > 2000 ? 0 : 99;
+      const shipping = subtotal > 2000 ? 0 : 29;
       const total = subtotal + shipping;
       return { subtotal, shipping, total };
     }
@@ -597,8 +681,7 @@
         document.getElementById('subtotal').textContent = '₹0';
         document.getElementById('shipping').textContent = '₹0';
         document.getElementById('total').textContent = '₹0';
-        document.getElementById('totalAmountDisplay').textContent = '₹0';
-        document.getElementById('remainingAmount').textContent = '₹0';
+        updatePriceDisplays(total);
         return;
       }
 
@@ -621,26 +704,43 @@
       document.getElementById('subtotal').textContent = `₹${subtotal}`;
       document.getElementById('shipping').textContent = shipping === 0 ? 'Free' : `₹${shipping}`;
       document.getElementById('total').textContent = `₹${total}`;
-      document.getElementById('totalAmountDisplay').textContent = `₹${total}`;
-      document.getElementById('remainingAmount').textContent = `₹${total}`;
+      
+      // Update price breakdowns
+      updatePriceDisplays(total);
       
       // Update cart count
       const cartCount = cart.reduce((count, item) => count + item.quantity, 0);
       document.getElementById('cartCount').textContent = cartCount;
     }
+    
+    // ============ UPDATE PRICE DISPLAYS ============
+    function updatePriceDisplays(total) {
+      document.getElementById('codTotalDisplay').textContent = `₹${total}`;
+      document.getElementById('advanceAmount').textContent = `₹${ADVANCE_AMOUNT}`;
+      document.getElementById('remainingAmount').textContent = `₹${total - ADVANCE_AMOUNT}`;
+      document.getElementById('razorpayTotal').textContent = `₹${total}`;
+    }
 
     // ============ PAYMENT OPTION SELECTION ============
-    window.selectCOD = function() {
+    document.getElementById('codOption').addEventListener('click', function() {
       document.getElementById('codRadio').checked = true;
       document.getElementById('codOption').classList.add('selected');
       document.getElementById('razorpayOption').classList.remove('selected');
-    };
+      
+      // Show/hide breakdowns
+      document.getElementById('codBreakdown').classList.add('show');
+      document.getElementById('razorpayBreakdown').classList.remove('show');
+    });
 
-    window.selectRazorpay = function() {
+    document.getElementById('razorpayOption').addEventListener('click', function() {
       document.getElementById('razorpayRadio').checked = true;
       document.getElementById('razorpayOption').classList.add('selected');
       document.getElementById('codOption').classList.remove('selected');
-    };
+      
+      // Show/hide breakdowns
+      document.getElementById('codBreakdown').classList.remove('show');
+      document.getElementById('razorpayBreakdown').classList.add('show');
+    });
 
     // ============ VALIDATE FORM ============
     function validateForm() {
@@ -656,13 +756,11 @@
         return false;
       }
       
-      // Email validation
       if (!email.includes('@') || !email.includes('.')) {
         showToast('⚠️ Please enter a valid email');
         return false;
       }
       
-      // Phone validation
       if (phone.length < 10) {
         showToast('⚠️ Please enter valid phone number');
         return false;
@@ -698,6 +796,8 @@
         subtotal: subtotal,
         shipping: shipping,
         total: total,
+        advancePaid: isCOD ? ADVANCE_AMOUNT : 0,
+        remainingAmount: isCOD ? total - ADVANCE_AMOUNT : 0,
         address: {
           fullName: fullName,
           address: address,
@@ -712,44 +812,37 @@
     }
 
     // ============ PROCESS PAYMENT ============
-    window.processPayment = function() {
+    document.getElementById('placeOrderBtn').addEventListener('click', function() {
       if (!validateForm()) return;
       
       const isCOD = document.getElementById('codRadio').checked;
       const { total } = calculateTotals();
       
-      // Create order data
       currentOrderData = createOrderData();
       
       if (isCOD) {
-        // COD: Pay ₹99 advance via Razorpay
         processRazorpayPayment(ADVANCE_AMOUNT, 'cod_advance');
       } else {
-        // Razorpay: Pay full amount
         processRazorpayPayment(total, 'full');
       }
-    };
+    });
 
     // ============ PROCESS RAZORPAY PAYMENT ============
     function processRazorpayPayment(amount, type) {
       const options = {
-        key: 'rzp_live_SDycj4aMVg262d', // 
+        key: 'rzp_live_SDycj4aMVg262d',
         amount: amount * 100,
         currency: 'INR',
         name: 'Daily Store',
         description: type === 'cod_advance' ? 'COD Advance Payment' : 'Order Payment',
-        image: 'https://dailyfashion.in/logo.png',
+        image: 'https://dailystore.in/logo.png',
         handler: function(response) {
-          // Payment successful
           const paymentId = response.razorpay_payment_id;
           
-          // Update order status
           currentOrderData.paymentStatus = 'paid';
           currentOrderData.paymentId = paymentId;
           currentOrderData.paymentType = type;
-          currentOrderData.advancePaid = type === 'cod_advance' ? amount : 0;
           
-          // Save to localStorage
           localStorage.setItem('lastOrder', JSON.stringify(currentOrderData));
           localStorage.setItem('lastOrderId', currentOrderData.orderId);
           
@@ -757,17 +850,14 @@
           allOrders.push(currentOrderData);
           localStorage.setItem('allOrders', JSON.stringify(allOrders));
           
-          // Clear cart
           localStorage.setItem('dailyGadgetCart', JSON.stringify([]));
           
-          // Show success message
           if (type === 'cod_advance') {
             showToast(`✅ Advance paid! Order confirmed`);
           } else {
             showToast(`✅ Payment successful! Order confirmed`);
           }
           
-          // Redirect to tracking
           setTimeout(() => {
             window.location.href = `order-tracking.html?orderId=${currentOrderData.orderId}`;
           }, 1500);
@@ -806,6 +896,7 @@
       
       // Set COD as default selected
       document.getElementById('codOption').classList.add('selected');
+      document.getElementById('codBreakdown').classList.add('show');
     });
   </script>
   <script src="js/gtag.js"></script>

@@ -1,5 +1,5 @@
 <!-- ============ product.html ============ -->
-<!-- ============ SHOWS ALL IMAGES IN SCROLLABLE GALLERY ============ -->
+<!-- ============ WITH RECOMMENDED PRODUCTS ============ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -581,6 +581,129 @@
       margin-right: 0.3rem;
     }
     
+    /* ============ RECOMMENDED PRODUCTS SECTION ============ */
+    .recommended-section {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 2px solid #e3ece8;
+    }
+    
+    .recommended-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0a3529;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .recommended-title i {
+      color: #1e7b4c;
+    }
+    
+    .recommended-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 1000px) {
+      .recommended-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 700px) {
+      .recommended-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 450px) {
+      .recommended-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .recommended-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1rem;
+      border: 1px solid #e3ece8;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    
+    .recommended-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .recommended-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #f9fbfa;
+      border-radius: 0.8rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .recommended-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .recommended-image i {
+      font-size: 2.5rem;
+      color: #43755a;
+    }
+    
+    .recommended-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.3rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.4rem;
+    }
+    
+    .recommended-price {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .recommended-current {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1e7b4c;
+    }
+    
+    .recommended-old {
+      font-size: 0.8rem;
+      color: #999;
+      text-decoration: line-through;
+    }
+    
+    .recommended-badge {
+      background: #c0421e;
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+    
     /* Footer */
     .main-footer {
       background: #0f2c24;
@@ -669,6 +792,8 @@
       <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
       <li><a href="cart.html"><i class="fi fi-rr-shopping-bag"></i> Cart</a></li>
       <li><a href="order-tracking.html"><i class="fas fa-truck"></i> Track Order</a></li>
+      <li><a href="women.html"><i class="fas fa-female"></i> Women</a></li>
+      <li><a href="cosmetics.html"><i class="fas fa-spa"></i> Cosmetics</a></li>
     </ul>
   </div>
   <div class="overlay" id="overlay"></div>
@@ -677,13 +802,15 @@
   <header class="main-header">
     <div class="logo-area" onclick="window.location.href='index.html'">
       <div class="logo-icon"><i class="fas fa-tshirt"></i></div>
-      <div class="logo-text">DAILY<span>FASHION</span></div>
+      <div class="logo-text">DAILY<span>STORE</span></div>
     </div>
     
     <div class="desktop-nav">
       <a href="index.html">Home</a>
       <a href="cart.html">Cart</a>
-      <a href="order-tracking.html">Track Order</a>
+      <a href="order-tracking.html">Track</a>
+      <a href="women.html">Women</a>
+      <a href="cosmetics.html">Cosmetics</a>
     </div>
     
     <div class="header-search">
@@ -722,71 +849,55 @@
         <p>Loading product...</p>
       </div>
     </div>
+    
+    <!-- Recommended Products Section -->
+    <div class="recommended-section" id="recommendedSection" style="display: none;">
+      <h2 class="recommended-title">
+        <i class="fas fa-thumbs-up"></i> You May Also Like
+      </h2>
+      <div class="recommended-grid" id="recommendedGrid"></div>
+    </div>
   </section>
 
   <!-- Footer -->
- <!-- ============ FOOTER ============ -->
-<footer class="main-footer">
-  <div class="footer-content">
-    <!-- Column 1: About -->
-    <div class="footer-col">
-      <h4><i class="fas fa-store-alt"></i> DAILY FASHION</h4>
-      <p class="footer-about">Your daily source for stylish clothing, accessories, and trendy fashion. Quality products at affordable prices.</p>
-      <div class="social-icons">
-        <i class="fab fa-facebook-f"></i>
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-twitter"></i>
-        <i class="fab fa-youtube"></i>
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4><i class="fas fa-store-alt"></i> DAILY STORE</h4>
+        <p class="footer-about">Your one-stop destination for trendy fashion and cosmetics.</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+          <li><a href="order-tracking.html">Track Order</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="women.html">Women's Wear</a></li>
+          <li><a href="cosmetics.html">Cosmetics</a></li>
+          <li><a href="#">Men's Wear</a></li>
+          <li><a href="#">Footwear</a></li>
+        </ul>
       </div>
     </div>
     
-    <!-- Column 2: Quick Links -->
-  
-    
-    <!-- Column 3: Categories -->
-    <div class="footer-col">
-      <h4>Categories</h4>
-      <ul>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> Men's Clothing</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> Women's Clothing</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> Footwear</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> Accessories</a></li>
-        <li><a href="#"><i class="fas fa-chevron-right"></i> New Arrivals</a></li>
-      </ul>
+    <div class="footer-bottom">
+      <span>© 2026 Daily Store. All rights reserved.</span>
     </div>
-    
-    <!-- Column 4: Contact -->
-    <div class="footer-col">
-      <h4>Customer Care</h4>
-      <ul>
-        <li><i class="fas fa-envelope"></i> help@dailyfashion.com</li>
-        <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
-        <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
-        <li><i class="fas fa-clock"></i> Mon-Sat: 10am - 7pm</li>
-      </ul>
-    </div>
-  </div>
-  
-  <!-- Footer Bottom with Payment Icons -->
-  <div class="footer-bottom">
-    <div class="payment-icons">
-      <i class="fab fa-cc-visa" title="Visa"></i>
-      <i class="fab fa-cc-mastercard" title="Mastercard"></i>
-      <i class="fab fa-cc-rupay" title="RuPay"></i>
-      <i class="fab fa-cc-paypal" title="PayPal"></i>
-      <i class="fab fa-cc-amazon-pay" title="Amazon Pay"></i>
-      <i class="fas fa-credit-card" title="Credit Card"></i>
-    </div>
-    <span>© 2026 Daily Fashion. All rights reserved. | Made with <i class="fas fa-heart" style="color: #c0421e;"></i> in India</span>
-  </div>
-</footer>
-
-<!-- Micro Footer -->
-<div class="micro-footer">
-  <span><i class="fas fa-rotate-right"></i> Choosing a selection results in a full page refresh.</span>
-  <span><i class="fas fa-external-link-alt"></i> Opens in a new window.</span>
-  <span><i class="fas fa-shield-alt"></i> Secure checkout · 100% safe</span>
-</div>
+  </footer>
 
   <script>
     
@@ -830,16 +941,39 @@ const products = [
       "images/jeanlstwlyelice-dblue-6_2f3a11ce-6ba2-4236-8993-c9d6f964c577.jpg",
     ],
     description: "Comfortable loose fit ideal for everyday wear.Premium Denim Fabric: Made with non-stretchable 100% cotton denim fabric which is durable and ensures comfort and long-lasting wear.",
-    category: "Men's Clothing",
+    category: "jeans",
     rating: 4.5,
     reviews: 124,
     stock: 50,
     sizes: ["28", "30", "32", "34","36"],
-    hasTimer: true,           // ← Enable timer for this product
-            // ← 30 minutes timer
+    hasTimer: true
   },
-  { 
+    { 
       id: 2, 
+        name: "COMFORT AND STYLISH WITH COMBO ", 
+        price: 499, 
+        compare: 1299, 
+        discount: "-65% OFF", 
+        icon: "fa-tshirt",
+        images: [
+          "images/ChatGPT Image Mar 10, 2026, 02_56_49 PM.png",
+          "images/Screenshot_2026-03-04-21-46-45-31_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-47-08-17_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-47-32-72_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-47-38-99_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-48-06-18_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-48-33-05_99c04817c0de5652397fc8b56c3b3817.jpg",
+        ],
+        description: "FABRIC: Soft Cotton Blend. FIT: Slim Fi. SIZE: Model is wearing a L size",
+        category: "jeans",
+        rating: 4.7,
+        reviews: 89,
+        stock: 35,
+        sizes: ["28", "30", "32", "34","36"],
+        hasTimer: true
+      },
+  { 
+      id:3, 
         name: "ESCAPE DEER 3 Shirt Combo ED3112 R1 S1", 
         price: 499, 
         compare: 1299, 
@@ -852,16 +986,15 @@ const products = [
           "images/9EFD6312-5AD6-46A9-9E8A-33BFDF87C80D.jpg",
         ],
         description: "FABRIC: Soft Cotton Blend. FIT: Slim Fi. SIZE: Model is wearing a L size",
-        category: "Men's Clothing",
+        category: "shirt",
         rating: 4.7,
         reviews: 89,
         stock: 35,
         sizes: ["S", "M", "L", "XL"],
-        hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+        hasTimer: true
       },
   { 
-        id: 3, 
+        id: 4, 
         name: "2-Pack Classic Straight Fit Joggers", 
         price: 299, 
         compare: 999, 
@@ -873,16 +1006,15 @@ const products = [
           "images/Black_5c478d63-060d-43fb-9b26-f00264794692.jpg"
         ],
         description: "Straight Fit Elasticated waist with drawcord Two regular side pocketsBack patch pocket.",
-        category: "Men's Clothing",
+        category: "jeans",
         rating: 4.6,
         reviews: 156,
         stock: 25,
         sizes: ["28", "30", "32", "34","36"],
-        hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+        hasTimer: true
       },
   { 
-    id: 4, 
+    id: 5, 
     name: "Classic Caramel Brown Double Cloth Straight-Fit Trousers", 
     price: 249, 
     compare: 599, 
@@ -901,11 +1033,10 @@ const products = [
     reviews: 203,
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
   { 
-     id: 5, 
+     id: 6, 
         name: "Solid Pure Cotton Polo Shirt", 
         price: 199, 
         compare: 599, 
@@ -923,11 +1054,10 @@ const products = [
         reviews: 147,
         stock: 45,
         sizes: ["S", "M", "L", "XL"],
-        hasTimer: true,           // ← Enable timer for this product
-            // ← 30 minutes timer
+        hasTimer: true
       },
   { 
-    id: 6, 
+    id: 7, 
     name: "Men's Black Loose Fit Washed Jeans Non-Stretchable", 
     price: 269, 
     compare: 999, 
@@ -942,16 +1072,15 @@ const products = [
       "images/jeanloose-black-6_55609c24-7c9b-4ef8-8b3a-65451f3a4b12.jpg"
     ],
     description: "These men's black loose baggy fit washed jeans are perfect for those who want to turn heads at every occasion. Whether you’re gearing up for a formal gathering or keeping it casual, these pants go effortlessly with both formal shirts and graphic tees.",
-    category: "Men's Clothing",
+    category: "jeans",
     rating: 4.7,
     reviews: 119,
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
   {
-    id: 7, 
+    id: 8, 
     name: "Super Combed Cotton Rib Solid Boxer Brief with Ultrasoft and Durable Waistband - Black/Navy/Charcoal Melange (Pack of 3)", 
     price: 199, 
     compare: 549, 
@@ -964,16 +1093,15 @@ const products = [
       "images/8009_BNVCM_0305_S223_JKY_7.jpeg",
     ],
     description: "Super Combed Cotton Ribbed Fabric ,Fabric Composition : CottonFront Open Fly Ultrasoft and Durable Concealed Waistband Engineered to Prevent Ride Up Label Free for All Day ComfortNet Quantity: 3 Piece",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.7,
     reviews: 111,
     stock: 25,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
     {
-    id: 8, 
+    id: 9, 
     name: "Super Combed Cotton Solid Brief with Ultrasoft Waistband - Black (Pack of 2)", 
     price: 129, 
     compare: 399, 
@@ -984,16 +1112,15 @@ const products = [
       "images/8037_BLACK_0205_S223_JKY_2.jpeg",
     ],
     description: "Super Combed Cotton Fabric Fabric Composition : Cotton Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 2 Piece",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.7,
     reviews: 99,
     stock: 29,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-        {
-    id: 9, 
+  {
+    id: 10, 
     name: "Pack of 3 Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Navy, Charcoal Melange & Black", 
     price: 199, 
     compare: 499, 
@@ -1006,16 +1133,15 @@ const products = [
       "images/US21_NAVY_0105_S123_JKY_6.jpeg",
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride-Up Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 3 Piece",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.9,
     reviews: 140,
     stock: 21,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-        {
-    id: 10, 
+  {
+    id: 11, 
     name: "Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Mid Night Navy & Monument (Pack of 2)", 
     price: 149, 
     compare: 399, 
@@ -1028,16 +1154,15 @@ const products = [
       
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride Up Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 2 Piece",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.6,
     reviews: 102,
     stock: 23,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-              {
-    id: 11, 
+  {
+    id: 12, 
     name: "Super Combed Cotton Rib Trunk with Ultrasoft Waistband - New Black", 
     price: 149, 
     compare: 299, 
@@ -1051,16 +1176,15 @@ const products = [
       
     ],
     description: "100% Super Combed Cotton Rib Fabric Fabric Composition : Cotton Engineered to Prevent Ride Up Front Open Fly Ultrasoft and Durable Waistband Label Free for All Day Comfort",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.9,
     reviews: 192,
     stock: 9,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-                {
-    id: 12, 
+  {
+    id: 13, 
     name: "Super Combed Cotton Elastane Stretch Printed Trunk with Ultrasoft Waistband - Black Empire Yell", 
     price: 99, 
     compare: 199, 
@@ -1073,16 +1197,15 @@ const products = [
       
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride Up Ultrasoft and Durable Waistband All Over Print Design Label Free for All Day Comfort",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.8,
     reviews: 150,
     stock: 7,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-                  {
-    id: 13, 
+  {
+    id: 14, 
     name: "Combo Pack of Mauve (pink tone) and Peach Shirt", 
     price: 399, 
     compare: 999, 
@@ -1097,16 +1220,15 @@ const products = [
       
     ],
     description: "Elevate your everyday style with this Creamy Peach and mauve pink Subtle Textured Shirts, featuring a delicate textured finish for a refined look. Soft and breathable, it ensures all-day comfort. Perfect for casual or smart-casual occasions 2 pack.",
-    category: "Men's Clothing",
+    category: "shirt",
     rating: 4.7,
     reviews: 132,
     stock: 5,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-     {
-    id: 14, 
+  {
+    id: 15, 
     name: "Baby Pink Solid Shirt ", 
     price: 249, 
     compare: 699, 
@@ -1121,16 +1243,15 @@ const products = [
       
     ],
     description: "Add a touch of subtle elegance with this Baby Pink Solid Shirt, designed for a clean and polished look. Made from soft, breathable fabric, it offers comfort without compromising style. Ideal for both casual outings and semi-formal occasions.",
-    category: "Men's Clothing",
+    category: "shirt",
     rating: 4.7,
     reviews: 125,
     stock: 3,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-     {
-    id: 15, 
+  {
+    id: 16, 
     name: "Cool Ash Grey Doublecloth Textured", 
     price: 199, 
     compare: 599, 
@@ -1144,15 +1265,226 @@ const products = [
       
     ],
     description: "Add a touch of classic style with this Cool Ash Grey Doublecloth Textured Shirt. Crafted from breathable, soft fabric with a distinctive box checks weave pattern, it combines comfort and subtle texture for everyday wear. The cool ash grey shade offers a versatile, modern look that’s easy to style for work or casual outings.",
-    category: "Men's Clothing",
+    category: "shirt",
     rating: 4.9,
     reviews: 115,
     stock: 2,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
+  {
+    id: 101,
+    name: "Pearl Embroidered Floral Kurta Set",
+    price: 499,
+    compare: 2599,
+    discount: "-90% OFF",
+    images: [
+      "images/drop-four_0024_0K4A0350.jpg",
+      "images/drop-four_0023_0K4A0354.jpg",
+      "images/drop-four_0022_0K4A0360.jpg",
+       "images/drop-four_0020_0K4A0365.jpg",
+       "images/drop-four_0019_0K4A0371.jpg",
+
+    ],
+    description: "The graceful Pearl Embroidered Kurta Set is adorned with blooming florals in our signature thread embroidery. Completing this classic day to evening look, matching pants with a sheer lace hemline and a scalloped edge dupatta with floral thread embroidery.",
+    category: "Women's Clothing",
+    rating: 4.8,
+    reviews: 156,
+    stock: 25,
+    sizes: ["XS", "S", "M", "L","XL","XXL"],
+    hasTimer: true
+  },
+     {
+        id: 102,
+        name: "Amethyst Floral Embroidered Kurta Set",
+        price: 399,
+        compare: 1599,
+        discount: "-80% OFF",
+        icon: "fa-female",
+        images: [
+          "images/39_16225482-3819-4c95-aaa8-a0b70e018fff.jpg", 
+        "images/40_d8d72b27-043e-48e4-befc-36288f0325ac.jpg",
+        "images/41_bda58c45-6275-4759-b7c9-3fee04143b57.jpg", 
+        "images/44_4283324d-4bb2-4668-ac6e-1c9d8986b9ca.jpg",
+        "images/45_cbf23240-c38d-40e3-9510-f303fb189cca.jpg"
+      ],
+       description: "The Amethyst Floral Embroidered Kurta Set is adorned with skilled applique and threadwork. The kurta is paired with matching pants with an embroidered sheer hem and a matching dupatta with embroidery and tassel details. The intricate details make this perfect for your intimate celebrations.",
+        category: "Women's Clothing",
+        rating: 4.6,
+        reviews: 98,
+        stock: 45,
+        sizes: ["XS", "S", "M", "L","XL","XXL"],
+        hasTimer: true
+      },
+          {
+        id: 103,
+        name: "Daffodil Multi Hued Applique Kurta Set",
+        price: 299,
+        compare: 1999,
+        discount: "-90% OFF",
+        icon: "fa-female",
+        images: [
+          "images/vaayu-Daffodil-Multi-Hued-Applique-Kurta-Set_1.jpg", 
+          "images/vaayu-Daffodil-Multi-Hued-Applique-Kurta-Set_2.jpg",
+          "images/vaayu-Daffodil-Multi-Hued-Applique-Kurta-Set.jpg", ],
+        description:"The daffodil kurta features multi-hued floral applique all over the surface, paired with a matching dupatta in floral applique and a scalloped border. The look is completed with pants featuring a sheer lace panel at the bottom.",
+        category: "Women's Clothing",
+        rating: 4.7,
+        reviews: 112,
+        stock: 30,
+        sizes: ["XS", "S", "M", "L","XL","XXL"],
+        hasTimer: true
+      },
+            {
+        id: 104,
+        name: "Magnolia Applique Embroidered Kurta Set",
+        price: 349,
+        compare: 1299,
+        discount: "-70% OFF",
+        icon: "fa-female",
+        images: ["images/Untitled-1_0055_Vayuu3333.jpg",
+        "images/Untitled-1_0056_Vayuu3340.jpg",
+        "images/Untitled-1_0058_Vayuu3345.jpg",
+"images/Untitled-1_0059_Vayuu3346.jpg",
+        "images/Untitled-1_0060_Vayuu3348.jpg",
+        "images/Untitled-1_0061_Vayuu3350.jpg",
+        ],
+         description:"The daffodil kurta features multi-hued floral applique all over the surface, paired with a matching dupatta in floral applique and a scalloped border. The look is completed with pants featuring a sheer lace panel at the bottom.",
+        category: "Women's Clothing",
+        rating: 4.5,
+        reviews: 134,
+        stock: 60,
+        sizes: ["XS", "S", "M", "L","XL","XXL"],
+        hasTimer: false
+      },
+            {
+        id: 105,
+        name: "Hibicus Floral Co-ord",
+        price: 349,
+        compare: 1199,
+        discount: "-80% OFF",
+        icon: "fa-female",
+        images: [
+          "images/resize_0044_Layer130.jpg",
+          "images/resize_0045_Layer135.jpg",
+          "images/resize_0046_Layer129.jpg",
+          "images/resize_0047_Layer128.jpg",
+          "images/resize_0048_Layer127.jpg",
+          "images/resize_0049_Layer126.jpg",
+          "images/resize_0050_Layer116.jpg",
+
+        ],
+         description:"The daffodil kurta features multi-hued floral applique all over the surface, paired with a matching dupatta in floral applique and a scalloped border. The look is completed with pants featuring a sheer lace panel at the bottom.",
+        category: "Women's Clothing",
+        rating: 4.7,
+        reviews: 67,
+        stock: 22,
+        sizes: ["XS", "S", "M", "L","XL","XXL"],
+        hasTimer: true
+      },
+            {
+        id: 106,
+        name: "Dusty Lavender Embroidered Suit Set with Dupatta",
+        price: 399,
+        compare: 2599,
+        discount: "-87% OFF",
+        icon: "fa-female",
+        images: [
+          "images/WhatsAppImage2023-12-12at9.08.05PM.jpg",
+          "images/WhatsAppImage2023-12-12at9.08.06PM.jpg",
+          "images/WhatsAppImage2023-12-12at9.08.07PM.jpg",
+          "images/WhatsAppImage2023-12-12at9.08.07PM_1.jpg",
+          "images/WhatsAppImage2023-12-12at9.08.06PM_1.jpeg",
+        ],
+        description:"Elevate your ethnic wardrobe with our exquisite Embroidered Suit Set with Dupatta. This ensemble seamlessly blends tradition with contemporary elegance, featuring intricate embroidery that adds a touch of sophistication to the ensemble. The set includes a stylish kurta, complemented by a matching bottom, and a beautifully adorned dupatta, making it the perfect choice for special occasions and celebrations. Embrace timeless style and cultural charm with this meticulously crafted embroidered suit set.",
+        category: "suit",
+        rating: 4.9,
+        reviews: 45,
+        stock: 15,
+        sizes: ["XS", "S", "M", "L","XL","XXL"],
+        hasTimer: true
+      },
+
+
+
+
+
+
+
+
+
+       {
+        id: 201,
+        name: "Guava & Roses Regime for Bright Skin & Balanced Skin pH| Hydrating Cleanser (100 ml)| 2-in-1 Toner Serum (150 ml)| Guava 10% Vitamin C Face Serum(30 ml) | Guava Smoothie Moisturizer (50 gm) | For Men & Women| Glowing in 1 Use, Combo of 4",
+        price: 299,
+        compare: 1199,
+        discount: "90% OFF",
+        icon: "fa-soap",
+        images: [
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_1_display_1752759580_8c13887d.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_2_display_1752759581_e3d71e6c.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_3_display_1752759582_9f86e0d6.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_4_display_1752759583_9011e3c3.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_5_display_1752759583_54c5d275.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_6_display_1752759584_8339c6a7.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_7_display_1752759585_dd5b4b73.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_8_display_1752759586_cc345fdb.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...amin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_10_display_1752759587_024a1a7a.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...amin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_11_display_1752759588_1b43e9e0.jpg",
+        ],
+        description:"Plix Guava & Roses Regime for Bright & Protected Skin, a comprehensive skincare lineup designed to enhance your complexion while providing effective sun protection.This regimen combines the benefits of Plixs Guava & Roses Glow Fat Water Toner Serum, Guava Glowy Juicy Cleanser, Guava Glow Smoothie Moisturizer, & Guava Glow Dewy Serum for radiant & safeguarded skin.",
+        category: "plix",
+        rating: 4.7,
+        reviews: 342,
+        stock: 45,
+        hasTimer: true,
+        isBestSeller: true
+      },
+      {
+        id: 202,
+        name: "Night Cream for Pigmentation & Dark Spots - Advanced Skin Repair",
+        price: 349,
+        compare: 1499,
+        discount: "80% OFF",
+        images: [
+          "images/Night_Cream_for_Pigmentation.jpeg",
+          "images/Night_Cream_for_Pigmentation_Dark_Spots.jpeg",
+          "images/Night_Cream_for_Advanced_Skin_Repair.jpeg",
+          "images/Night_Cream_for_Pigmentation_Advanced_Skin_Repair.jpeg",
+          "images/Night_Cream_for_Dark_Spots.jpeg",
+          "images/Night_Cream_for_Skin_Repair.jpeg",
+          "images/Night-Cream.jpeg",
+        ],
+        description:"Pigmentation and dark spots don't show up overnight, and they won't go away overnight either. But the right night cream can speed things up. TEZVI Night Cream is built around a Japanese botanical formula that works on your skin while you sleep - targeting uneven tone, stubborn marks, and dull skin. Just apply before bed and let it do its thing.",
+ category: "ACNE FREE",
+        rating: 4.8,
+        reviews: 567,
+        stock: 38,
+        hasTimer: true,
+        isBestSeller: true
+      },
+          {
+        id: 203,
+        name: "PLIX - THE PLANT FIX Jamun Active Acne Range With Cleanser, 10 Niacinamide Serum, Smoothie Moisturizer, & Toner l Reduces Active Acne l Detoxifies The Skin ( pack of 4 )",
+        price: 349,
+        compare: 1099,
+        discount: "76% OFF",
+        icon: "fa-soap",
+        images: [
+          "images/the-plant-fix-plix-jamun-active-acne-range-with-cleanser-2-salicylic-acid-serum-smoothie-moisturizer-toner-l-reduces-active-acne-l-detoxifies-the-skin-pack-of-4-2843613.jpeg",
+          "images/the-plant-fix-plix-jamun-active-acne-range-with-cleanser-2-salicylic-acid-serum-smoothie-moisturizer-toner-l-reduces-active-acne-l-detoxifies-the-skin-pack-of-4-5586031.jpeg",
+          "images/the-plant-fix-plix-jamun-active-acne-range-with-cleanser-2-salicylic-acid-serum-smoothie-moisturizer-toner-l-reduces-active-acne-l-detoxifies-the-skin-pack-of-4-9345805.jpeg"
+
+        ],
+        description:"Reduces Acne: Salicylic acid and anti-acne bacteria agents, proven to visibly reduce acne within weeks and dark spots don't show up overnight, and they won't go away overnight either. But the right night cream can speed things up. TEZVI Night Cream is built around a Japanese botanical formula that works on your skin while you sleep - targeting uneven tone, stubborn marks, and dull skin. Just apply before bed and let it do its thing.",
+        category: "plix",
+        rating: 4.6,
+        reviews: 289,
+        stock: 52,
+        hasTimer: false
+      },
 ];
+
 
     // ============ GET PRODUCT ID FROM URL ============
     function getProductId() {
@@ -1186,12 +1518,54 @@ const products = [
       return stars;
     }
 
+    // ============ RENDER RECOMMENDED PRODUCTS ============
+    function renderRecommendedProducts(currentProduct) {
+      const recommendedSection = document.getElementById('recommendedSection');
+      const recommendedGrid = document.getElementById('recommendedGrid');
+      
+      if (!recommendedGrid) return;
+      
+      // Get products from same category (excluding current product)
+      const recommended = products
+        .filter(p => p.category === currentProduct.category && p.id !== currentProduct.id)
+        .slice(0, 4); // Max 4 recommendations
+      
+      if (recommended.length === 0) {
+        recommendedSection.style.display = 'none';
+        return;
+      }
+      
+      recommendedSection.style.display = 'block';
+      
+      recommendedGrid.innerHTML = recommended.map(product => {
+        const firstImage = product.images && product.images.length > 0 ? product.images[0] : null;
+        
+        return `
+          <div class="recommended-card" onclick="window.location.href='product.html?id=${product.id}'">
+            <div class="recommended-image">
+              ${firstImage 
+                ? `<img src="${firstImage}" alt="${product.name}" 
+                     onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas ${product.icon}\\'></i>';">` 
+                : `<i class="fas ${product.icon}"></i>`
+              }
+            </div>
+            <h3 class="recommended-name">${product.name}</h3>
+            <div class="recommended-price">
+              <span class="recommended-current">₹${product.price}</span>
+              <span class="recommended-old">₹${product.compare}</span>
+              <span class="recommended-badge">${product.discount}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     // ============ RENDER PRODUCT PAGE WITH ALL IMAGES ============
     function renderProductPage() {
       const productId = getProductId();
       const product = products.find(p => p.id === productId) || products[0];
       
-      document.title = `${product.name} · Daily Fashion`;
+      document.title = `${product.name} · Daily Store`;
       
       const container = document.getElementById('productContainer');
       
@@ -1229,7 +1603,7 @@ const products = [
           </div>
         </div>
         
-                <div class="product-details">
+        <div class="product-details">
           <span class="product-category">✨ ${product.category}</span>
           <h1 class="product-name">${product.name}</h1>
           
@@ -1340,7 +1714,20 @@ const products = [
         };
         
         let cart = JSON.parse(localStorage.getItem('dailyGadgetCart')) || [];
-        cart.push(cartItem);
+        
+        // Check if item exists
+        const existingIndex = cart.findIndex(item => 
+          item.id === cartItem.id && 
+          item.selectedSize === cartItem.selectedSize && 
+          item.selectedColor === cartItem.selectedColor
+        );
+        
+        if (existingIndex !== -1) {
+          cart[existingIndex].quantity += quantity;
+        } else {
+          cart.push(cartItem);
+        }
+        
         localStorage.setItem('dailyGadgetCart', JSON.stringify(cart));
         
         updateCartCount();
@@ -1377,6 +1764,9 @@ const products = [
         document.querySelector('.size-btn')?.classList.add('selected');
         document.querySelector('.color-btn')?.classList.add('selected');
       }, 100);
+      
+      // Render recommended products
+      renderRecommendedProducts(product);
     }
 
     // ============ CHANGE MAIN IMAGE ============
@@ -1414,22 +1804,7 @@ const products = [
       setTimeout(() => toast.classList.remove('show'), 2000);
     }
     
-
-    // ============ INITIALIZE ============
-       document.addEventListener('DOMContentLoaded', function() {
-      renderProductPage();
-      updateCartCount();
-      
-      // Initialize timer after product is rendered
-      setTimeout(() => {
-        const productId = getProductId();
-        const product = products.find(p => p.id === productId);
-        if (product && product.hasTimer) {
-          initProductPageTimer(product.id);
-        }
-      }, 200);
-    });
-        // ============ LIMITED DEAL TIMER FUNCTIONS ============
+    // ============ LIMITED DEAL TIMER FUNCTIONS ============
     let productPageTimerInterval = null;
 
     function initProductPageTimer(productId, durationMinutes = 30) {
@@ -1503,6 +1878,21 @@ const products = [
       if (productPageTimerInterval) {
         clearInterval(productPageTimerInterval);
       }
+    });
+
+    // ============ INITIALIZE ============
+    document.addEventListener('DOMContentLoaded', function() {
+      renderProductPage();
+      updateCartCount();
+      
+      // Initialize timer after product is rendered
+      setTimeout(() => {
+        const productId = getProductId();
+        const product = products.find(p => p.id === productId);
+        if (product && product.hasTimer) {
+          initProductPageTimer(product.id);
+        }
+      }, 200);
     });
   </script>
   <script src="js/gtag.js"></script>

@@ -18,15 +18,39 @@ const products = [
       "images/jeanlstwlyelice-dblue-6_2f3a11ce-6ba2-4236-8993-c9d6f964c577.jpg",
     ],
     description: "Comfortable loose fit ideal for everyday wear.Premium Denim Fabric: Made with non-stretchable 100% cotton denim fabric which is durable and ensures comfort and long-lasting wear.",
-    category: "Men's Clothing",
+    category: "jeans",
     rating: 4.5,
     reviews: 124,
     stock: 50,
     sizes: ["28", "30", "32", "34","36"],
-    hasTimer: true,           // ← Enable timer for this product        // ← 30 minutes timer
+    hasTimer: true
   },
-  { 
+    { 
       id: 2, 
+        name: "COMFORT AND STYLISH WITH COMBO ", 
+        price: 499, 
+        compare: 1299, 
+        discount: "-65% OFF", 
+        icon: "fa-tshirt",
+       images: [
+          "images/ChatGPT Image Mar 10, 2026, 02_56_49 PM.png",
+          "images/Screenshot_2026-03-04-21-46-45-31_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-47-08-17_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-47-32-72_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-47-38-99_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-48-06-18_99c04817c0de5652397fc8b56c3b3817.jpg",
+          "images/Screenshot_2026-03-04-21-48-33-05_99c04817c0de5652397fc8b56c3b3817.jpg",
+        ],
+        description: "FABRIC: Soft Cotton Blend. FIT: Slim Fi. SIZE: Model is wearing a L size",
+        category: "jeans",
+        rating: 4.7,
+        reviews: 89,
+        stock: 35,
+       sizes: ["28", "30", "32", "34","36"],
+        hasTimer: true
+      },
+  { 
+      id:3, 
         name: "ESCAPE DEER 3 Shirt Combo ED3112 R1 S1", 
         price: 499, 
         compare: 1299, 
@@ -39,15 +63,15 @@ const products = [
           "images/9EFD6312-5AD6-46A9-9E8A-33BFDF87C80D.jpg",
         ],
         description: "FABRIC: Soft Cotton Blend. FIT: Slim Fi. SIZE: Model is wearing a L size",
-        category: "Men's Clothing",
+        category: "shirt",
         rating: 4.7,
         reviews: 89,
         stock: 35,
         sizes: ["S", "M", "L", "XL"],
-        hasTimer: true,           // ← Enable timer for this product        // ← 30 minutes timer
+        hasTimer: true
       },
   { 
-        id: 3, 
+        id: 4, 
         name: "2-Pack Classic Straight Fit Joggers", 
         price: 299, 
         compare: 999, 
@@ -59,16 +83,15 @@ const products = [
           "images/Black_5c478d63-060d-43fb-9b26-f00264794692.jpg"
         ],
         description: "Straight Fit Elasticated waist with drawcord Two regular side pocketsBack patch pocket.",
-        category: "Men's Clothing",
+        category: "jeans",
         rating: 4.6,
         reviews: 156,
         stock: 25,
         sizes: ["28", "30", "32", "34","36"],
-        hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+        hasTimer: true
       },
   { 
-    id: 4, 
+    id: 5, 
     name: "Classic Caramel Brown Double Cloth Straight-Fit Trousers", 
     price: 249, 
     compare: 599, 
@@ -87,11 +110,10 @@ const products = [
     reviews: 203,
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
   { 
-     id: 5, 
+     id: 6, 
         name: "Solid Pure Cotton Polo Shirt", 
         price: 199, 
         compare: 599, 
@@ -109,11 +131,10 @@ const products = [
         reviews: 147,
         stock: 45,
         sizes: ["S", "M", "L", "XL"],
-        hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+        hasTimer: true
       },
   { 
-    id: 6, 
+    id: 7, 
     name: "Men's Black Loose Fit Washed Jeans Non-Stretchable", 
     price: 269, 
     compare: 999, 
@@ -128,16 +149,15 @@ const products = [
       "images/jeanloose-black-6_55609c24-7c9b-4ef8-8b3a-65451f3a4b12.jpg"
     ],
     description: "These men's black loose baggy fit washed jeans are perfect for those who want to turn heads at every occasion. Whether you’re gearing up for a formal gathering or keeping it casual, these pants go effortlessly with both formal shirts and graphic tees.",
-    category: "Men's Clothing",
+    category: "jeans",
     rating: 4.7,
     reviews: 119,
     stock: 20,
     sizes: ["28", "30", "32", "34","36"],
-    hasTimer: true,           // ← Enable timer for this product
-          // ← 30 minutes timer
+    hasTimer: true
   },
   {
-    id: 7, 
+    id: 8, 
     name: "Super Combed Cotton Rib Solid Boxer Brief with Ultrasoft and Durable Waistband - Black/Navy/Charcoal Melange (Pack of 3)", 
     price: 199, 
     compare: 549, 
@@ -150,16 +170,15 @@ const products = [
       "images/8009_BNVCM_0305_S223_JKY_7.jpeg",
     ],
     description: "Super Combed Cotton Ribbed Fabric ,Fabric Composition : CottonFront Open Fly Ultrasoft and Durable Concealed Waistband Engineered to Prevent Ride Up Label Free for All Day ComfortNet Quantity: 3 Piece",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.7,
     reviews: 111,
     stock: 25,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-            // ← 30 minutes timer
+    hasTimer: true
   },
     {
-    id: 8, 
+    id: 9, 
     name: "Super Combed Cotton Solid Brief with Ultrasoft Waistband - Black (Pack of 2)", 
     price: 129, 
     compare: 399, 
@@ -170,16 +189,15 @@ const products = [
       "images/8037_BLACK_0205_S223_JKY_2.jpeg",
     ],
     description: "Super Combed Cotton Fabric Fabric Composition : Cotton Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 2 Piece",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.7,
     reviews: 99,
     stock: 29,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-           // ← 30 minutes timer
+    hasTimer: true
   },
-        {
-    id: 9, 
+  {
+    id: 10, 
     name: "Pack of 3 Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Navy, Charcoal Melange & Black", 
     price: 199, 
     compare: 499, 
@@ -192,16 +210,15 @@ const products = [
       "images/US21_NAVY_0105_S123_JKY_6.jpeg",
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride-Up Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 3 Piece",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.9,
     reviews: 140,
     stock: 21,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-        {
-    id: 10, 
+  {
+    id: 11, 
     name: "Super Combed Cotton Elastane Stretch Solid Trunk with Ultrasoft Waistband - Mid Night Navy & Monument (Pack of 2)", 
     price: 149, 
     compare: 399, 
@@ -214,16 +231,15 @@ const products = [
       
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride Up Ultrasoft and Durable Waistband Label Free for All Day Comfort Net Quantity: 2 Piece",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.6,
     reviews: 102,
     stock: 23,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-              {
-    id: 11, 
+  {
+    id: 12, 
     name: "Super Combed Cotton Rib Trunk with Ultrasoft Waistband - New Black", 
     price: 149, 
     compare: 299, 
@@ -237,16 +253,15 @@ const products = [
       
     ],
     description: "100% Super Combed Cotton Rib Fabric Fabric Composition : Cotton Engineered to Prevent Ride Up Front Open Fly Ultrasoft and Durable Waistband Label Free for All Day Comfort",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.9,
     reviews: 192,
     stock: 9,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-                {
-    id: 12, 
+  {
+    id: 13, 
     name: "Super Combed Cotton Elastane Stretch Printed Trunk with Ultrasoft Waistband - Black Empire Yell", 
     price: 99, 
     compare: 199, 
@@ -259,16 +274,15 @@ const products = [
       
     ],
     description: "Super Combed Cotton Elastane Stretch Fabric Fabric Composition : Cotton and Elastane Engineered to Prevent Ride Up Ultrasoft and Durable Waistband All Over Print Design Label Free for All Day Comfort",
-    category: "Men's Clothing",
+    category: "underwear",
     rating: 4.8,
     reviews: 150,
     stock: 7,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
-                  {
-    id: 13, 
+  {
+    id: 14, 
     name: "Combo Pack of Mauve (pink tone) and Peach Shirt", 
     price: 399, 
     compare: 999, 
@@ -283,16 +297,15 @@ const products = [
       
     ],
     description: "Elevate your everyday style with this Creamy Peach and mauve pink Subtle Textured Shirts, featuring a delicate textured finish for a refined look. Soft and breathable, it ensures all-day comfort. Perfect for casual or smart-casual occasions 2 pack.",
-    category: "Men's Clothing",
+    category: "shirt",
     rating: 4.7,
     reviews: 132,
     stock: 5,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-           // ← 30 minutes timer
+    hasTimer: true
   },
-     {
-    id: 14, 
+  {
+    id: 15, 
     name: "Baby Pink Solid Shirt ", 
     price: 249, 
     compare: 699, 
@@ -307,16 +320,15 @@ const products = [
       
     ],
     description: "Add a touch of subtle elegance with this Baby Pink Solid Shirt, designed for a clean and polished look. Made from soft, breathable fabric, it offers comfort without compromising style. Ideal for both casual outings and semi-formal occasions.",
-    category: "Men's Clothing",
+    category: "shirt",
     rating: 4.7,
     reviews: 125,
     stock: 3,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-            // ← 30 minutes timer
+    hasTimer: true
   },
-     {
-    id: 15, 
+  {
+    id: 16, 
     name: "Cool Ash Grey Doublecloth Textured", 
     price: 199, 
     compare: 599, 
@@ -330,15 +342,19 @@ const products = [
       
     ],
     description: "Add a touch of classic style with this Cool Ash Grey Doublecloth Textured Shirt. Crafted from breathable, soft fabric with a distinctive box checks weave pattern, it combines comfort and subtle texture for everyday wear. The cool ash grey shade offers a versatile, modern look that’s easy to style for work or casual outings.",
-    category: "Men's Clothing",
+    category: "shirt",
     rating: 4.9,
     reviews: 115,
     stock: 2,
     sizes: ["S", "M", "L", "XL"],
-    hasTimer: true,           // ← Enable timer for this product
-             // ← 30 minutes timer
+    hasTimer: true
   },
+ 
 ];
+
+
+
+
 
 // Customer testimonials
 const testimonials = [

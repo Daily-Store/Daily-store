@@ -939,9 +939,11 @@
   <script src="js/data.js"></script>
   <script src="js/cart.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+     document.addEventListener('DOMContentLoaded', function() {
+    if (typeof cart !== 'undefined') {
       cart.renderCartPage();
-    });
+    }
+  });
   </script>
   <script src="js/gtag.js"></script>
 </body>

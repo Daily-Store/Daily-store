@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Cosmetics · Daily Store</title>
+  
+  <!-- Google Tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17967582538"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17967582538');
+  </script>
+  
+  <!-- Fonts & Icons -->
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============ GLOBAL RESET ============ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html { 
+      font-size: 16px; 
+      scroll-behavior: smooth; 
+      width: 100%; 
+      overflow-x: hidden;
+    }
+    
+    @media (max-width: 480px) { 
+      html { font-size: 14px; } 
+    }
+    
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: #f8f9fa; 
+      color: #111; 
+      width: 100%; 
+      overflow-x: hidden;
+    }
+    
+    /* ============ HEADER ============ */
+    .main-header {
+      background: white; 
+      padding: 0.8rem 1rem; 
+      display: flex; 
+      align-items: center;
+      justify-content: space-between; 
+      border-bottom: 1px solid #eef3f1;
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+      width: 100%;
+    }
+    
+    .logo-area { 
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      cursor: pointer; 
+    }
+    
+    .logo-icon {
+      width: 40px; 
+      height: 40px; 
+      background: #e1f0e9; 
+      border-radius: 10px;
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      color: #1e7b4c; 
+      font-size: 1.5rem;
+    }
+    
+    .logo-text { 
+      font-size: 1.3rem; 
+      font-weight: 800; 
+      color: #0a3529; 
+    }
+    
+    .logo-text span { 
+      color: #1e7b4c; 
+    }
+    
+    .desktop-nav { 
+      display: flex; 
+      gap: 1.5rem; 
+    }
+    
+    .desktop-nav a { 
+      text-decoration: none; 
+      color: #1f3d34; 
+      font-weight: 600; 
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
+      color: #1e7b4c;
+    }
+    
+    @media (max-width: 900px) { 
+      .desktop-nav { 
+        display: none; 
+      } 
+    }
+    
+    .header-search {
+      display: flex;
+      align-items: center;
+      background: #f5f8f7;
+      border-radius: 40px;
+      padding: 0.2rem 0.2rem 0.2rem 1rem;
+      border: 1px solid #e3ece8;
+      max-width: 300px;
+    }
+    
+    .header-search input {
+      border: none;
+      background: transparent;
+      padding: 0.5rem 0;
+      font-size: 0.9rem;
+      width: 100%;
+      outline: none;
+    }
+    
+    .header-search button {
+      background: #1e7b4c;
+      border: none;
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    
+    @media (max-width: 900px) { 
+      .header-search { 
+        display: none; 
+      } 
+    }
+    
+    .header-icons { 
+      display: flex; 
+      gap: 1rem; 
+      align-items: center; 
+    }
+    
+    .header-icons i, .header-icons .fi { 
+      font-size: 1.3rem; 
+      color: #2a4c3b; 
+      cursor: pointer; 
+      transition: color 0.2s;
+    }
+    
+    .header-icons i:hover {
+      color: #1e7b4c;
+    }
+    
+    .cart-icon-wrapper { 
+      position: relative; 
+      cursor: pointer; 
+    }
+    
+    .cart-count {
+      position: absolute; 
+      top: -8px; 
+      right: -10px; 
+      background: #c0421e; 
+      color: white;
+      font-size: 0.65rem; 
+      width: 18px; 
+      height: 18px; 
+      border-radius: 50%; 
+      display: flex;
+      align-items: center; 
+      justify-content: center; 
+      border: 2px solid white;
+      font-weight: 700;
+    }
+    
+    .hamburger-menu {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #1e4d3a;
+    }
+    
+    @media (max-width: 900px) { 
+      .hamburger-menu { 
+        display: block; 
+      } 
+    }
+    
+    /* ============ MOBILE SIDEBAR ============ */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 2rem 1.5rem;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .mobile-sidebar.active { right: 0; }
+    
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #e6efea;
+      padding-bottom: 1rem;
+    }
+    
+    .sidebar-logo { 
+      font-size: 1.4rem; 
+      font-weight: 800; 
+      color: #0a3529; 
+    }
+    
+    .close-sidebar { 
+      font-size: 1.6rem; 
+      cursor: pointer; 
+      color: #2e5e4b; 
+    }
+    
+    .mobile-search {
+      margin: 1rem 0 1.5rem;
+      display: flex;
+      background: #f5f8f7;
+      border-radius: 40px;
+      padding: 0.2rem 0.2rem 0.2rem 1rem;
+      border: 1px solid #e3ece8;
+    }
+    
+    .mobile-search input {
+      border: none;
+      background: transparent;
+      padding: 0.6rem 0;
+      font-size: 0.9rem;
+      width: 100%;
+      outline: none;
+    }
+    
+    .mobile-search button {
+      background: #1e7b4c;
+      border: none;
+      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      list-style: none;
+    }
+    
+    .mobile-nav-links li a {
+      text-decoration: none;
+      color: #1f3d34;
+      font-weight: 600;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .mobile-nav-links li a i { 
+      width: 24px; 
+      color: #1e7b4c; 
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+    }
+    
+    .overlay.active { opacity: 1; visibility: visible; }
+    
+    /* ============ TOP USP ============ */
+    .top-usp {
+      background: #f5f7f6;
+      padding: 0.6rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #1f2a2f;
+    }
+    
+    .top-usp i { 
+      color: #146b3a; 
+      margin-right: 0.2rem; 
+    }
+    
+    /* ============ PAGE HEADER ============ */
+    .page-header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      background: linear-gradient(135deg, #d4e7f0, #c1dbe8);
+      margin-bottom: 2rem;
+    }
+    
+    .page-header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1a4b6d;
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-header p {
+      font-size: 1rem;
+      color: #2c5a7a;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 600px) {
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+    }
+    
+    /* ============ CATEGORY TABS ============ */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem 1rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      background: white;
+      border: 2px solid #a8d0e6;
+      color: #1a4b6d;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .tab-btn i {
+      font-size: 1.2rem;
+    }
+    
+    .tab-btn:hover,
+    .tab-btn.active {
+      background: #1a4b6d;
+      color: white;
+      border-color: #1a4b6d;
+    }
+    
+    @media (max-width: 600px) {
+      .category-tabs {
+        gap: 0.8rem;
+        padding: 0.5rem 0.5rem 1.5rem;
+      }
+      
+      .tab-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* ============ PRODUCT GRID ============ */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1rem 2rem;
+    }
+    
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1.5rem;
+      padding-left: 0.5rem;
+    }
+    
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 1100px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 800px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 450px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #eaeaea;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, #f8f8f8, #f0f0f0);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .product-image i {
+      font-size: 3.5rem;
+      color: #aaa;
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #27ae60;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+    
+    .product-badge.sale {
+      background: #e74c3c;
+      left: auto;
+      right: 8px;
+    }
+    
+    .product-category-badge {
+      font-size: 0.7rem;
+      color: #1a4b6d;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+    
+    .product-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.8rem;
+    }
+    
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .current-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #27ae60;
+    }
+    
+    .old-price {
+      font-size: 0.9rem;
+      color: #999;
+      text-decoration: line-through;
+    }
+    
+    .discount-badge {
+      background: #e74c3c;
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .product-rating i {
+      color: #ffb83b;
+      font-size: 0.8rem;
+    }
+    
+    .product-rating span {
+      font-size: 0.75rem;
+      color: #666;
+    }
+    
+    .product-timer-small {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff8e7;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      border-left: 3px solid #ff5722;
+    }
+    
+    .product-timer-small i {
+      color: #ff5722;
+      font-size: 0.8rem;
+    }
+    
+    .product-timer-small span {
+      font-weight: 700;
+      color: #ff5722;
+    }
+    
+    .product-timer-small.urgent {
+      background: #ffe7e7;
+      border-left-color: #d32f2f;
+    }
+    
+    .product-timer-small.urgent span {
+      color: #d32f2f;
+    }
+    
+    /* ============ FEATURES SECTION ============ */
+    .features-section {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1280px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    
+    @media (max-width: 900px) {
+      .features-section {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 500px) {
+      .features-section {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .feature-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .feature-card i {
+      font-size: 2.5rem;
+      color: #1a4b6d;
+      margin-bottom: 1rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+    
+    .feature-card p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    /* ============ BANNER ============ */
+    .promo-banner {
+      background: linear-gradient(135deg, #1a4b6d, #2c7a9e);
+      border-radius: 20px;
+      margin: 2rem 1rem;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .banner-content {
+      flex: 1;
+      min-width: 250px;
+      color: white;
+    }
+    
+    .banner-content h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    
+    .banner-content p {
+      font-size: 1rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+    
+    .banner-btn {
+      background: white;
+      color: #1a4b6d;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    
+    .banner-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .banner-image {
+      flex: 0 0 200px;
+      height: 200px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: white;
+    }
+    
+    @media (max-width: 700px) {
+      .promo-banner {
+        text-align: center;
+        justify-content: center;
+      }
+      
+      .banner-image {
+        flex: 0 0 150px;
+        height: 150px;
+        font-size: 4rem;
+      }
+    }
+    
+    /* ============ INGREDIENTS SECTION ============ */
+    .ingredients-section {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      margin: 2rem 1rem;
+      max-width: 1280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .ingredients-section h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .ingredients-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    
+    @media (max-width: 900px) {
+      .ingredients-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 500px) {
+      .ingredients-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .ingredient-item {
+      text-align: center;
+    }
+    
+    .ingredient-icon {
+      width: 80px;
+      height: 80px;
+      background: #e1f0e9;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 2rem;
+      color: #1e7b4c;
+    }
+    
+    .ingredient-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.3rem;
+    }
+    
+    .ingredient-item p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    /* ============ FOOTER ============ */
+    .main-footer {
+      background: #0f2c24;
+      color: #e2f0e9;
+      padding: 2.5rem 1rem 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    
+    @media (max-width: 900px) {
+      .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+    
+    .footer-col h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #c6e9d7;
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col li {
+      margin-bottom: 0.6rem;
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+    
+    .footer-col a {
+      color: #dbefe7;
+      text-decoration: none;
+    }
+    
+    .footer-col a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    
+    @media (max-width: 600px) {
+      .social-icons {
+        justify-content: center;
+      }
+    }
+    
+    .social-icons i {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    
+    /* Toast */
+    .cart-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #1e4d3d;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    @media (max-width: 480px) {
+      .cart-toast {
+        bottom: 15px;
+        right: 15px;
+        left: 15px;
+        text-align: center;
+      }
+    }
+    
+    .cart-toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div id="cartToast" class="cart-toast"></div>
+
+  <!-- Mobile Sidebar -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">DAILY<span style="color:#1e7b4c;">STORE</span></span>
+      <i class="fas fa-times close-sidebar" id="closeSidebar"></i>
+    </div>
+    
+    <div class="mobile-search">
+      <input type="text" placeholder="Search..." id="mobileSearchInput">
+      <button id="mobileSearchBtn"><i class="fas fa-search"></i></button>
+    </div>
+
+    <ul class="mobile-nav-links">
+      <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="cosmetics.html" class="active"><i class="fas fa-spa"></i> Cosmetics</a></li>
+      <li><a href="cart.html"><i class="fi fi-rr-shopping-bag"></i> Cart</a></li>
+      <li><a href="order-tracking.html"><i class="fas fa-truck"></i> Track Order</a></li>
+    </ul>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo-area" onclick="window.location.href='index.html'">
+      <div class="logo-icon"><i class="fas fa-spa"></i></div>
+      <div class="logo-text">DAILY<span>STORE</span></div>
+    </div>
+    
+    <div class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="cosmetics.html" class="active">Cosmetics</a>
+      <a href="cart.html">Cart</a>
+      <a href="order-tracking.html">Track</a>
+    </div>
+    
+    <div class="header-search">
+      <input type="text" placeholder="Search cosmetics..." id="searchInput">
+      <button id="searchBtn"><i class="fas fa-search"></i> Search</button>
+    </div>
+    
+    <div class="header-icons">
+      <i class="far fa-heart" id="wishlistIcon"></i>
+      <i class="far fa-user" id="accountIcon"></i>
+      <div class="cart-icon-wrapper" onclick="window.location.href='cart.html'">
+        <i class="fi fi-rr-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <div class="hamburger-menu" id="hamburgerBtn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top USP -->
+  <div class="top-usp">
+    <span><i class="fas fa-rocket"></i> Express Shipping</span>
+    <span><i class="fas fa-tag"></i> Exclusive pricing</span>
+    <span><i class="fas fa-rotate-left"></i> Easy Returns</span>
+  </div>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>🧴 Cosmetics & Skincare</h1>
+    <p>Discover premium face washes, sunscreens, and skincare essentials for glowing skin</p>
+  </div>
+
+  <!-- Category Tabs -->
+  <div class="category-tabs">
+    <button class="tab-btn active" data-category="all">
+      <i class="fas fa-spa"></i> All Products
+    </button>
+    <button class="tab-btn" data-category="facewash">
+      <i class="fas fa-soap"></i> Face Wash
+    </button>
+    <button class="tab-btn" data-category="sunscreen">
+      <i class="fas fa-sun"></i> Sunscreen
+    </button>
+    <button class="tab-btn" data-category="moisturizer">
+      <i class="fas fa-hand-sparkles"></i> Moisturizer
+    </button>
+  </div>
+
+  <!-- Products Grid -->
+  <div class="container">
+    <h2 class="section-title">✨ Featured Products</h2>
+    <div class="product-grid" id="cosmeticsProductsGrid"></div>
+  </div>
+
+  <!-- Features Section -->
+  <div class="features-section">
+    <div class="feature-card">
+      <i class="fas fa-leaf"></i>
+      <h3>Natural Ingredients</h3>
+      <p>Made with natural and organic ingredients</p>
+    </div>
+    <div class="feature-card">
+      <i class="fas fa-flask"></i>
+      <h3>Dermatologist Tested</h3>
+      <p>Tested and approved by experts</p>
+    </div>
+    <div class="feature-card">
+      <i class="fas fa-ban"></i>
+      <h3>Paraben Free</h3>
+      <p>No harmful chemicals or parabens</p>
+    </div>
+    <div class="feature-card">
+      <i class="fas fa-cruelty-free"></i>
+      <h3>Cruelty Free</h3>
+      <p>Never tested on animals</p>
+    </div>
+  </div>
+
+  <!-- Promo Banner -->
+  <div class="promo-banner">
+    <div class="banner-content">
+      <h2>Summer Glow Bundle</h2>
+      <p>Get Face Wash + Sunscreen at 40% off</p>
+      <button class="banner-btn" onclick="window.location.href='product.html?id=201'">
+        Shop Bundle <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+    <div class="banner-image">
+      <i class="fas fa-sun"></i>
+    </div>
+  </div>
+
+  <!-- Ingredients Section -->
+  <div class="ingredients-section">
+    <h2>🌿 Natural Ingredients We Love</h2>
+    <div class="ingredients-grid">
+      <div class="ingredient-item">
+        <div class="ingredient-icon"><i class="fas fa-leaf"></i></div>
+        <h4>Aloe Vera</h4>
+        <p>Hydrates & soothes skin</p>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-icon"><i class="fas fa-seedling"></i></div>
+        <h4>Green Tea</h4>
+        <p>Antioxidant rich</p>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-icon"><i class="fas fa-droplet"></i></div>
+        <h4>Vitamin E</h4>
+        <p>Nourishes & protects</p>
+      </div>
+      <div class="ingredient-item">
+        <div class="ingredient-icon"><i class="fas fa-flower"></i></div>
+        <h4>Chamomile</h4>
+        <p>Calms irritated skin</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4><i class="fas fa-store-alt"></i> DAILY STORE</h4>
+        <p class="footer-about">Your trusted source for quality cosmetics and skincare.</p>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cosmetics.html">Cosmetics</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="?cat=facewash">Face Wash</a></li>
+          <li><a href="?cat=sunscreen">Sunscreen</a></li>
+          <li><a href="?cat=moisturizer">Moisturizer</a></li>
+          <li><a href="?cat=all">All Products</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><i class="fas fa-envelope"></i> care@dailystore.com</li>
+          <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
+          <li><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <span>© 2026 Daily Store. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    // ============ COSMETICS PRODUCT DATA ============
+    const cosmeticsProducts = [
+      // Face Wash Products
+{
+        id: 201,
+        name: "Guava & Roses Regime for Bright Skin & Balanced Skin pH| Hydrating Cleanser (100 ml)| 2-in-1 Toner Serum (150 ml)| Guava 10% Vitamin C Face Serum(30 ml) | Guava Smoothie Moisturizer (50 gm) | For Men & Women| Glowing in 1 Use, Combo of 4",
+        price: 299,
+        compare: 1199,
+        discount: "90% OFF",
+        icon: "fa-soap",
+        images: [
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_1_display_1752759580_8c13887d.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_2_display_1752759581_e3d71e6c.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_3_display_1752759582_9f86e0d6.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_4_display_1752759583_9011e3c3.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_5_display_1752759583_54c5d275.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_6_display_1752759584_8339c6a7.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_7_display_1752759585_dd5b4b73.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...tamin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_8_display_1752759586_cc345fdb.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...amin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_10_display_1752759587_024a1a7a.jpg",
+          "images/plix-guava-and-roses-regime-for-bright-skin-and-balanced-skin-ph-hydrating-cleanser-100-ml-2-in-1-toner-se...amin-c-serum-30-ml-smoothie-moisturizer-50-gm-for-men-and-women-glowing-in-1-use-combo-of-4_11_display_1752759588_1b43e9e0.jpg",
+        ],
+        description:"Plix Guava & Roses Regime for Bright & Protected Skin, a comprehensive skincare lineup designed to enhance your complexion while providing effective sun protection.This regimen combines the benefits of Plixs Guava & Roses Glow Fat Water Toner Serum, Guava Glowy Juicy Cleanser, Guava Glow Smoothie Moisturizer, & Guava Glow Dewy Serum for radiant & safeguarded skin.",
+        category: "plix",
+        rating: 4.7,
+        reviews: 342,
+        stock: 45,
+        hasTimer: true,
+        isBestSeller: true
+      },
+      {
+        id: 202,
+        name: "Night Cream for Pigmentation & Dark Spots - Advanced Skin Repair",
+        price: 249,
+        compare: 1499,
+        discount: "80% OFF",
+        images: [
+          "images/Night_Cream_for_Pigmentation.jpeg",
+          "images/Night_Cream_for_Pigmentation_Dark_Spots.jpeg",
+          "images/Night_Cream_for_Advanced_Skin_Repair.jpeg",
+          "images/Night_Cream_for_Pigmentation_Advanced_Skin_Repair.jpeg",
+          "images/Night_Cream_for_Dark_Spots.jpeg",
+          "images/Night_Cream_for_Skin_Repair.jpeg",
+          "images/Night-Cream.jpeg"
+        ],
+        description:"Pigmentation and dark spots don't show up overnight, and they won't go away overnight either. But the right night cream can speed things up. TEZVI Night Cream is built around a Japanese botanical formula that works on your skin while you sleep - targeting uneven tone, stubborn marks, and dull skin. Just apply before bed and let it do its thing.",
+        category: "ACNE FREE",
+        rating: 4.8,
+        reviews: 567,
+        stock: 38,
+        hasTimer: true,
+        isBestSeller: true
+      },
+      {
+        id: 203,
+        name: "PLIX - THE PLANT FIX Jamun Active Acne Range With Cleanser, 10 Niacinamide Serum, Smoothie Moisturizer, & Toner l Reduces Active Acne l Detoxifies The Skin ( pack of 4 )",
+        price: 349,
+        compare: 1099,
+        discount: "76% OFF",
+        icon: "fa-soap",
+        images: [
+          "images/the-plant-fix-plix-jamun-active-acne-range-with-cleanser-2-salicylic-acid-serum-smoothie-moisturizer-toner-l-reduces-active-acne-l-detoxifies-the-skin-pack-of-4-2843613.jpeg",
+          "images/the-plant-fix-plix-jamun-active-acne-range-with-cleanser-2-salicylic-acid-serum-smoothie-moisturizer-toner-l-reduces-active-acne-l-detoxifies-the-skin-pack-of-4-5586031.jpeg",
+          "images/the-plant-fix-plix-jamun-active-acne-range-with-cleanser-2-salicylic-acid-serum-smoothie-moisturizer-toner-l-reduces-active-acne-l-detoxifies-the-skin-pack-of-4-9345805.jpeg"
+
+        ],
+        description:"Reduces Acne: Salicylic acid and anti-acne bacteria agents, proven to visibly reduce acne within weeks and dark spots don't show up overnight, and they won't go away overnight either. But the right night cream can speed things up. TEZVI Night Cream is built around a Japanese botanical formula that works on your skin while you sleep - targeting uneven tone, stubborn marks, and dull skin. Just apply before bed and let it do its thing.",
+        category: "plix",
+        rating: 4.6,
+        reviews: 289,
+        stock: 52,
+        hasTimer: false
+      },
+      {
+        id: 204,
+        name: "Charcoal Deep Cleansing Face Wash",
+        price: 279,
+        compare: 549,
+        discount: "50% OFF",
+        icon: "fa-soap",
+        images: ["images/facewash4.jpg"],
+        category: "facewash",
+        rating: 4.5,
+        reviews: 198,
+        stock: 41,
+        hasTimer: true
+      },
+      
+      // Sunscreen Products
+      {
+        id: 205,
+        name: "SPF 50+ Sunscreen Gel",
+        price: 399,
+        compare: 799,
+        discount: "50% OFF",
+        icon: "fa-sun",
+        images: ["images/sunscreen1.jpg"],
+        category: "sunscreen",
+        rating: 4.9,
+        reviews: 876,
+        stock: 67,
+        hasTimer: true,
+        isBestSeller: true
+      },
+      {
+        id: 206,
+        name: "Water Resistant Sunscreen Lotion SPF 30",
+        price: 349,
+        compare: 699,
+        discount: "50% OFF",
+        icon: "fa-sun",
+        images: ["images/sunscreen2.jpg"],
+        category: "sunscreen",
+        rating: 4.7,
+        reviews: 453,
+        stock: 54,
+        hasTimer: true
+      },
+      {
+        id: 207,
+        name: "Matte Finish Sunscreen for Oily Skin",
+        price: 329,
+        compare: 649,
+        discount: "50% OFF",
+        icon: "fa-sun",
+        images: ["images/sunscreen3.jpg"],
+        category: "sunscreen",
+        rating: 4.6,
+        reviews: 321,
+        stock: 29,
+        hasTimer: true,
+        isBestSeller: true
+      },
+      {
+        id: 208,
+        name: "Tinted Mineral Sunscreen SPF 40",
+        price: 449,
+        compare: 899,
+        discount: "50% OFF",
+        icon: "fa-sun",
+        images: ["images/sunscreen4.jpg"],
+        category: "sunscreen",
+        rating: 4.8,
+        reviews: 234,
+        stock: 18,
+        hasTimer: true
+      },
+      
+      // Moisturizer Products
+      {
+        id: 209,
+        name: "Vitamin C Brightening Moisturizer",
+        price: 379,
+        compare: 759,
+        discount: "50% OFF",
+        icon: "fa-hand-sparkles",
+        images: ["images/moisturizer1.jpg"],
+        category: "moisturizer",
+        rating: 4.7,
+        reviews: 198,
+        stock: 36,
+        hasTimer: true
+      },
+      {
+        id: 210,
+        name: "Oil-Free Mattifying Moisturizer",
+        price: 329,
+        compare: 659,
+        discount: "50% OFF",
+        icon: "fa-hand-sparkles",
+        images: ["images/moisturizer2.jpg"],
+        category: "moisturizer",
+        rating: 4.6,
+        reviews: 167,
+        stock: 42,
+        hasTimer: false
+      },
+      {
+        id: 211,
+        name: "Night Repair Cream with Retinol",
+        price: 499,
+        compare: 999,
+        discount: "50% OFF",
+        icon: "fa-hand-sparkles",
+        images: ["images/moisturizer3.jpg"],
+        category: "moisturizer",
+        rating: 4.9,
+        reviews: 145,
+        stock: 23,
+        hasTimer: true,
+        isBestSeller: true
+      },
+      {
+        id: 212,
+        name: "Hyaluronic Acid Hydrating Gel",
+        price: 399,
+        compare: 799,
+        discount: "50% OFF",
+        icon: "fa-hand-sparkles",
+        images: ["images/moisturizer4.jpg"],
+        category: "moisturizer",
+        rating: 4.8,
+        reviews: 212,
+        stock: 31,
+        hasTimer: true
+      }
+    ];
+
+    // ============ MOBILE SIDEBAR TOGGLE ============
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileSidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('overlay');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    function openSidebar() {
+      mobileSidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebarFunc() {
+      mobileSidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (hamburgerBtn) hamburgerBtn.addEventListener('click', openSidebar);
+    if (closeSidebar) closeSidebar.addEventListener('click', closeSidebarFunc);
+    if (overlay) overlay.addEventListener('click', closeSidebarFunc);
+
+    // ============ FILTER FUNCTION ============
+    let currentCategory = 'all';
+
+    function filterProducts(category) {
+      currentCategory = category;
+      
+      // Update active tab
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`.tab-btn[data-category="${category}"]`).classList.add('active');
+      
+      // Filter products
+      const filtered = category === 'all' 
+        ? cosmeticsProducts 
+        : cosmeticsProducts.filter(p => p.category === category);
+      
+      renderProducts(filtered, 'cosmeticsProductsGrid');
+    }
+
+    // ============ RENDER PRODUCTS ============
+    function renderProducts(productsToRender, gridId) {
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      
+      grid.innerHTML = '';
+      
+      productsToRender.forEach(product => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.onclick = () => window.location.href = `product.html?id=${product.id}`;
+        
+        // Get first image for display
+        const productImage = product.images && product.images.length > 0 
+          ? product.images[0] 
+          : null;
+        
+        // Create badge if bestseller
+        const badgeHtml = product.isBestSeller ? 
+          '<div class="product-badge">Best Seller</div>' : '';
+        
+        // Create timer HTML if needed
+        const timerHtml = product.hasTimer ? `
+          <div class="product-timer-small" id="timer_${product.id}">
+            <i class="fas fa-clock"></i>
+            <span>29:30</span> left
+          </div>
+        ` : '';
+        
+        // Generate star rating
+        const stars = [];
+        for (let i = 0; i < 5; i++) {
+          if (i < Math.floor(product.rating)) {
+            stars.push('<i class="fas fa-star"></i>');
+          } else if (i < product.rating) {
+            stars.push('<i class="fas fa-star-half-alt"></i>');
+          } else {
+            stars.push('<i class="far fa-star"></i>');
+          }
+        }
+        
+        card.innerHTML = `
+          <div class="product-image">
+            ${productImage 
+              ? `<img src="${productImage}" alt="${product.name}" 
+                   onerror="this.style.display='none'; this.parentElement.innerHTML='<i class=\\'fas ${product.icon}\\'></i>';">` 
+              : `<i class="fas ${product.icon}"></i>`
+            }
+            ${badgeHtml}
+          </div>
+          <div class="product-category-badge">${product.category}</div>
+          <h3 class="product-title">${product.name}</h3>
+          <div class="product-rating">
+            ${stars.join('')}
+            <span>(${product.reviews})</span>
+          </div>
+          <div class="product-price">
+            <span class="current-price">₹${product.price}</span>
+            <span class="old-price">₹${product.compare}</span>
+            <span class="discount-badge">-${product.discount}</span>
+          </div>
+          ${timerHtml}
+        `;
+        
+        grid.appendChild(card);
+        
+        // Start timer for this product
+        if (product.hasTimer) {
+          startProductTimer(product.id, `timer_${product.id}`);
+        }
+      });
+    }
+
+    // ============ TIMER FUNCTION ============
+    const timerIntervals = {};
+
+    function startProductTimer(productId, elementId) {
+      const now = Date.now();
+      let endTime = localStorage.getItem(`productDeal_${productId}`);
+      
+      if (!endTime || parseInt(endTime) <= now) {
+        endTime = now + (30 * 60 * 1000);
+        localStorage.setItem(`productDeal_${productId}`, endTime);
+      } else {
+        endTime = parseInt(endTime);
+      }
+      
+      function updateTimer() {
+        const timerElement = document.getElementById(elementId);
+        if (!timerElement) return;
+        
+        const now = Date.now();
+        if (endTime <= now) {
+          endTime = now + (30 * 60 * 1000);
+          localStorage.setItem(`productDeal_${productId}`, endTime);
+        }
+        
+        const diff = endTime - now;
+        const minutes = Math.floor(diff / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        
+        const minutesStr = minutes.toString().padStart(2, '0');
+        const secondsStr = seconds.toString().padStart(2, '0');
+        
+        const isUrgent = minutes < 5;
+        
+        timerElement.innerHTML = `
+          <i class="fas fa-clock"></i>
+          <span>${minutesStr}:${secondsStr}</span> left
+        `;
+        
+        if (isUrgent) {
+          timerElement.classList.add('urgent');
+        } else {
+          timerElement.classList.remove('urgent');
+        }
+      }
+      
+      updateTimer();
+      timerIntervals[productId] = setInterval(updateTimer, 1000);
+    }
+
+    // ============ SEARCH FUNCTION ============
+    document.getElementById('searchBtn')?.addEventListener('click', () => {
+      const query = document.getElementById('searchInput').value;
+      if (query) {
+        showToast(`🔍 Searching for "${query}" in cosmetics`);
+      } else {
+        showToast('Please enter search term');
+      }
+    });
+
+    document.getElementById('mobileSearchBtn')?.addEventListener('click', () => {
+      const query = document.getElementById('mobileSearchInput').value;
+      if (query) {
+        showToast(`🔍 Searching for "${query}"`);
+      }
+    });
+
+    // ============ FILTER BUTTONS ============
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterProducts(btn.dataset.category);
+      });
+    });
+
+    // ============ CART COUNT ============
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('dailyGadgetCart')) || [];
+      const count = cart.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('cartCount').textContent = count;
+    }
+
+    // ============ TOAST ============
+    function showToast(msg) {
+      const toast = document.getElementById('cartToast');
+      toast.innerHTML = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+
+    // ============ ICON CLICKS ============
+    document.getElementById('wishlistIcon')?.addEventListener('click', () => showToast('❤️ Wishlist'));
+    document.getElementById('accountIcon')?.addEventListener('click', () => showToast('👤 Account'));
+
+    // ============ INITIALIZE ============
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render all products
+      renderProducts(cosmeticsProducts, 'cosmeticsProductsGrid');
+      
+      // Update cart count
+      updateCartCount();
+      
+      // Check URL for category filter
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('cat');
+      if (catParam) {
+        filterProducts(catParam);
+      }
+    });
+
+    // Cleanup timers
+    window.addEventListener('beforeunload', () => {
+      for (let id in timerIntervals) {
+        clearInterval(timerIntervals[id]);
+      }
+    });
+  </script>
+</body>
+</html>
